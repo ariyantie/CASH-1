@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.cash1" >
+    package="com.android.cash1">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -11,11 +11,11 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".DispatchActivity"
             android:noHistory="true"
-            android:theme="@style/Theme.AppCompat.Translucent" >
+            android:theme="@style/Theme.AppCompat.Translucent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,7 +34,7 @@
         <activity
             android:name=".RegisterActivity"
             android:parentActivityName=".LoginActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LoginActivity" />
@@ -42,7 +42,7 @@
         <activity
             android:name=".PasswordSendActivity"
             android:parentActivityName=".RegisterActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.RegisterActivity" />
@@ -50,7 +50,7 @@
         <activity
             android:name=".PasswordChangeActivity"
             android:parentActivityName=".PasswordSendActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".PasswordSendActivity" />
@@ -58,7 +58,7 @@
         <activity
             android:name=".SecurityQuestionActivity"
             android:parentActivityName=".PasswordChangeActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.PasswordChangeActivity" />
@@ -67,7 +67,7 @@
             android:name=".CongratsActivity"
             android:noHistory="true"
             android:parentActivityName=".SecurityQuestionActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.SecurityQuestionActivity" />
@@ -75,7 +75,7 @@
         <activity
             android:name=".LoginRetryActivity"
             android:parentActivityName=".LoginActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.LoginActivity" />
@@ -83,7 +83,7 @@
         <activity
             android:name=".AgreementActivity"
             android:parentActivityName=".LoginActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.LoginActivity" />
@@ -91,7 +91,7 @@
         <activity
             android:name=".LoginHelpActivity"
             android:parentActivityName=".LoginActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.LoginActivity" />
@@ -99,7 +99,7 @@
         <activity
             android:name=".SecurityChallengeActivity"
             android:parentActivityName=".LoginHelpActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.LoginHelpActivity" />
@@ -116,99 +116,99 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".GetCashNotifyActivity"
-            android:label="@string/title_activity_get_cash_error"
             android:launchMode="singleInstance"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.MainActivity" />
         </activity>
         <activity
             android:name=".GetCashActivity"
-            android:label="@string/title_activity_get_cash"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.MainActivity" />
         </activity>
         <activity
             android:name=".AccountDetailsActivity"
-            android:label="@string/title_activity_account_details"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.MainActivity" />
         </activity>
         <activity
             android:name=".AccountStatementActivity"
-            android:label="@string/title_activity_account"
             android:parentActivityName=".AccountDetailsActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.AccountDetailsActivity" />
         </activity>
         <activity
             android:name=".IncreaseLimitActivity"
-            android:label="@string/title_activity_increase_credit"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.MainActivity" />
         </activity>
         <activity
             android:name=".FindOfficeActivity"
-            android:label="@string/title_activity_find_nearest"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.MainActivity" />
         </activity>
         <activity
+            android:name=".FindOfficeResultActivity"
+            android:parentActivityName=".FindOfficeActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".FindOfficeActivity" />
+        </activity>
+        <activity
             android:name=".FaqActivity"
             android:label="@string/title_activity_faq"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.MainActivity" />
         </activity>
         <activity
             android:name=".ContactActivity"
-            android:label="@string/title_activity_contact"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.cash1.MainActivity" />
+        </activity>
+        <activity android:name=".UpdateInfoActivity"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.MainActivity" />
         </activity>
         <activity
-            android:name=".UpdateInfoActivity"
-            android:label="@string/title_activity_update_info" >
-        </activity>
-        <activity
             android:name=".MakePaymentActivity"
-            android:label="@string/title_activity_make_payment"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.MainActivity" />
         </activity>
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.MainActivity" />
         </activity>
         <activity
             android:name=".NotificationSettingsActivity"
-            android:label="@string/title_activity_notification_settings"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.MainActivity" />

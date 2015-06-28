@@ -26,28 +26,65 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="0dp">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="4dp"
-                    android:text="Push notifications"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="10dp"
+                        android:paddingTop="4dp"
+                        android:text="Push Notifications"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@null"
+                        android:padding="12dp"
+                        android:src="@drawable/ic_info"
+                        tools:layout_marginTop="4dp" />
+
+                </LinearLayout>
 
                 <Button
                     style="@style/ButtonSubmitPrimary"
                     android:onClick="navigateToNotificationSettingsActivity"
-                    android:text="Notification preferences" />
+                    android:text="Set notification preferences" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:paddingBottom="4dp"
-                    android:paddingTop="4dp"
-                    android:text="Login security"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
+                    android:layout_marginTop="40dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="4dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="4dp"
+                        android:text="Login Security"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@null"
+                        android:padding="12dp"
+                        android:src="@drawable/ic_info"
+                        tools:layout_marginTop="4dp" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -77,15 +114,33 @@
 
                 </LinearLayout>
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:paddingBottom="4dp"
-                    android:paddingTop="4dp"
-                    android:text="Location"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
+                    android:layout_marginTop="24dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="4dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="4dp"
+                        android:text="Location Services"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@null"
+                        android:padding="12dp"
+                        android:src="@drawable/ic_info"
+                        tools:layout_marginTop="4dp" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -118,10 +173,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:paddingBottom="2dp"
                     android:paddingTop="16dp"
-                    android:text="Terms and policies"
+                    android:text="Terms and Policies"
                     android:textColor="@android:color/black"
-                    android:textSize="16sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <Button
                     style="@style/ButtonSubmitPrimary"

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.cash1.FindOfficeActivity;
 import com.android.cash1.R;
 import com.android.cash1.rest.ApiService;
 import com.android.cash1.rest.RestClient;
@@ -72,7 +73,7 @@ public class InfoDialogFragment extends DialogFragment {
             confirmButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Cash1Activity activity = (Cash1Activity) getActivity();
+                    final FindOfficeActivity activity = (FindOfficeActivity) getActivity();
                     String deviceId = activity.getDeviceId();
                     String userEmail = activity.getUserEmail();
                     int userId = activity.getUserId();
@@ -83,7 +84,8 @@ public class InfoDialogFragment extends DialogFragment {
                     service.setPreferences(deviceId, userEmail, userId, notice, userCurrentLocation, new Callback<JsonObject>() {
                         @Override
                         public void success(JsonObject responseObject, Response response) {
-                            // TODO; activity.findUsingCurrentLocation();
+                            dismiss();
+                            activity.displaySearchResults();
                         }
 
                         @Override

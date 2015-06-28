@@ -1,5 +1,6 @@
 package com.android.cash1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.View;
@@ -42,7 +43,7 @@ public class FindOfficeActivity extends Cash1Activity {
                 if (!useCurrentLocation) {
                     promptToAllowLocation();
                 } else {
-                    // TODO: displaySearchResults();
+                    displaySearchResults();
                 }
             }
 
@@ -50,6 +51,10 @@ public class FindOfficeActivity extends Cash1Activity {
             public void failure(RetrofitError error) {
             }
         });
+    }
+
+    public void displaySearchResults() {
+        startActivity(new Intent(this, FindOfficeResultActivity.class));
     }
 
     private void promptToAllowLocation() {
