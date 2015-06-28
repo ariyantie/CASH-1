@@ -1,0 +1,62 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            style="@style/ContainerScroll">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:background="@drawable/actionbar_subheader"
+            android:textAllCaps="true"
+            android:textColor="#e1ffffff"
+            android:text="Log in help"
+            android:gravity="top|center_horizontal"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            tools:context=".LoginActivity"
+            style="@style/ContainerLayout">
+
+            <Button
+                android:id="@+id/emailUsername"
+                android:text="@string/email_username_button_label"
+                style="@style/ButtonSubmitPrimary"
+                android:onClick="submit"/>
+
+            <Button
+                android:id="@+id/emailPassword"
+                android:text="@string/email_password_button_label"
+                style="@style/ButtonSubmitPrimary"
+                android:onClick="submit"/>
+
+            <Button
+                android:id="@+id/textUsername"
+                android:text="@string/text_username_button_label"
+                android:onClick="submit"
+                android:layout_marginTop="40dp"
+                style="@style/ButtonSubmitSecondary"/>
+
+            <Button
+                android:id="@+id/textPassword"
+                android:text="@string/text_password_button_label"
+                android:onClick="submit"
+                style="@style/ButtonSubmitSecondary"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:id="@+id/call"
+                android:onClick="callUs"
+                android:text="Call CASH 1"
+                style="@style/ButtonDialog"
+                android:layout_marginTop="40dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

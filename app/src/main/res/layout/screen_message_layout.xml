@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_height="wrap_content"
+    style="@style/ContainerLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="24dp">
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_gravity="center_horizontal"
+        tools:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#737474"
+        android:textSize="20sp"
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        android:textStyle="bold|italic"
+        android:textAllCaps="true"
+        tools:visibility="visible"
+        tools:text="Page under construction!"/>
+
+    <TextView
+        android:id="@+id/body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:textSize="16sp"
+        android:visibility="gone"
+        android:autoLink="phone"
+        android:lineSpacingMultiplier="1.1"
+        tools:visibility="visible"
+        tools:text="Cash1 is committed to protecting your privacy. We maintain Physical, electronic and procedurial safeguards to transmit and store information about you."/>
+
+    <Button
+        android:id="@+id/confirm"
+        android:onClick="callUs"
+        android:text="Call Now"
+        style="@style/ButtonSubmitPrimary"/>
+
+    <Button
+        android:id="@+id/main_menu"
+        android:text="@string/main_menu_button_label"
+        style="@style/ButtonMainMenu"
+        android:textSize="20sp"
+        android:layout_marginTop="16dp"
+        android:onClick="navigateToMainMenu"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"/>
+
+</LinearLayout>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp">
+
+    <TextView
+        android:id="@+id/date"
+        style="@style/StatementRowTextView"
+        android:layout_weight="2.5"
+        tools:text="xx/xx/xxxx" />
+
+    <TextView
+        android:id="@+id/type"
+        style="@style/StatementRowTextView"
+        android:layout_weight="5"
+        tools:text="ACH Reverse" />
+
+    <TextView
+        android:id="@+id/amount"
+        style="@style/StatementRowTextView"
+        android:layout_weight="2"
+        tools:text="$xxx" />
+
+    <TextView
+        android:id="@+id/balance"
+        style="@style/StatementRowTextView"
+        android:layout_weight="2"
+        tools:text="Balance" />
+
+</LinearLayout>

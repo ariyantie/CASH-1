@@ -1,0 +1,71 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            style="@style/ContainerScroll">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:background="@drawable/actionbar_subheader"
+            android:textAllCaps="true"
+            android:textColor="#e1ffffff"
+            android:text="New user registration"
+            android:gravity="top|center_horizontal"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            style="@style/ContainerLayout">
+
+            <TextView
+                android:text="@string/register_hint_header"
+                style="@style/TextHeader"/>
+
+            <TextView
+                android:text="@string/register_hint_body"
+                style="@style/TextBody"/>
+
+            <EditText
+                android:id="@+id/first_name"
+                android:hint="@string/first_name_hint"
+                android:inputType="textNoSuggestions|textCapWords"
+                style="@style/EditTextLogin"
+                android:layout_marginTop="30dp"/>
+
+            <EditText
+                android:id="@+id/last_name"
+                android:hint="@string/last_name_hint"
+                android:inputType="textNoSuggestions|textCapWords"
+                style="@style/EditTextLogin"
+                android:layout_marginTop="6dp"/>
+
+            <EditText
+                android:id="@+id/email"
+                android:hint="@string/email_hint"
+                android:inputType="textEmailAddress"
+                style="@style/EditTextLogin"
+                android:layout_marginTop="6dp"/>
+
+            <Button
+                android:id="@+id/register"
+                android:text="@string/submit_button_label"
+                android:onClick="register"
+                style="@style/ButtonSubmitPrimary"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <ImageButton
+                    style="@style/ButtonGuarantee"/>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

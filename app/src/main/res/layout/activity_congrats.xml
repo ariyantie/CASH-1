@@ -1,0 +1,90 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            style="@style/ContainerScroll">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:background="@drawable/actionbar_subheader"
+            android:textAllCaps="true"
+            android:textColor="#e1ffffff"
+            android:text="Registration confirmation"
+            android:gravity="top|center_horizontal"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            style="@style/ContainerLayout"
+            android:paddingTop="56dp">
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner"
+                android:layout_gravity="center_horizontal"
+                tools:visibility="gone"
+                android:layout_marginBottom="-78dp"/>
+
+            <TextView
+                android:id="@+id/header"
+                style="@style/TextHeader"/>
+
+            <TextView
+                android:id="@+id/body"
+                style="@style/TextBody"/>
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-light"
+                android:singleLine="true"
+                tools:text="Username: AlekseySheyko"/>
+
+            <TextView
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif-light"
+                android:singleLine="true"
+                tools:text="Password: 12345"/>
+
+            <Button
+                android:id="@+id/main_menu"
+                android:text="@string/main_menu_button_label"
+                style="@style/ButtonDialog"
+                android:textSize="20sp"
+                android:layout_marginTop="40dp"
+                android:onClick="navigateToMainMenu"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:layout_height="48dp"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <ImageButton
+                    style="@style/ButtonGuarantee"
+                    android:scaleType="fitXY"
+                    android:adjustViewBounds="true"/>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

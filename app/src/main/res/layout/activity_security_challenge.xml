@@ -1,0 +1,73 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            style="@style/ContainerScroll"
+            tools:context=".SecurityChallengeActivity`">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:background="@drawable/actionbar_subheader"
+            android:textAllCaps="true"
+            android:textColor="#e1ffffff"
+            android:text="Identity confirmation"
+            android:gravity="top|center_horizontal"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            style="@style/ContainerLayout">
+
+            <TextView
+                android:text="@string/sec_quest_challenge_hint_header"
+                style="@style/TextHeader"/>
+
+            <TextView
+                android:id="@+id/question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginTop="40dp"
+                tools:text="What was the make of your first car?"
+                android:visibility="gone"
+                tools:visibillity="visible"/>
+
+            <ProgressBar
+                android:id="@+id/spinner"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                tools:visibillity="gone"/>
+
+            <EditText
+                android:id="@+id/answer"
+                android:hint="@string/security_answer_hint"
+                android:inputType="textCapSentences|textNoSuggestions"
+                style="@style/EditTextLogin"
+                android:layout_marginTop="12dp"/>
+
+            <Button
+                android:id="@+id/submit"
+                android:text="@string/submit_button_label"
+                style="@style/ButtonSubmitPrimary"
+                android:onClick="submitAnswer"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <ImageButton
+                    style="@style/ButtonGuarantee"/>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

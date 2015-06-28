@@ -1,0 +1,148 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView style="@style/ContainerScroll">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="@drawable/actionbar_subheader"
+                android:gravity="top|center_horizontal"
+                android:text="Settings"
+                android:textAllCaps="true"
+                android:textColor="#e1ffffff"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/container"
+                style="@style/ContainerLayout"
+                android:layout_height="wrap_content"
+                android:paddingBottom="0dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:text="Push notifications"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <Button
+                    style="@style/ButtonSubmitPrimary"
+                    android:onClick="navigateToNotificationSettingsActivity"
+                    android:text="Notification preferences" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:paddingBottom="4dp"
+                    android:paddingTop="4dp"
+                    android:text="Login security"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingBottom="4dp"
+                        android:paddingLeft="4dp"
+                        android:paddingTop="4dp"
+                        android:text="Remember login"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                    <ToggleButton
+                        android:layout_width="86dp"
+                        android:layout_height="26dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/toggle_selector"
+                        android:textOff=""
+                        android:textOn=""
+                        tools:checked="true" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:paddingBottom="4dp"
+                    android:paddingTop="4dp"
+                    android:text="Location"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingBottom="4dp"
+                        android:paddingLeft="4dp"
+                        android:paddingTop="4dp"
+                        android:text="Location services"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                    <ToggleButton
+                        android:layout_width="86dp"
+                        android:layout_height="26dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/toggle_selector"
+                        android:textOff=""
+                        android:textOn="" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:paddingTop="16dp"
+                    android:text="Terms and policies"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <Button
+                    style="@style/ButtonSubmitPrimary"
+                    android:text="Terms of use" />
+
+                <Button
+                    style="@style/ButtonSubmitPrimary"
+                    android:layout_marginBottom="112dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Privacy policy" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="bottom|center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/footer_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginBottom="-6dp"
+        android:background="@drawable/menu_toggle"
+        android:clickable="true"
+        android:drawablePadding="8dp"
+        android:gravity="center_vertical"
+        android:drawableRight="@drawable/ic_arrow_up"
+        android:paddingLeft="40dp"
+        android:paddingRight="28dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="12dp"
+        android:textColor="#e1ffffff"
+        android:text="@string/menu_toggle_label"
+        android:textAllCaps="true" />
+
+    <LinearLayout
+        android:id="@+id/footer_container"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/footer_background"
+        android:orientation="horizontal"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:visibility="gone">
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:onClick="goHome"
+            android:src="@drawable/btn_footer_home_selector"/>
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:onClick="findOffice"
+            android:src="@drawable/btn_footer_locations_selector"/>
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:onClick="showFaq"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/btn_footer_faq_selector" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:onClick="contactUs"
+            android:src="@drawable/btn_footer_contact_selector"/>
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:onClick="openSettings"
+            android:src="@drawable/btn_footer_settings_selector"/>
+
+    </LinearLayout>
+
+</LinearLayout>

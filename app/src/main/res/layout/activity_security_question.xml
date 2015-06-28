@@ -1,0 +1,63 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ContainerScroll">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:background="@drawable/actionbar_subheader"
+            android:gravity="top|center_horizontal"
+            android:text="New user registration"
+            android:textAllCaps="true"
+            android:textColor="#e1ffffff"
+            android:textStyle="bold" />
+
+        <LinearLayout style="@style/ContainerLayout">
+
+            <TextView
+                style="@style/TextHeader"
+                android:paddingTop="8dp"
+                android:text="@string/security_question_hint_header" />
+
+            <TextView
+                style="@style/TextBody"
+                android:text="@string/security_question_hint_body" />
+
+            <Spinner
+                android:id="@+id/question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:hint="@string/security_question_hint" />
+
+            <EditText
+                android:id="@+id/answer"
+                style="@style/EditTextLogin"
+                android:layout_marginTop="8dp"
+                android:hint="@string/security_answer_hint"
+                android:inputType="textCapWords|textNoSuggestions" />
+
+            <Button
+                android:id="@+id/submit"
+                style="@style/ButtonSubmitPrimary"
+                android:onClick="submit"
+                android:text="@string/submit_button_label" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <ImageButton style="@style/ButtonGuarantee" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              tools:context=".SplashActivity"
+              style="@style/ContainerLayout">
+
+    <ImageView
+        style="@style/ScreenLogoBig"/>
+
+    <Button
+        android:id="@+id/login"
+        android:layout_marginTop="40dp"
+        style="@style/ButtonSplashLarge"
+        android:onClick="navigateToLoginScreen"/>
+
+    <Button
+        android:id="@+id/register"
+        android:layout_marginTop="8dp"
+        style="@style/ButtonSplashLarge"
+        android:onClick="browseOriginalWebsite"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="Cash 1 Mobile Quick Guide"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/btn_guide"
+        android:layout_marginTop="16dp"
+        android:textSize="12sp"
+        android:gravity="center_vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:onClick="showQuickGuide"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageButton
+            style="@style/ButtonGuarantee"/>
+
+    </FrameLayout>
+
+</LinearLayout>

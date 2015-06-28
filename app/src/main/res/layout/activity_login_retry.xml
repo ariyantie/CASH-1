@@ -1,0 +1,77 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            style="@style/ContainerScroll">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:background="@drawable/actionbar_subheader"
+            android:textAllCaps="true"
+            android:textColor="#e1ffffff"
+            android:text="Retry log in"
+            android:gravity="top|center_horizontal"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            tools:context=".LoginActivity"
+            android:paddingTop="56dp"
+            style="@style/ContainerLayout">
+
+            <TextView
+                android:text="@string/login_retry_hint_header"
+                style="@style/TextHeader"
+                android:textSize="22sp"/>
+
+            <EditText
+                android:id="@+id/username"
+                android:hint="@string/username_hint"
+                android:inputType="textNoSuggestions"
+                style="@style/EditTextLogin"
+                android:layout_marginTop="40dp"/>
+
+            <EditText
+                android:id="@+id/password"
+                android:hint="@string/password_hint"
+                android:inputType="textPassword"
+                style="@style/EditTextLogin"
+                android:layout_marginTop="6dp"/>
+
+            <Button
+                android:id="@+id/login"
+                android:text="@string/login_button_label"
+                style="@style/ButtonSubmitPrimary"
+                android:onClick="login"/>
+
+            <Button
+                android:id="@+id/loginHelp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_register_selector"
+                android:layout_marginTop="8dp"
+                android:text="@string/login_help_button_label"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:visibility="gone"
+                android:onClick="loginHelp"
+                tools:visibility="visible"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <ImageButton
+                    style="@style/ButtonGuarantee"/>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

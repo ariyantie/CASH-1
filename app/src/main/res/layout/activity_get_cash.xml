@@ -1,0 +1,171 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView style="@style/ContainerScroll">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="@drawable/actionbar_subheader"
+                android:gravity="top|center_horizontal"
+                android:text="Get cash"
+                android:textAllCaps="true"
+                android:textColor="#e1ffffff"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                style="@style/ContainerLayout"
+                android:layout_height="wrap_content">
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:text="Account name: " />
+
+                    <TextView
+                        android:id="@+id/account_name"
+                        style="@style/AccountDetailsValue"
+                        tools:text="TTTEST TTTEST" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:text="Account number: " />
+
+                    <TextView
+                        android:id="@+id/account_number"
+                        style="@style/AccountDetailsValue"
+                        tools:text="4647" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:text="Account type: " />
+
+                    <TextView
+                        android:id="@+id/account_type"
+                        style="@style/AccountDetailsValue"
+                        tools:text="Smart Loans" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:text="Outstanding balance: " />
+
+                    <TextView
+                        android:id="@+id/out_balance"
+                        style="@style/AccountDetailsValue"
+                        tools:text="493.99" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:text="Credit available: " />
+
+                    <TextView
+                        android:id="@+id/credit_available"
+                        style="@style/AccountDetailsValue"
+                        tools:text="0.00" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:text="Next payment due: " />
+
+                    <TextView
+                        android:id="@+id/next_payment_due"
+                        style="@style/AccountDetailsValue"
+                        tools:text="null" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:text="Next payment amount: " />
+
+                    <TextView
+                        android:id="@+id/next_payment_amount"
+                        style="@style/AccountDetailsValue"
+                        tools:text="null" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="Cash advance requested: "
+                        android:textAllCaps="true"
+                        android:textColor="@android:color/black"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textSize="15sp"
+                        tools:text="$300" />
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/amount_field"
+                    style="@style/EditTextLogin"
+                    android:layout_marginTop="16dp"
+                    android:hint="@string/amount_hint"
+                    android:inputType="number"
+                    android:maxLength="5" />
+
+                <Button
+                    android:id="@+id/confirm"
+                    style="@style/ButtonSubmitPrimary"
+                    android:onClick="getCash"
+                    android:text="Get Cash" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

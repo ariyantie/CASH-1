@@ -1,0 +1,72 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ContainerScroll"
+    tools:context=".LoginActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="@drawable/actionbar_subheader"
+                android:gravity="top|center_horizontal"
+                android:text="Home Screen"
+                android:textAllCaps="true"
+                android:textColor="#e1ffffff"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                style="@style/ContainerLayout"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/get_cash"
+                    style="@style/ButtonMainScreen"
+                    android:onClick="getCash"
+                    android:src="@drawable/btn_get_cash_selector" />
+
+                <ImageButton
+                    android:id="@+id/make_payment"
+                    style="@style/ButtonMainScreen"
+                    android:onClick="makePayment"
+                    android:src="@drawable/btn_make_payment_selector" />
+
+                <ImageButton
+                    android:id="@+id/update_info"
+                    style="@style/ButtonMainScreen"
+                    android:onClick="updateInfo"
+                    android:src="@drawable/btn_update_info_selector" />
+
+                <ImageButton
+                    android:id="@+id/account_details"
+                    style="@style/ButtonMainScreen"
+                    android:onClick="accountDetails"
+                    android:src="@drawable/btn_account_details_selector" />
+
+                <ImageButton
+                    android:id="@+id/credit_limit"
+                    style="@style/ButtonMainScreen"
+                    android:onClick="creditLimit"
+                    android:src="@drawable/btn_increase_limit_selector" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--TODO: Pin menu button to the bottom of the screen-->
+        <include
+            layout="@layout/footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" />
+
+    </RelativeLayout>
+
+</ScrollView>

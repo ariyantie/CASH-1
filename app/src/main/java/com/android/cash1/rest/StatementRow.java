@@ -1,0 +1,46 @@
+package com.android.cash1.rest;
+
+import com.google.gson.annotations.SerializedName;
+
+import java.text.NumberFormat;
+import java.util.Locale;
+
+public class StatementRow {
+
+    @SerializedName("Balance")
+    private String mBalance;
+
+    @SerializedName("Payment")
+    private String mPayment;
+
+    @SerializedName("PaymentType")
+    private String mPaymentType;
+
+    @SerializedName("PaymentTypeId")
+    private String mPaymentTypeId;
+
+    @SerializedName("TransactionDate")
+    private String mTransactionDate;
+
+    public String getBalance() {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
+        return formatter.format(Float.parseFloat(mBalance));
+    }
+
+    public String getPayment() {
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
+        return formatter.format(Float.parseFloat(mPayment));
+    }
+
+    public String getPaymentType() {
+        return mPaymentType;
+    }
+
+    public String getPaymentTypeId() {
+        return mPaymentTypeId;
+    }
+
+    public String getTransactionDate() {
+        return mTransactionDate;
+    }
+}

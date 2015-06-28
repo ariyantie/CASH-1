@@ -1,0 +1,185 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView style="@style/ContainerScroll">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="@drawable/actionbar_subheader"
+                android:gravity="top|center_horizontal"
+                android:text="Make a payment"
+                android:textAllCaps="true"
+                android:textColor="#e1ffffff"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                style="@style/ContainerLayout"
+                android:layout_height="wrap_content"
+                android:paddingBottom="0dp">
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:text="Account name: " />
+
+                    <!--TODO: Load data from web service-->
+
+                    <TextView
+                        android:id="@+id/account_name"
+                        style="@style/AccountDetailsValue"
+                        tools:text="NVPAYDAY PAYMENT" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:text="Loan ID: " />
+
+                    <TextView
+                        android:id="@+id/account_number"
+                        style="@style/AccountDetailsValue"
+                        tools:text="469" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:text="Account type: " />
+
+                    <TextView
+                        android:id="@+id/account_type"
+                        style="@style/AccountDetailsValue"
+                        tools:text="Not used" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:text="Outstanding ballance: " />
+
+                    <TextView
+                        android:id="@+id/out_balance"
+                        style="@style/AccountDetailsValue"
+                        tools:text="50.00" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:text="Credit available: " />
+
+                    <TextView
+                        android:id="@+id/credit_available"
+                        style="@style/AccountDetailsValue"
+                        tools:text="217.31" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:text="Next payment due: " />
+
+                    <TextView
+                        android:id="@+id/next_payment_due"
+                        style="@style/AccountDetailsValue"
+                        tools:text="08/10/2012" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:text="Next payment amount: " />
+
+                    <TextView
+                        android:id="@+id/next_payment_amount"
+                        style="@style/AccountDetailsValue"
+                        tools:text="0.00" />
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/payment_from"
+                    style="@style/EditTextLogin"
+                    android:layout_marginTop="32dp"
+                    android:hint="Payment from"
+                    android:text="Test Sender"
+                    android:inputType="textPersonName|textCapWords|textNoSuggestions" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:paddingRight="8dp"
+                        android:text="$"
+                        android:textColor="#a8000000"
+                        android:textSize="30sp" />
+
+                    <EditText
+                        android:id="@+id/amount"
+                        style="@style/EditTextLogin"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:hint="Amount"
+                        android:text="50.00"
+                        android:inputType="numberDecimal" />
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/date"
+                    style="@style/EditTextLogin"
+                    android:layout_marginTop="16dp"
+                    android:hint="Payment date"
+                    android:text="28/06/2015"
+                    android:inputType="date" />
+
+                <!--TODO: Collect info from fields and submit payment-->
+
+                <Button
+                    android:id="@+id/submit_button"
+                    style="@style/ButtonSubmitPrimary"
+                    android:layout_marginBottom="112dp"
+                    android:layout_marginTop="32dp"
+                    android:onClick="submitPayment"
+                    android:text="Submit" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

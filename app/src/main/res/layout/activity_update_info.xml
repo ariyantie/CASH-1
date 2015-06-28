@@ -1,0 +1,84 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView style="@style/ContainerScroll">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="@drawable/actionbar_subheader"
+                android:gravity="top|center_horizontal"
+                android:text="Update information"
+                android:textAllCaps="true"
+                android:textColor="#e1ffffff"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/container"
+                style="@style/ContainerLayout"
+                android:layout_height="wrap_content"
+                android:paddingBottom="0dp">
+
+                <!--TODO: Add functionality for all buttons-->
+
+                <Button
+                    android:id="@+id/update_card_button"
+                    style="@style/ButtonSubmitPrimary"
+                    android:layout_marginTop="16dp"
+                    android:onClick="updateCard"
+                    android:text="Update debit/credit card" />
+
+                <Button
+                    android:id="@+id/bank_account_button"
+                    style="@style/ButtonSubmitPrimary"
+                    android:layout_marginTop="16dp"
+                    android:onClick="updateBankAccount"
+                    android:text="Update bank account" />
+
+                <Button
+                    android:id="@+id/personal_info_button"
+                    style="@style/ButtonSubmitPrimary"
+                    android:layout_marginTop="16dp"
+                    android:onClick="updatePersonalInfo"
+                    android:text="Update personal info" />
+
+                <Button
+                    android:id="@+id/work_info_button"
+                    style="@style/ButtonSubmitPrimary"
+                    android:layout_marginTop="16dp"
+                    android:onClick="updateWorkInfo"
+                    android:text="Update work info" />
+
+                <Button
+                    android:id="@+id/payment_account_button"
+                    style="@style/ButtonSubmitPrimary"
+                    android:layout_marginTop="16dp"
+                    android:onClick="selectPaymentAccount"
+                    android:text="Select primary payment account" />
+
+                <Button
+                    android:id="@+id/my_payment_button"
+                    style="@style/ButtonSubmitPrimary"
+                    android:layout_marginTop="16dp"
+                    android:onClick="changeMyPaymentAccount"
+                    android:text="Change my payment" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

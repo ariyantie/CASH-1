@@ -1,0 +1,77 @@
+package com.android.cash1;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.android.cash1.model.Cash1Activity;
+import com.android.cash1.rest.ApiService;
+import com.android.cash1.rest.RestClient;
+import com.google.gson.JsonObject;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
+
+public class PasswordChangeActivity extends Cash1Activity {
+
+    private EditText mPasswordEditText;
+    private EditText mPasswordConfirmEditText;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_password_change);
+
+        setupActionBar();
+
+
+        mPasswordEditText = (EditText) findViewById(R.id.password);
+        mPasswordConfirmEditText = (EditText) findViewById(R.id.password_confirm);
+    }
+
+    public void changePassword(View view) {
+        int userId = getUserId();
+        String password = mPasswordEditText.getText().toString();
+        String passwordConfirm = mPasswordConfirmEditText.getText().toString();
+
+        if (!password.equals(passwordConfirm)) {
+            Toast.makeText(this, "Passwords doesn't match", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (password.isEmpty()) {
+            setError(mPasswordEditText);
+            return;
+        }
+        if (passwordConfirm.isEmpty()) {
+            setError(mPasswordConfirmEditText);
+            return;
+        }
+
+        ApiService service = new RestClient().getApiService();
+        service.changePassword(userId, password, new Callback<JsonObject>() {
+            @Override
+            public void success(JsonObject responseObj, Response response) {
+                if (!responseObj.getAsJsonPrimitive("message").getAsString().contains("Enter Valid")) {
+                    startActivity(new Intent(PasswordChangeActivity.this, SecurityQuestionActivity.class));
+                } else {
+                    Toast.makeText(PasswordChangeActivity.this,
+                            "Failed to change password. Try again later.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                error.printStackTrace();
+            }
+        });
+    }
+
+    private void setError(EditText editText) {
+        editText.requestFocus();
+        editText.setError(editText.getHint() + " is required");
+    }
+}

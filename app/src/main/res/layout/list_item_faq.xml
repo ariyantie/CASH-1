@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:paddingLeft="16dp"
+    tools:paddingRight="16dp">
+
+    <TextView
+        android:id="@+id/question_textview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:drawablePadding="12dp"
+        android:drawableRight="@drawable/ic_arrow_expand"
+        android:gravity="center_vertical"
+        android:minHeight="?attr/listPreferredItemHeight"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold"
+        tools:text="What can I do with CASH 1 mobile?" />
+
+    <TextView
+        android:id="@+id/answer_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:visibility="gone"
+        android:lineSpacingMultiplier="1.1"
+        android:textSize="18sp"
+        tools:visibility="visible"
+        android:textColor="@android:color/black"
+        tools:text="Using the Cash 1 Mobile you can: Get additional Cash when available on your credit line.Make a payment on your account.View details of your account.Update information of your account.Request an increase in credit.keep up to date with the latest offers from Cash 1." />
+
+</LinearLayout>

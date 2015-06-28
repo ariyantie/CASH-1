@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:orientation="horizontal"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/button_back"
+        android:layout_width="64dp"
+        android:layout_height="32dp"
+        android:src="@drawable/btn_back_actionbar"
+        android:background="@null"
+        android:layout_gravity="center_vertical"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:onClick="goBack"/>
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/button_logout"
+        android:layout_width="64dp"
+        android:layout_height="32dp"
+        android:background="@drawable/btn_actionbar"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="2dp"
+        android:text="Log out"
+        android:paddingBottom="3dp"
+        android:textSize="12sp"
+        android:textColor="#D6EBDE"
+        android:textStyle="bold"
+        android:onClick="logout"
+        android:visibility="gone"/>
+
+</LinearLayout>

@@ -1,0 +1,206 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView style="@style/ContainerScroll">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="@drawable/actionbar_subheader"
+                android:gravity="top|center_horizontal"
+                android:text="Contact us"
+                android:textAllCaps="true"
+                android:textColor="#e1ffffff"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/container"
+                style="@style/ContainerLayout"
+                android:layout_height="wrap_content"
+                android:paddingBottom="0dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="4dp"
+                    android:paddingTop="4dp"
+                    android:text="Customer support"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="16dp">
+
+                    <TextView
+                        style="@style/TextBodyMedium"
+                        android:text="Account name:" />
+
+                    <TextView
+                        android:id="@+id/account_name"
+                        style="@style/TextBodyMedium"
+                        tools:text="NVPAYDAY PAYMENT" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="16dp">
+
+                    <TextView
+                        style="@style/TextBodyMedium"
+                        android:text="Toll-free:" />
+
+                    <TextView
+                        android:id="@+id/customer_toll_free"
+                        style="@style/TextBodyMedium"
+                        android:clickable="true"
+                        android:onClick="dialNumber"
+                        android:textColor="#236d9e"
+                        tools:text="(877) 854-2243" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="16dp">
+
+                    <TextView
+                        style="@style/TextBodyMedium"
+                        android:text="Phone:" />
+
+                    <TextView
+                        android:id="@+id/customer_phone"
+                        style="@style/TextBodyMedium"
+                        android:clickable="true"
+                        android:onClick="dialNumber"
+                        android:textColor="#236d9e"
+                        tools:text="(755) 321-3576" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="4dp"
+                    android:paddingTop="4dp"
+                    android:text="Collections"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="16dp">
+
+                    <TextView
+                        style="@style/TextBodyMedium"
+                        android:text="Toll-free:" />
+
+                    <TextView
+                        android:id="@+id/collections_toll_free"
+                        style="@style/TextBodyMedium"
+                        android:clickable="true"
+                        android:onClick="dialNumber"
+                        android:textColor="#236d9e"
+                        tools:text="(866) 922-7434" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="16dp">
+
+                    <TextView
+                        style="@style/TextBodyMedium"
+                        android:text="Fax:" />
+
+                    <TextView
+                        android:id="@+id/collections_fax"
+                        style="@style/TextBodyMedium"
+                        android:clickable="true"
+                        android:onClick="dialNumber"
+                        android:textColor="#236d9e"
+                        tools:text="(800) 251-5715" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="4dp"
+                    android:paddingTop="4dp"
+                    android:text="CASH 1 locations"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="112dp"
+                    android:orientation="horizontal"
+                    android:paddingTop="16dp">
+
+                    <TextView
+                        style="@style/TextBodyMedium"
+                        android:text="For a nearest location:" />
+
+                    <TextView
+                        android:id="@+id/nearest_location_number"
+                        style="@style/TextBodyMedium"
+                        android:clickable="true"
+                        android:onClick="dialNumber"
+                        android:textColor="#236d9e"
+                        tools:text="888-GO-CASH1-1" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

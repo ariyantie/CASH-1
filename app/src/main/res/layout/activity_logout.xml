@@ -1,0 +1,48 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            style="@style/ContainerScroll"
+            tools:context=".LogoutActivity">
+
+    <LinearLayout
+        style="@style/ContainerLayout">
+
+        <ImageView
+            style="@style/ScreenLogoBig"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/logout_header"
+            android:textSize="26sp"
+            android:layout_marginTop="56dp"
+            android:textStyle="bold"
+            android:textColor="#036332"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/logout_body"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:textColor="#036332"/>
+
+        <Button
+            style="@style/ButtonGreenSmall"
+            android:text="Go to Log in"
+            android:onClick="navigateToLoginScreen"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageButton
+                style="@style/ButtonGuarantee"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</ScrollView>
