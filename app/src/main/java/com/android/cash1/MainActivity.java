@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.android.cash1.model.Cash1Activity;
 import com.android.cash1.rest.ApiService;
@@ -88,7 +87,6 @@ public class MainActivity extends Cash1Activity {
 
     @Override
     public void goHome(View view) {
-        Toast.makeText(this, "Already opened", Toast.LENGTH_SHORT).show();
         closeFooter();
     }
 }

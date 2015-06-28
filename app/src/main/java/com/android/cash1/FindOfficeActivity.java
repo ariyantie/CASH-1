@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.View;
-import android.widget.Toast;
 
 import com.android.cash1.model.Cash1Activity;
 import com.android.cash1.model.InfoDialogFragment;
@@ -29,7 +28,6 @@ public class FindOfficeActivity extends Cash1Activity {
 
     @Override
     public void findOffice(View view) {
-        Toast.makeText(this, "Already opened", Toast.LENGTH_SHORT).show();
         closeFooter();
     }
 

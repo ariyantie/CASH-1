@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.cash1.model.Cash1Activity;
 import com.android.cash1.model.Cash1LocationsNumber;
@@ -97,7 +96,6 @@ public class ContactActivity extends Cash1Activity {
 
     @Override
     public void contactUs(View view) {
-        Toast.makeText(this, "Already opened", Toast.LENGTH_SHORT).show();
         closeFooter();
     }
 

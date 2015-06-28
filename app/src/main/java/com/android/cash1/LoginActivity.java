@@ -160,7 +160,8 @@ public class LoginActivity extends Cash1Activity {
         final ApiService service = new RestClient().getApiService();
         service.checkUserDevice(deviceId, username, userId, new Callback<JsonObject>() {
             @Override
-            public void success(JsonObject responseObj, Response response) {boolean isFound = responseObj.getAsJsonObject("CheckUserDeviceLinkResult").getAsJsonPrimitive("User_Device_Link").getAsBoolean();
+            public void success(JsonObject responseObj, Response response) {
+                boolean isFound = responseObj.getAsJsonObject("CheckUserDeviceLinkResult").getAsJsonPrimitive("User_Device_Link").getAsBoolean();
                 if (isFound) {
                     int loanId = mSharedPrefs.getInt("loan_id", -1);
                     if (loanId == 7) {
@@ -177,10 +178,20 @@ public class LoginActivity extends Cash1Activity {
                         if (redirectViewTitle != null) {
                             switch (getRedirectViewTitle()) {
                                 case "forgotpassword":
-                                    Toast.makeText(LoginActivity.this, "You need to setup temporary password to continue", Toast.LENGTH_LONG).show();
-                                    startActivity(new Intent(LoginActivity.this, PasswordChangeActivity.class));
+                                    SharedPreferences sharedPreferences =
+                                            PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+                                    if (!sharedPreferences.getBoolean("password_restored", false)) {
+                                        Toast.makeText(LoginActivity.this, "You need to setup temporary password to continue", Toast.LENGTH_LONG).show();
+                                        startActivity(new Intent(LoginActivity.this, PasswordChangeActivity.class));
+                                    } else {
+                                        // TODO: Show popup with message with Tuhin
+                                    }
+                                    break;
+                                case "CreditDenial":
+                                    showCreditDenialPopup();
                                     break;
                                 case "LoginFailed":
+                                default:
                                     // TODO: Show popup with message with Tuhin
                                     break;
                             }
@@ -238,7 +249,7 @@ public class LoginActivity extends Cash1Activity {
             args.putInt("dialog_id", 9);
         } else if (isEmailPassword) {
             args.putInt("dialog_id", 11);
-        }  else if (isTextUsername) {
+        } else if (isTextUsername) {
             args.putInt("dialog_id", 10);
         } else if (isTextPassword) {
             args.putInt("dialog_id", 12);

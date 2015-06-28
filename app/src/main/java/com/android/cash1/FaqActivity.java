@@ -84,7 +84,6 @@ public class FaqActivity extends Cash1Activity {
 
     @Override
     public void showFaq(View view) {
-        Toast.makeText(this, "Already opened", Toast.LENGTH_SHORT).show();
         closeFooter();
     }
 }

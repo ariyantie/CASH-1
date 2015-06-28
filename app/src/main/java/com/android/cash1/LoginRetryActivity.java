@@ -38,6 +38,7 @@ public class LoginRetryActivity extends Cash1Activity {
         mPasswordEditText = (EditText) findViewById(R.id.password);
 
         mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mSharedPrefs.edit().putString("password", null).apply();
     }
 
     public void login(View view) {

@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.cash1.ContactActivity;
 import com.android.cash1.FaqActivity;
@@ -140,11 +139,6 @@ public class Cash1Activity extends AppCompatActivity {
         super.onBackPressed();
     }
 
-    public void showAlreadyOpenedToast() {
-        Toast.makeText(this, "Already opened", Toast.LENGTH_SHORT).show();
-        closeFooter();
-    }
-
     @SuppressWarnings("unused")
     public void showGuarantee(View view) {
         showDialog(1, "I");
@@ -223,7 +217,7 @@ public class Cash1Activity extends AppCompatActivity {
     }
 
     public void showCreditDenialPopup() {
-        showDialog(6, "E", true);
+        showDialog(6, "I", true);
     }
 
     public void showCallUsPopup() {
