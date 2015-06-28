@@ -67,7 +67,7 @@ public class InfoDialogFragment extends DialogFragment {
             bodyTextView.setVisibility(View.VISIBLE);
             switch (messageType) {
                 case "general login error":
-                    bodyTextView.setText(getString(R.string.basic_error_message));
+                    bodyTextView.setText(getString(R.string.basic_error_message_login));
                     break;
                 case "general error":
                     bodyTextView.setText(getString(R.string.basic_error_message));
