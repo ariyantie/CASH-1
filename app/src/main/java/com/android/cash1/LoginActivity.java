@@ -107,11 +107,14 @@ public class LoginActivity extends Cash1Activity {
                     int loanId = responseObj.getAsJsonPrimitive("LoanID").getAsInt();
                     boolean isFirstCashAdvance = responseObj.getAsJsonPrimitive("isFirstCashAdvance").getAsBoolean();
                     int storeId = responseObj.getAsJsonPrimitive("StoreID").getAsInt();
+                    String redirectView = responseObj.getAsJsonPrimitive("RedirectView").getAsString();
+                    mSharedPrefs.edit().putString("redirect_view", null).commit();
                     mSharedPrefs.edit()
                             .putInt("loan_id", loanId)
                             .putBoolean("first_cash_advance", isFirstCashAdvance)
                             .putInt("user_id", userId)
                             .putInt("store_id", storeId)
+                            .putString("redirect_view", redirectView)
                             .apply();
 
                     // TODO: Modify web service to save "esign" flag, and check for it here
@@ -135,7 +138,6 @@ public class LoginActivity extends Cash1Activity {
                     checkUserDevice();
                 } else {
                     startActivity(new Intent(LoginActivity.this, LoginRetryActivity.class));
-                    showIncorrectUsernameOrPasswordPopup();
                 }
             }
 
@@ -171,7 +173,20 @@ public class LoginActivity extends Cash1Activity {
                             showLoanInProgressPopup();
                         }
                     } else {
-                        showSecurityQuestionPopup();
+                        String redirectViewTitle = getRedirectViewTitle();
+                        if (redirectViewTitle != null) {
+                            switch (getRedirectViewTitle()) {
+                                case "forgotpassword":
+                                    Toast.makeText(LoginActivity.this, "You need to setup temporary password to continue", Toast.LENGTH_LONG).show();
+                                    startActivity(new Intent(LoginActivity.this, PasswordChangeActivity.class));
+                                    break;
+                                case "LoginFailed":
+                                    // TODO: Show popup with message with Tuhin
+                                    break;
+                            }
+                        } else {
+                            // TODO: Show popup with message with Tuhin
+                        }
                     }
                 } else {
                     service.saveUserDevice(deviceId, username, userId, new Callback<JsonObject>() {

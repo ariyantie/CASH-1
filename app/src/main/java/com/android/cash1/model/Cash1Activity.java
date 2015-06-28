@@ -162,6 +162,10 @@ public class Cash1Activity extends AppCompatActivity {
         return PreferenceManager.getDefaultSharedPreferences(this).getInt("store_id", 0);
     }
 
+    public String getRedirectViewTitle() {
+        return PreferenceManager.getDefaultSharedPreferences(this).getString("redirect_view", null);
+    }
+
     public void showLoanInProgressPopup() {
         showDialog(5, "I");
     }

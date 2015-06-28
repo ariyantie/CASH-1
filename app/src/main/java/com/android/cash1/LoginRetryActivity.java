@@ -29,6 +29,8 @@ public class LoginRetryActivity extends Cash1Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_retry);
 
+        showIncorrectUsernameOrPasswordPopup();
+
         setupActionBar();
 
 
