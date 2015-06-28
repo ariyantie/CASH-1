@@ -1,7 +1,6 @@
 package com.android.cash1.model;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -36,7 +35,7 @@ public class InfoDialogFragment extends DialogFragment {
         builder.setView(rootView);
 
         int dialogId = getArguments().getInt("dialog_id", -1);
-        String msgType = getArguments().getString("message_type");
+        String messageType = getArguments().getString("message_type");
         String bodyMessage = getArguments().getString("message");
 
         String cancelButtonLabel = getArguments().getString("btn_cancel_label");
@@ -60,6 +59,20 @@ public class InfoDialogFragment extends DialogFragment {
                     ((Cash1Activity)getActivity()).callUs();
                 }
             });
+        }
+
+        if (dialogId == -1) {
+            rootView.findViewById(R.id.spinner).setVisibility(View.GONE);
+            TextView bodyTextView = (TextView) rootView.findViewById(R.id.body);
+            bodyTextView.setVisibility(View.VISIBLE);
+            switch (messageType) {
+                case "general login error":
+                    bodyTextView.setText(getString(R.string.basic_error_message));
+                    break;
+                case "general error":
+                    bodyTextView.setText(getString(R.string.basic_error_message));
+                    break;
+            }
         }
 
         if (bodyMessage != null) {
@@ -108,7 +121,7 @@ public class InfoDialogFragment extends DialogFragment {
         }
 
         ApiService service = new RestClient().getApiService();
-        service.getDialogContents(dialogId, msgType, new Callback<DialogContents>() {
+        service.getDialogContents(dialogId, messageType, new Callback<DialogContents>() {
             @Override
             public void success(DialogContents contents, Response response) {
                 rootView.findViewById(R.id.spinner).setVisibility(View.GONE);
@@ -147,14 +160,5 @@ public class InfoDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0));
         return super.onCreateView(inflater, container, savedInstanceState);
-    }
-
-
-    @Override
-    public void onDismiss(DialogInterface dialog) {
-        if (getActivity() != null && getActivity().findViewById(R.id.loading) != null) {
-            getActivity().findViewById(R.id.loading).setVisibility(View.GONE);
-        }
-        super.onDismiss(dialog);
     }
 }

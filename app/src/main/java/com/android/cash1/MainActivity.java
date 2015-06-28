@@ -69,24 +69,13 @@ public class MainActivity extends Cash1Activity {
         startActivity(intent);
     }
 
-    public void makePayment(View view) {
-        startActivity(new Intent(this, MakePaymentActivity.class));
-    }
-
-    public void updateInfo(View view) {
-        startActivity(new Intent(this, UpdateInfoActivity.class));
-    }
-
-    public void accountDetails(View view) {
-        startActivity(new Intent(this, AccountDetailsActivity.class));
-    }
-
-    public void creditLimit(View view) {
-        startActivity(new Intent(this, IncreaseLimitActivity.class));
-    }
-
     @Override
     public void goHome(View view) {
         closeFooter();
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 }

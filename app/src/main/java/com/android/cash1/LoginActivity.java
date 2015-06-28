@@ -68,6 +68,12 @@ public class LoginActivity extends Cash1Activity {
         login();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        findViewById(R.id.loading).setVisibility(View.GONE);
+    }
+
     private void login() {
         findViewById(R.id.loading).setVisibility(View.VISIBLE);
 
@@ -171,7 +177,7 @@ public class LoginActivity extends Cash1Activity {
                         if (isFirstCashAdvance) {
                             navigateToMainActivity();
                         } else {
-                            showLoanInProgressPopup();
+                            showLoanInProgressDialog();
                         }
                     } else {
                         String redirectViewTitle = getRedirectViewTitle();
@@ -184,7 +190,7 @@ public class LoginActivity extends Cash1Activity {
                                         Toast.makeText(LoginActivity.this, "You need to setup temporary password to continue", Toast.LENGTH_LONG).show();
                                         startActivity(new Intent(LoginActivity.this, PasswordChangeActivity.class));
                                     } else {
-                                        // TODO: Show popup with message with Tuhin
+                                        showBasicLoginErrorDialog();
                                     }
                                     break;
                                 case "CreditDenial":
@@ -192,11 +198,11 @@ public class LoginActivity extends Cash1Activity {
                                     break;
                                 case "LoginFailed":
                                 default:
-                                    // TODO: Show popup with message with Tuhin
+                                    showBasicLoginErrorDialog();
                                     break;
                             }
                         } else {
-                            // TODO: Show popup with message with Tuhin
+                            showBasicLoginErrorDialog();
                         }
                     }
                 } else {

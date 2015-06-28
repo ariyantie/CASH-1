@@ -63,7 +63,7 @@
     <string name="call_us_button_label">Call CASH 1 Now</string>
     <string name="menu_toggle_label">M\u200Ae\u200An\u200Au</string>
     <string name="ask_for_location_message">CASH 1 would like to use your current location</string>
-    <string name="basic_error_message_login"></string>
-    <string name="basic_error_message"></string>
+    <string name="basic_error_message_login">We\'re sorry. We can\'t seem to locate your account. Please call one of our Customer Service representatives for further assistance.</string>
+    <string name="basic_error_message">We\'re sorry. There seems to be an issue with your account. Please call one of our Customer Service representatives for further assistance.</string>
 
 </resources>

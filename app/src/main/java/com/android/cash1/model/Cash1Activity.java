@@ -160,8 +160,16 @@ public class Cash1Activity extends AppCompatActivity {
         return PreferenceManager.getDefaultSharedPreferences(this).getString("redirect_view", null);
     }
 
-    public void showLoanInProgressPopup() {
+    public void showLoanInProgressDialog() {
         showDialog(5, "I");
+    }
+
+    public void showBasicLoginErrorDialog() {
+        showDialog(-1, "general login error", true);
+    }
+
+    public void showBasicErrorDialog() {
+        showDialog(-1, "general error", true);
     }
 
     public void callUs() {
@@ -170,6 +178,7 @@ public class Cash1Activity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @SuppressWarnings("unused")
     public void showSecurityQuestionPopup() {
         showDialog(7, "E", true);
     }

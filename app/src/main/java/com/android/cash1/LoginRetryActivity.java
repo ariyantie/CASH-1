@@ -109,7 +109,7 @@ public class LoginRetryActivity extends Cash1Activity {
                         if (isFirstCashAdvance) {
                             navigateToHomeScreen();
                         } else {
-                            showLoanInProgressPopup();
+                            showLoanInProgressDialog();
                         }
                     } else {
                         showCreditDenialPopup();
