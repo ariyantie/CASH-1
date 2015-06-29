@@ -1,6 +1,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            style="@style/ContainerScroll">
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ContainerScroll">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,62 +11,62 @@
             android:layout_width="match_parent"
             android:layout_height="24dp"
             android:background="@drawable/actionbar_subheader"
+            android:gravity="top|center_horizontal"
+            android:text="Retry log in"
             android:textAllCaps="true"
             android:textColor="#e1ffffff"
-            android:text="Retry log in"
-            android:gravity="top|center_horizontal"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <LinearLayout
-            tools:context=".LoginActivity"
+            style="@style/ContainerLayout"
             android:paddingTop="56dp"
-            style="@style/ContainerLayout">
+            tools:context=".LoginActivity">
 
             <TextView
-                android:text="@string/login_retry_hint_header"
                 style="@style/TextHeader"
-                android:textSize="22sp"/>
+                android:text="@string/login_retry_hint_header"
+                android:textSize="22sp" />
 
             <EditText
                 android:id="@+id/username"
-                android:hint="@string/username_hint"
-                android:inputType="textNoSuggestions"
                 style="@style/EditTextLogin"
-                android:layout_marginTop="40dp"/>
+                android:layout_marginTop="40dp"
+                android:hint="@string/username_hint"
+                android:inputType="textNoSuggestions" />
 
             <EditText
                 android:id="@+id/password"
-                android:hint="@string/password_hint"
-                android:inputType="textPassword"
                 style="@style/EditTextLogin"
-                android:layout_marginTop="6dp"/>
+                android:layout_marginTop="6dp"
+                android:fontFamily="sans-serif"
+                android:hint="@string/password_hint"
+                android:inputType="textPassword" />
 
             <Button
                 android:id="@+id/login"
-                android:text="@string/login_button_label"
                 style="@style/ButtonSubmitPrimary"
-                android:onClick="login"/>
+                android:onClick="login"
+                android:text="@string/login_button_label" />
 
             <Button
                 android:id="@+id/loginHelp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_register_selector"
                 android:layout_marginTop="8dp"
-                android:text="@string/login_help_button_label"
-                android:textSize="18sp"
-                android:textColor="@android:color/white"
-                android:visibility="gone"
+                android:background="@drawable/btn_register_selector"
                 android:onClick="loginHelp"
-                tools:visibility="visible"/>
+                android:text="@string/login_help_button_label"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:visibility="gone"
+                tools:visibility="visible" />
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1">
 
-                <ImageButton
-                    style="@style/ButtonGuarantee"/>
+                <ImageButton style="@style/ButtonGuarantee" />
 
             </FrameLayout>
 

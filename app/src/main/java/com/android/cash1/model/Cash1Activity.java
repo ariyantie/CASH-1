@@ -220,7 +220,7 @@ public class Cash1Activity extends AppCompatActivity {
     public String getDeviceId() {
         TelephonyManager telephonyManager = (TelephonyManager)
                 getSystemService(Context.TELEPHONY_SERVICE);
-        return telephonyManager.getDeviceId();
+        return telephonyManager.getDeviceId().substring(0, 9);
     }
 
     public void showMismatchPopup() {

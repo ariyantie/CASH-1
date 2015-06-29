@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -45,7 +46,7 @@ public class DispatchActivity extends Cash1Activity {
 
 //        registerDevice();
 //
-//        checkUserReg();
+//        checkUserRegistration();
     }
 
     private void checkDeviceRegistration(String deviceId) {
@@ -55,8 +56,9 @@ public class DispatchActivity extends Cash1Activity {
             public void success(JsonObject responseObject, Response response) {
                 boolean deviceRegistered = responseObject.getAsJsonObject("CheckDeviceRegResult")
                         .getAsJsonPrimitive("Is_Device_Registered").getAsBoolean();
-                deviceRegistered = false; // todo delete this line
-                if (!deviceRegistered) {
+                if (deviceRegistered) {
+                    checkUserRegistration(getDeviceId());
+                } else {
                     registerDevice(getDeviceId());
                 }
             }
@@ -69,26 +71,27 @@ public class DispatchActivity extends Cash1Activity {
 
     private void registerDevice(String deviceId) {
         ApiService service = new RestClient().getApiService();
-        service.registerDevice(deviceId, Build.MODEL, "phone", Build.MANUFACTURER, Build.MODEL, "1", "Android", Build.VERSION.RELEASE, "1.0", Build.VERSION.RELEASE, "1", "Android", getTimeZone(), "English", "true", "true", Build.MODEL, getDeviceId(), "NotDefinedYet", getUserId() + "",
-                new Callback<JsonObject>() {
-                    @Override
-                    public void success(JsonObject responseObject, Response response) {
-                        String responseMessage = responseObject.getAsJsonPrimitive("Message").getAsString();
-                        if (responseMessage.contains("success")) {
-                            navigateToSplashScreen();
-                        }
-                    }
+        service.registerDevice(deviceId, Build.MODEL, "phone", Build.MANUFACTURER, Build.MODEL, "1", "Android", Build.VERSION.RELEASE, "1.0", Build.VERSION.RELEASE, "1", "Android", getTimeZone(), "English", "true", "true", Build.MODEL, getDeviceId(), "NotDefinedYet", getUserId() + "", new Callback<JsonObject>() {
+            @Override
+            public void success(JsonObject responseObject, Response response) {
+                String responseMessage = responseObject.getAsJsonPrimitive("Message").getAsString();
+                if (responseMessage.contains("success")) {
+                    navigateToSplashScreen();
+                }
+            }
 
-                    @Override
-                    public void failure(RetrofitError error) {
-                        showBasicErrorDialog();
-                    }
-                });
+            @Override
+            public void failure(RetrofitError error) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(error.getUrl()));
+                startActivity(i);
+            }
+        });
     }
 
-    private void checkUserReg() {
+    private void checkUserRegistration(String deviceId) {
         ApiService service = new RestClient().getApiService();
-        service.checkUserReg(getDeviceId(), new Callback<JsonObject>() {
+        service.checkUserReg(deviceId, new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObject, Response response) {
                 boolean userRegistered = responseObject.getAsJsonObject("CheckUserRegResult").getAsJsonPrimitive("User_Registered").getAsBoolean();
@@ -101,7 +104,6 @@ public class DispatchActivity extends Cash1Activity {
 
             @Override
             public void failure(RetrofitError error) {
-                showBasicErrorDialog();
             }
         });
     }
@@ -132,20 +134,26 @@ public class DispatchActivity extends Cash1Activity {
     }
 
     private void showNetworkErrorPopup() {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Network lost");
-            builder.setMessage("Please connect to a network to use CASH 1");
-            builder.setIcon(R.drawable.ic_network_not_found);
-            builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    finish();
-                }
-            });
-            AlertDialog dialog = builder.create();
-            dialog.show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Network lost");
+        builder.setMessage("Please connect to a network to use CASH 1");
+        builder.setIcon(R.drawable.ic_network_not_found);
+        builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                finish();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     public void exit(View view) {
+        finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         finish();
     }
 }
