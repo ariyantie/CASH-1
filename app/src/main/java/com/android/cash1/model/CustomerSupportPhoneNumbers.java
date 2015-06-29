@@ -1,8 +1,6 @@
 package com.android.cash1.model;
 
 import android.telephony.PhoneNumberUtils;
-import android.text.Html;
-import android.text.Spanned;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -17,18 +15,18 @@ public class CustomerSupportPhoneNumbers {
     @SerializedName("Phone_Number")
     public String phoneNumber;
 
-    public Spanned getTollFreePhoneNumber() {
+    public String getTollFreePhoneNumber() {
         return formatNumber(tollFreePhoneNumber);
     }
 
-    public Spanned getPhoneNumber() {
+    public String getPhoneNumber() {
         return formatNumber(phoneNumber);
     }
 
-    private Spanned formatNumber(String phoneNumber) {
+    private String formatNumber(String phoneNumber) {
         if (SDK_INT >= LOLLIPOP) {
             phoneNumber = PhoneNumberUtils.formatNumber(phoneNumber, "US");
         }
-        return Html.fromHtml("<u>" + phoneNumber + "</u>"); // underline phone number
+        return phoneNumber;
     }
 }

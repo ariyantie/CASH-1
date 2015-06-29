@@ -2,6 +2,7 @@ package com.android.cash1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.android.cash1.model.Cash1Activity;
@@ -35,18 +36,18 @@ public class MainActivity extends Cash1Activity {
         service.checkCashAdvance(getUserId(), new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObj, Response response) {
-//                try { todo uncomment
-//                    boolean appStage = responseObj.getAsJsonPrimitive("App_Stage").getAsBoolean();
-//                    if (appStage) {
+                try {
+                    boolean appStage = responseObj.getAsJsonPrimitive("App_Stage").getAsBoolean();
+                    if (appStage) {
                         startActivity(new Intent(MainActivity.this, GetCashActivity.class));
-//                    } else {
-//                        navigateToPendingRequestActivity();
-//                    }
-//                } catch (Exception e) {
-//                    Log.i("MainActivity", "Cash advance ID is null. " +
-//                            "Treat as \"false\" and prevent access.");
-//                    navigateToPendingRequestActivity();
-//                }
+                    } else {
+                        navigateToPendingRequestActivity();
+                    }
+                } catch (Exception e) {
+                    Log.i("MainActivity", "Cash advance ID is null. " +
+                            "Treat as \"false\" and prevent access.");
+                    navigateToPendingRequestActivity();
+                }
             }
 
             @Override

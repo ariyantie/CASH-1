@@ -3,7 +3,7 @@ package com.android.cash1;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -18,8 +18,13 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+import static android.os.Build.VERSION.SDK_INT;
+import static android.os.Build.VERSION_CODES.LOLLIPOP;
+
 
 public class GetCashNotifyActivity extends Cash1Activity {
+
+    private String mPhoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,44 +51,12 @@ public class GetCashNotifyActivity extends Cash1Activity {
 
                 TextView bodyTextView = (TextView) findViewById(R.id.body);
                 bodyTextView.setVisibility(View.VISIBLE);
-                bodyTextView.setText(contents.getBody().replace("Cash", "CASH"));
-            }
+                bodyTextView.setText(
+                        contents.getBody()
+                                .replace("Cash", "CASH")
+                                .replace(" at (877) 854-2241.", ""));
 
-            @Override
-            public void failure(RetrofitError error) {
-                error.printStackTrace();
-            }
-        });
-
-        int storeId = PreferenceManager.getDefaultSharedPreferences(this).getInt("store_id", 12345);
-        service.getPhoneForStore(storeId, new Callback<JsonObject>() {
-            @Override
-            public void success(JsonObject responseObj, Response response) {
-                String phoneNumber;
-                try {
-                    try {
-                        phoneNumber = String.valueOf(responseObj.getAsJsonPrimitive("Phone_No").getAsInt());
-                    } catch (Exception e) {
-                        phoneNumber = responseObj.getAsJsonPrimitive("Phone_No").getAsString();
-                    }
-                    TextView bodyTextView = (TextView) findViewById(R.id.body);
-                    String currentMsg = bodyTextView.getText().toString();
-                    if (currentMsg.endsWith("call")) {
-                        currentMsg += " " + phoneNumber;
-                        bodyTextView.setText(currentMsg);
-                    }
-
-                } catch (ClassCastException e) {
-                    Log.i("MainActivity", "Phone number is null. " +
-                            "Set the default one.");
-
-                    TextView bodyTextView = (TextView) findViewById(R.id.body);
-                    String currentMsg = bodyTextView.getText().toString();
-                    if (currentMsg.endsWith("call")) {
-                        currentMsg += " 775-321-3566";
-                        bodyTextView.setText(currentMsg);
-                    }
-                }
+                displayPhoneNumberForCurrentStore();
             }
 
             @Override
@@ -93,9 +66,45 @@ public class GetCashNotifyActivity extends Cash1Activity {
         });
     }
 
+    private void displayPhoneNumberForCurrentStore() {
+        ApiService service = new RestClient().getApiService();
+        service.getPhoneForStore(getStoreId(), new Callback<JsonObject>() {
+            @Override
+            public void success(JsonObject responseObj, Response response) {
+                try {
+                    try {
+                        mPhoneNumber = String.valueOf(responseObj.getAsJsonPrimitive("Phone_No").getAsInt());
+                    } catch (Exception e) {
+                        mPhoneNumber = responseObj.getAsJsonPrimitive("Phone_No").getAsString();
+                    }
+                    if (SDK_INT >= LOLLIPOP) {
+                        mPhoneNumber = PhoneNumberUtils.formatNumber(mPhoneNumber, "US");
+                    }
+
+                    TextView bodyTextView = (TextView) findViewById(R.id.body);
+                    String bodyMessage = bodyTextView.getText().toString();
+                    bodyMessage += " at " + mPhoneNumber;
+                    bodyTextView.setText(bodyMessage);
+
+                } catch (ClassCastException e) {
+                    Log.i("MainActivity", "Phone number is null. " +
+                            "Leave the default one.");
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+            }
+        });
+    }
+
     public void callUs(View view) {
         Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:775-321-3566"));
+        if (mPhoneNumber == null || mPhoneNumber.isEmpty()) {
+            intent.setData(Uri.parse("tel:775-321-3566"));
+        } else {
+            intent.setData(Uri.parse("tel:" + mPhoneNumber));
+        }
         startActivity(intent);
     }
 

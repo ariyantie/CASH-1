@@ -73,7 +73,6 @@
                         style="@style/TextBodyMedium"
                         android:clickable="true"
                         android:onClick="dialNumber"
-                        android:textColor="#236d9e"
                         tools:text="(877) 854-2243" />
 
                 </LinearLayout>
@@ -93,7 +92,6 @@
                         style="@style/TextBodyMedium"
                         android:clickable="true"
                         android:onClick="dialNumber"
-                        android:textColor="#236d9e"
                         tools:text="(755) 321-3576" />
 
                 </LinearLayout>
@@ -129,7 +127,6 @@
                         style="@style/TextBodyMedium"
                         android:clickable="true"
                         android:onClick="dialNumber"
-                        android:textColor="#236d9e"
                         tools:text="(866) 922-7434" />
 
                 </LinearLayout>
@@ -149,7 +146,6 @@
                         style="@style/TextBodyMedium"
                         android:clickable="true"
                         android:onClick="dialNumber"
-                        android:textColor="#236d9e"
                         tools:text="(800) 251-5715" />
 
                 </LinearLayout>
@@ -186,7 +182,7 @@
                         style="@style/TextBodyMedium"
                         android:clickable="true"
                         android:onClick="dialNumber"
-                        android:textColor="#236d9e"
+                        android:textColor="@color/link"
                         tools:text="888-GO-CASH1-1" />
 
                 </LinearLayout>

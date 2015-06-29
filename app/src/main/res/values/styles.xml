@@ -7,6 +7,7 @@
         <item name="actionBarStyle">@style/ActionBar</item>
         <item name="android:textAppearanceButton">@style/CustomTheme.ButtonTextAppearance</item>
         <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:textColorLink">@color/link</item>
     </style>
 
     <style name="AppTheme.NoActionBar" parent="@style/Theme.AppCompat.Light.NoActionBar">
@@ -227,6 +228,7 @@
         <item name="android:layout_weight">1</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textSize">18dp</item>
+        <item name="android:autoLink">phone</item>
     </style>
 
 </resources>

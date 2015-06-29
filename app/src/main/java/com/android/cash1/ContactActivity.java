@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.cash1.model.Cash1Activity;
@@ -20,9 +19,6 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class ContactActivity extends Cash1Activity {
-
-    private ViewGroup mFooterContainer;
-    private TextView mFooterToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
