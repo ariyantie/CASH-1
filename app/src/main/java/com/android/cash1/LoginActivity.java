@@ -42,6 +42,10 @@ public class LoginActivity extends Cash1Activity {
 
         mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
+        if (getIntent().hasExtra("registerMode")) {
+            findViewById(R.id.register).setVisibility(View.VISIBLE);
+        }
+
         ToggleButton rememberToggle = (ToggleButton) findViewById(R.id.toggle_remember);
         rememberToggle.setChecked(rememberMe());
 

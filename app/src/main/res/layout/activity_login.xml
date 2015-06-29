@@ -23,7 +23,6 @@
                 style="@style/EditTextLogin"
                 android:layout_marginTop="6dp"
                 android:hint="@string/password_hint"
-                android:fontFamily="sans-serif"
                 android:inputType="textPassword" />
 
             <Button

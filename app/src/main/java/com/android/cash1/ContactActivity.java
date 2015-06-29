@@ -80,6 +80,9 @@ public class ContactActivity extends Cash1Activity {
             @Override
             public void success(JsonObject responseObj, Response response) {
                 String accountName = getStringFromPrimitive(responseObj, "Accountname");
+                if (accountName.equals("null")) {
+                    accountName = getString(R.string.null_value_placeholder);
+                }
                 ((TextView) findViewById(R.id.account_name)).setText(accountName);
             }
 

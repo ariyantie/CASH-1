@@ -6,10 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 
 import com.android.cash1.model.Cash1Activity;
@@ -37,16 +35,13 @@ public class DispatchActivity extends Cash1Activity {
             return;
         }
 
+        // todo uncomment
 //        if (rememberMe()) {
 //            navigateToLoginScreen();
 //            return;
 //        }
 
         checkDeviceRegistration(getDeviceId());
-
-//        registerDevice();
-//
-//        checkUserRegistration();
     }
 
     private void checkDeviceRegistration(String deviceId) {
@@ -82,9 +77,6 @@ public class DispatchActivity extends Cash1Activity {
 
             @Override
             public void failure(RetrofitError error) {
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(error.getUrl()));
-                startActivity(i);
             }
         });
     }
@@ -94,7 +86,8 @@ public class DispatchActivity extends Cash1Activity {
         service.checkUserReg(deviceId, new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObject, Response response) {
-                boolean userRegistered = responseObject.getAsJsonObject("CheckUserRegResult").getAsJsonPrimitive("User_Registered").getAsBoolean();
+                boolean userRegistered = responseObject.getAsJsonObject("CheckUserRegResult")
+                        .getAsJsonPrimitive("User_Registered").getAsBoolean();
                 if (userRegistered) {
                     navigateToLoginScreen();
                 } else {
@@ -117,9 +110,9 @@ public class DispatchActivity extends Cash1Activity {
     }
 
     private void navigateToLoginRegisterScreen() {
-        PreferenceManager.getDefaultSharedPreferences(this)
-                .edit().putBoolean("registerMode", true).apply();
-        startActivity(new Intent(this, LoginActivity.class));
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.putExtra("registerMode", true);
+        startActivity(intent);
     }
 
     public String getTimeZone() {

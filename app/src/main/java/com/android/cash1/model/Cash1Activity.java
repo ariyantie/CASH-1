@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ public class Cash1Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_settings);
 
         setupActionBar();
@@ -145,9 +147,7 @@ public class Cash1Activity extends AppCompatActivity {
     }
 
     public int getUserId() {
-        return 252199;
-//        TODO: Uncomment
-//        return PreferenceManager.getDefaultSharedPreferences(this).getInt("user_id", 0);
+        return PreferenceManager.getDefaultSharedPreferences(this).getInt("user_id", 0);
     }
 
     public String getUserEmail() {
@@ -253,5 +253,13 @@ public class Cash1Activity extends AppCompatActivity {
         } catch (ClassCastException e) {
             return "null";
         }
+    }
+
+    public String formatNumber(String number) {
+        if (number.replaceAll("[^\\d.]", "").length() < 10) {
+            return number;
+        }
+        number = number.replaceAll("[^\\d.]", "");
+        return "(" + number.substring(0, 3) + ") " + number.substring(3, 6) + "-" + number.substring(6, 10);
     }
 }

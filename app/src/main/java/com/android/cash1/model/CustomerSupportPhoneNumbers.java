@@ -1,11 +1,6 @@
 package com.android.cash1.model;
 
-import android.telephony.PhoneNumberUtils;
-
 import com.google.gson.annotations.SerializedName;
-
-import static android.os.Build.VERSION.SDK_INT;
-import static android.os.Build.VERSION_CODES.LOLLIPOP;
 
 public class CustomerSupportPhoneNumbers {
 
@@ -23,10 +18,11 @@ public class CustomerSupportPhoneNumbers {
         return formatNumber(phoneNumber);
     }
 
-    private String formatNumber(String phoneNumber) {
-        if (SDK_INT >= LOLLIPOP) {
-            phoneNumber = PhoneNumberUtils.formatNumber(phoneNumber, "US");
+    private String formatNumber(String number) {
+        if (number.replaceAll("[^\\d.]", "").length() < 10) {
+            return number;
         }
-        return phoneNumber;
+        number = number.replaceAll("[^\\d.]", "");
+        return "(" + number.substring(0, 3) + ") " + number.substring(3, 6) + "-" + number.substring(6, 10);
     }
 }

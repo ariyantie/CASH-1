@@ -107,7 +107,7 @@
                     style="@style/ButtonMainMenu"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:layout_marginTop="120dp"
+                    android:layout_marginTop="86dp"
                     android:onClick="navigateToMainMenu"
                     android:paddingLeft="40dp"
                     android:paddingRight="40dp"

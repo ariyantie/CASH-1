@@ -65,5 +65,6 @@
     <string name="ask_for_location_message">CASH 1 would like to use your current location</string>
     <string name="basic_error_message_login">We\'re sorry. We can\'t seem to locate your account. Please call one of our Customer Service representatives for further assistance.</string>
     <string name="basic_error_message">We\'re sorry. There seems to be an issue with your account. Please call one of our Customer Service representatives for further assistance.</string>
+    <string name="null_value_placeholder">Unspecified</string>
 
 </resources>

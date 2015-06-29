@@ -3,7 +3,6 @@ package com.android.cash1;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -17,9 +16,6 @@ import com.google.gson.JsonObject;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-
-import static android.os.Build.VERSION.SDK_INT;
-import static android.os.Build.VERSION_CODES.LOLLIPOP;
 
 
 public class GetCashNotifyActivity extends Cash1Activity {
@@ -77,9 +73,7 @@ public class GetCashNotifyActivity extends Cash1Activity {
                     } catch (Exception e) {
                         mPhoneNumber = responseObj.getAsJsonPrimitive("Phone_No").getAsString();
                     }
-                    if (SDK_INT >= LOLLIPOP) {
-                        mPhoneNumber = PhoneNumberUtils.formatNumber(mPhoneNumber, "US");
-                    }
+                    mPhoneNumber = formatNumber(mPhoneNumber);
 
                     TextView bodyTextView = (TextView) findViewById(R.id.body);
                     String bodyMessage = bodyTextView.getText().toString();
