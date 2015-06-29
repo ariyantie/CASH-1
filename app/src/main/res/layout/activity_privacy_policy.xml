@@ -12,6 +12,7 @@
             android:paddingBottom="112dp">
 
             <TextView
+                android:id="@+id/screen_header"
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
                 android:background="@drawable/actionbar_subheader"

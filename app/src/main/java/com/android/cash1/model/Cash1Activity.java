@@ -24,6 +24,7 @@ import com.android.cash1.MainActivity;
 import com.android.cash1.PrivacyPolicyActivity;
 import com.android.cash1.R;
 import com.android.cash1.SettingsActivity;
+import com.android.cash1.TermsActivity;
 import com.google.gson.JsonObject;
 
 public class Cash1Activity extends AppCompatActivity {
@@ -270,5 +271,9 @@ public class Cash1Activity extends AppCompatActivity {
 
     public void navigateToPrivacyPolicyActivity(View view) {
         startActivity(new Intent(this, PrivacyPolicyActivity.class));
+    }
+
+    public void navigateToTermsActivity(View view) {
+        startActivity(new Intent(this, TermsActivity.class));
     }
 }

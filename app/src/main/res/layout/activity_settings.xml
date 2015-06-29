@@ -187,7 +187,8 @@
 
                 <Button
                     style="@style/ButtonSubmitPrimary"
-                    android:text="Terms of use" />
+                    android:text="Terms of use"
+                    android:onClick="navigateToTermsActivity"/>
 
                 <Button
                     style="@style/ButtonSubmitPrimary"

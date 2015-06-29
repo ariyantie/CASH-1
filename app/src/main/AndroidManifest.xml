@@ -215,7 +215,13 @@
         </activity>
         <activity
             android:name=".PrivacyPolicyActivity"
-            android:label="@string/title_activity_privacy_policy"
+            android:parentActivityName=".SettingsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.cash1.SettingsActivity" />
+        </activity>
+        <activity
+            android:name=".TermsActivity"
             android:parentActivityName=".SettingsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
