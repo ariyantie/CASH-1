@@ -9,11 +9,11 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 
+import com.android.cash1.model.Cash1Activity;
 import com.android.cash1.rest.ApiService;
 import com.android.cash1.rest.RestClient;
 import com.google.gson.JsonObject;
@@ -25,31 +25,11 @@ import java.util.HashMap;
 import java.util.TimeZone;
 
 import retrofit.Callback;
-import retrofit.ResponseCallback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 
-public class DispatchActivity extends AppCompatActivity {
-
-    private String LOG_TAG = DispatchActivity.class.getSimpleName();
-    private ResponseCallback mLogCallback = new ResponseCallback() {
-        @Override
-        public void success(Response response) {
-        }
-
-        @Override
-        public void failure(RetrofitError error) {
-            error.printStackTrace();
-        }
-    };
-    private ApiService mService = new RestClient().getApiService();
-
-    private String mThread = "Thread ID: " + Thread.currentThread().getId();
-    private String mContext = DispatchActivity.class.getCanonicalName();
-    private String mLogLevel = "Error";
-    private String mLogger = "{Not available}";
-    private String mScreenName = "Initial screen (to choose where to redirect)";
+public class DispatchActivity extends Cash1Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,48 +42,39 @@ public class DispatchActivity extends AppCompatActivity {
             return;
         }
 
-        boolean remember = PreferenceManager.getDefaultSharedPreferences(this)
-                .getBoolean("remember", false);
-        if (remember) {
-            navigateToLoginScreen();
-            return;
-        }
+//        if (rememberMe()) {
+//            navigateToLoginScreen();
+//            return;
+//        }
 
-        try {
-            registerDevice();
-        } catch (Exception e) {
-            Log.i(LOG_TAG, "Exception caught during device registration. Skip this step.");
-            mService.log(mThread, mContext, mLogLevel, mLogger,
-                    getStackTraceString(e), e.getMessage(),
-                    getDeviceId(), mScreenName, mLogCallback);
-        }
+        checkDeviceRegistration();
 
-        try {
-            checkUserReg();
-        } catch (Exception e) {
-            Log.i(LOG_TAG, "Exception caught during user registration check. " +
-                    "Navigate to splash screen by default.");
-            mService.log(mThread, mContext, mLogLevel, mLogger,
-                    getStackTraceString(e), e.getMessage(),
-                    getDeviceId(), mScreenName, mLogCallback);
-            navigateToLoginScreen();
-        }
+//        registerDevice();
+//
+//        checkUserReg();
     }
 
-    private String getStackTraceString(Exception e) {
-        Writer writer = new StringWriter();
-        PrintWriter printWriter = new PrintWriter(writer);
-        e.printStackTrace(printWriter);
-        return writer.toString();
+    private void checkDeviceRegistration() {
+        ApiService service = new RestClient().getApiService();
+        service.checkDeviceRegistration(getDeviceId(), new Callback<JsonObject>() {
+            @Override
+            public void success(JsonObject responseObject, Response response) {
+
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+            }
+        });
     }
 
     private void checkUserReg() {
         ApiService service = new RestClient().getApiService();
         service.checkUserReg(getDeviceId(), new Callback<JsonObject>() {
             @Override
-            public void success(JsonObject responseObj, Response response) {
+            public void success(JsonObject responseObject, Response response) {
                 try {
-                    boolean isRegistered = responseObj.getAsJsonObject("CheckUserRegResult").getAsJsonPrimitive("User_Registered").getAsBoolean();
+                    boolean isRegistered = responseObject.getAsJsonObject("CheckUserRegResult").getAsJsonPrimitive("User_Registered").getAsBoolean();
                     if (isRegistered) {
                         navigateToLoginScreen();
                     } else {

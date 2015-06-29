@@ -147,7 +147,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:hint="Amount"
-                        android:text="50.00"
+                        android:text="250.00"
                         android:inputType="numberDecimal" />
 
                 </LinearLayout>
@@ -157,7 +157,7 @@
                     style="@style/EditTextLogin"
                     android:layout_marginTop="16dp"
                     android:hint="Payment date"
-                    android:text="28/06/2015"
+                    android:text="01/01/2015"
                     android:inputType="date" />
 
                 <!--TODO: Collect info from fields and submit payment-->
