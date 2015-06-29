@@ -24,6 +24,8 @@ public class PrivacyPolicyActivity extends Cash1Activity {
         setupFooter();
 
         displayPrivacyPolicy();
+
+        findViewById(R.id.confirm).setVisibility(View.GONE);
     }
 
     private void displayPrivacyPolicy() {
@@ -44,8 +46,6 @@ public class PrivacyPolicyActivity extends Cash1Activity {
                         .replace(",", ", ").replace(",  ", ", ")
                         .replace(".", ". ").replace(".  ", ". ")
                         .replace("www.", "").replace(". com", ".com"));
-
-                findViewById(R.id.confirm).setVisibility(View.GONE);
             }
 
             @Override

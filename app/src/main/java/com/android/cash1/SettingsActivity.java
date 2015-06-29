@@ -24,8 +24,6 @@ public class SettingsActivity extends Cash1Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        // TODO: Add functionality for settings
-
         ToggleButton rememberToggle = (ToggleButton) findViewById(R.id.toggle_remember);
         rememberToggle.setChecked(rememberMe());
         rememberToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -37,7 +35,6 @@ public class SettingsActivity extends Cash1Activity {
             }
         });
 
-        // TODO Provide location toggle preference functionality
         ToggleButton locationToggle = (ToggleButton) findViewById(R.id.location_toggle);
         locationToggle.setChecked(useCurrentLocation());
         locationToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

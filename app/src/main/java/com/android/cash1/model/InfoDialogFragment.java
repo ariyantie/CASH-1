@@ -102,7 +102,7 @@ public class InfoDialogFragment extends DialogFragment {
                             PreferenceManager.getDefaultSharedPreferences(getActivity()).edit()
                                     .putBoolean("use_location", true).apply();
                             dismiss();
-                            activity.displaySearchResults();
+                            activity.displaySearchResults("Current Location");
                         }
 
                         @Override

@@ -26,6 +26,8 @@ public class TermsActivity extends Cash1Activity {
         setupFooter();
 
         displayPrivacyPolicy();
+
+        findViewById(R.id.confirm).setVisibility(View.GONE);
     }
 
     private void displayPrivacyPolicy() {
@@ -44,8 +46,6 @@ public class TermsActivity extends Cash1Activity {
                 bodyTextView.setText(contents.getBody()
                         .replace("https:// ", "https://")
                         .replace(" aspx", "aspx"));
-
-                findViewById(R.id.confirm).setVisibility(View.GONE);
             }
 
             @Override

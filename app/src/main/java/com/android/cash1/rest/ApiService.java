@@ -174,5 +174,5 @@ public interface ApiService {
                         @Query("IsON") boolean useCurrentLocation, Callback<JsonObject> callback);
 
     @GET("/GetStoreInfo")
-    void listStores(Callback<Store> callback);
+    void listStores(Callback<List<Store>> callback);
 }

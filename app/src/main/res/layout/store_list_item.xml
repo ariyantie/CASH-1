@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/position"
+        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        tools:text="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            tools:text="12734 W. Union Hills" />
+
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="6dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="16dp"
+            android:textColor="#de000000"
+            android:textSize="18sp"
+            tools:text="GRENDALE" />
+
+        <TextView
+            android:id="@+id/distance_to"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="12dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="16dp"
+            android:textColor="#de000000"
+            android:textSize="16sp"
+            tools:text="(1.14 mi)" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#28000000"
+            android:layout_marginLeft="24dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

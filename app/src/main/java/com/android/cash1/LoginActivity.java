@@ -125,12 +125,8 @@ public class LoginActivity extends Cash1Activity {
                             .putString("redirect_view", redirectView)
                             .apply();
 
-                    // TODO: Modify web service to save "esign" flag, and check for it here
-                    // boolean isEsign = responseObj.getAsJsonPrimitive("IsEsign").getAsBoolean();
-                    boolean isEsign = true;
-                    // TODO: Modify web service to save "isQuestionSet" flag, and check for it here
-                    // boolean isQuestionSet = responseObj.getAsJsonPrimitive("IsSecurity").getAsBoolean();
-                    boolean isQuestionSet = true;
+                     boolean isEsign = responseObj.getAsJsonPrimitive("IsEsign").getAsBoolean();
+                     boolean isQuestionSet = responseObj.getAsJsonPrimitive("IsSecurity").getAsBoolean();
 
                     if (!isEsign) {
                         Toast.makeText(LoginActivity.this, "Review and accept this document to continue", Toast.LENGTH_SHORT).show();

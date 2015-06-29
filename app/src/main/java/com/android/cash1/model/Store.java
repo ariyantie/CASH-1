@@ -10,11 +10,25 @@ public class Store {
     @SerializedName("Longitude")
     public float longitude;
 
+    @SerializedName("City")
+    public String city;
+
+    @SerializedName("Street")
+    public String street;
+
     public double getLatitude() {
         return latitude;
     }
 
     public double getLongitude() {
         return longitude;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getAddress() {
+        return street;
     }
 }
