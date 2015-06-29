@@ -9,8 +9,6 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.View;
 
 import com.android.cash1.model.Cash1Activity;
@@ -18,10 +16,6 @@ import com.android.cash1.rest.ApiService;
 import com.android.cash1.rest.RestClient;
 import com.google.gson.JsonObject;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
-import java.util.HashMap;
 import java.util.TimeZone;
 
 import retrofit.Callback;
@@ -47,25 +41,49 @@ public class DispatchActivity extends Cash1Activity {
 //            return;
 //        }
 
-        checkDeviceRegistration();
+        checkDeviceRegistration(getDeviceId());
 
 //        registerDevice();
 //
 //        checkUserReg();
     }
 
-    private void checkDeviceRegistration() {
+    private void checkDeviceRegistration(String deviceId) {
         ApiService service = new RestClient().getApiService();
-        service.checkDeviceRegistration(getDeviceId(), new Callback<JsonObject>() {
+        service.checkDeviceRegistration(deviceId, new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObject, Response response) {
-
+                boolean deviceRegistered = responseObject.getAsJsonObject("CheckDeviceRegResult")
+                        .getAsJsonPrimitive("Is_Device_Registered").getAsBoolean();
+                deviceRegistered = false; // todo delete this line
+                if (!deviceRegistered) {
+                    registerDevice(getDeviceId());
+                }
             }
 
             @Override
             public void failure(RetrofitError error) {
             }
         });
+    }
+
+    private void registerDevice(String deviceId) {
+        ApiService service = new RestClient().getApiService();
+        service.registerDevice(deviceId, Build.MODEL, "phone", Build.MANUFACTURER, Build.MODEL, "1", "Android", Build.VERSION.RELEASE, "1.0", Build.VERSION.RELEASE, "1", "Android", getTimeZone(), "English", "true", "true", Build.MODEL, getDeviceId(), "NotDefinedYet", getUserId() + "",
+                new Callback<JsonObject>() {
+                    @Override
+                    public void success(JsonObject responseObject, Response response) {
+                        String responseMessage = responseObject.getAsJsonPrimitive("Message").getAsString();
+                        if (responseMessage.contains("success")) {
+                            navigateToSplashScreen();
+                        }
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        showBasicErrorDialog();
+                    }
+                });
     }
 
     private void checkUserReg() {
@@ -73,52 +91,19 @@ public class DispatchActivity extends Cash1Activity {
         service.checkUserReg(getDeviceId(), new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObject, Response response) {
-                try {
-                    boolean isRegistered = responseObject.getAsJsonObject("CheckUserRegResult").getAsJsonPrimitive("User_Registered").getAsBoolean();
-                    if (isRegistered) {
-                        navigateToLoginScreen();
-                    } else {
-                        navigateToLoginRegisterScreen();
-                    }
-                } catch (Exception e) {
-                    Log.i(LOG_TAG, "Failed to read response for user registration. " +
-                            "Navigate to login screen by default.");
-                    mService.log(mThread, mContext, mLogLevel, mLogger,
-                            getStackTraceString(e), e.getMessage(),
-                            getDeviceId(), mScreenName, mLogCallback);
+                boolean userRegistered = responseObject.getAsJsonObject("CheckUserRegResult").getAsJsonPrimitive("User_Registered").getAsBoolean();
+                if (userRegistered) {
                     navigateToLoginScreen();
+                } else {
+                    navigateToLoginRegisterScreen();
                 }
             }
 
             @Override
             public void failure(RetrofitError error) {
-                error.printStackTrace();
-                Log.i(LOG_TAG, "Network is not available in a moment. Navigate to splash screen by default.");
-                mService.log(mThread, mContext, mLogLevel, mLogger,
-                        getStackTraceString(error), error.getMessage(),
-                        getDeviceId(), mScreenName, mLogCallback);
-                navigateToLoginScreen();
+                showBasicErrorDialog();
             }
         });
-    }
-
-    private void registerDevice() {
-        ApiService service = new RestClient().getApiService();
-        service.registerDevice(
-                getDeviceId(), Build.MODEL, "phone", Build.MANUFACTURER, Build.MODEL, "1", "Android", Build.VERSION.RELEASE, "1.0", Build.VERSION.RELEASE, "1", "Android", getTimeZone(), "English", "true", "true", Build.MODEL, getDeviceId(), "NotDefinedYet", getUserId() + "",
-                new Callback<HashMap<String, String>>() {
-                    @Override
-                    public void success(HashMap<String, String> responseHashMap, Response response) {
-                    }
-
-                    @Override
-                    public void failure(RetrofitError error) {
-                        error.printStackTrace();
-                        mService.log(mThread, mContext, mLogLevel, mLogger,
-                                getStackTraceString(error), error.getMessage(),
-                                getDeviceId(), mScreenName, mLogCallback);
-                    }
-                });
     }
 
     private void navigateToSplashScreen() {
@@ -135,54 +120,18 @@ public class DispatchActivity extends Cash1Activity {
         startActivity(new Intent(this, LoginActivity.class));
     }
 
-    private String getDeviceId() {
-        try {
-            TelephonyManager telephonyManager = (TelephonyManager)
-                    getSystemService(Context.TELEPHONY_SERVICE);
-            return telephonyManager.getDeviceId();
-        } catch (Exception e) {
-            Log.i(LOG_TAG, "Failed to get device id. Return 123456789 by default");
-            mService.log(mThread, mContext, mLogLevel, mLogger,
-                    getStackTraceString(e), e.getMessage(),
-                    getDeviceId(), mScreenName, mLogCallback);
-            return "123456789";
-        }
-    }
-
-    private int getUserId() {
-        return PreferenceManager.getDefaultSharedPreferences(this).getInt("user_id", 0);
-    }
-
     public String getTimeZone() {
-        try {
-            return TimeZone.getDefault().getDisplayName(false, TimeZone.SHORT);
-        } catch (Exception e) {
-            Log.i(LOG_TAG, "Failed to get time zone. Return EST by default");
-            mService.log(mThread, mContext, mLogLevel, mLogger,
-                    getStackTraceString(e), e.getMessage(),
-                    getDeviceId(), mScreenName, mLogCallback);
-            return "EST";
-        }
+        return TimeZone.getDefault().getDisplayName(false, TimeZone.SHORT);
     }
 
     public boolean isOnline() {
-        try {
-            ConnectivityManager connMgr = (ConnectivityManager)
-                    getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-            return networkInfo != null && networkInfo.isConnectedOrConnecting();
-        } catch (Exception e) {
-            Log.i(LOG_TAG, "Failed to check network availability. " +
-                    "Return isConnected = true in case of unstable connection.");
-            mService.log(mThread, mContext, mLogLevel, mLogger,
-                    getStackTraceString(e), e.getMessage(),
-                    getDeviceId(), mScreenName, mLogCallback);
-            return true;
-        }
+        ConnectivityManager manager = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = manager.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnectedOrConnecting();
     }
 
     private void showNetworkErrorPopup() {
-        try {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Network lost");
             builder.setMessage("Please connect to a network to use CASH 1");
@@ -194,12 +143,6 @@ public class DispatchActivity extends Cash1Activity {
             });
             AlertDialog dialog = builder.create();
             dialog.show();
-        } catch (Exception e) {
-            Log.d(LOG_TAG, "User cancelled the progress bar. Dialog is not shown.");
-            mService.log(mThread, mContext, mLogLevel, mLogger,
-                    getStackTraceString(e), e.getMessage(),
-                    getDeviceId(), mScreenName, mLogCallback);
-        }
     }
 
     public void exit(View view) {

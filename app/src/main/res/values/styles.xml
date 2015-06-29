@@ -55,12 +55,12 @@
     </style>
 
     <style name="SplashButtonTextHint" parent="@android:style/TextAppearance">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="SplashButtonTextBody" parent="@android:style/TextAppearance">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">23sp</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 
@@ -69,7 +69,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">top|center_horizontal</item>
         <item name="android:background">@drawable/btn_large_selector</item>
-        <item name="android:minHeight">?android:listPreferredItemHeight</item>
+        <item name="android:minHeight">76dp</item>
+        <item name="android:paddingTop">4dp</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 

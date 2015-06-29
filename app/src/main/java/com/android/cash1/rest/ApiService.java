@@ -36,7 +36,7 @@ public interface ApiService {
                         @Query("Has_Camera") String hasCamera, @Query("Is_Backlight_On") String isBacklightOn,
                         @Query("Is_Battery_Removable") String modelName, @Query("UserId") String userId,
                         @Query("UserName") String userName, @Query("CustomerId") String customerId,
-                        Callback<HashMap<String, String>> callback);
+                        Callback<JsonObject> callback);
 
     @GET("/GetMessageToDisplay")
     void getDialogContents(@Query("Configuration_Type_Id") int id,

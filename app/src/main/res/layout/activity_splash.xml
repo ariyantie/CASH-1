@@ -14,17 +14,17 @@
 
     <Button
         android:id="@+id/register"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         style="@style/ButtonSplashLarge"
         android:onClick="browseOriginalWebsite"/>
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="36dp"
         android:text="Cash 1 Mobile Quick Guide"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/btn_guide"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:textSize="12sp"
         android:gravity="center_vertical"
         android:paddingLeft="12dp"

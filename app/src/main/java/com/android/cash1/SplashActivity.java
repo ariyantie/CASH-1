@@ -62,7 +62,8 @@ public class SplashActivity extends Cash1Activity {
     public void navigateToLoginScreen(View view) {
         startActivity(new Intent(this, LoginActivity.class));
         PreferenceManager.getDefaultSharedPreferences(this).edit()
-                .putBoolean("registerMode", true).apply();
+                .putBoolean("registerMode", true)
+                .putBoolean("remember", false).apply();
     }
 
     public void browseOriginalWebsite(View view) {
