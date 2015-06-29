@@ -28,11 +28,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="4dp"
-                    android:text="Notification preference"
+                    android:paddingBottom="14dp"
+                    android:paddingTop="10dp"
+                    android:text="Notification Preference"
                     android:textColor="@android:color/black"
-                    android:textSize="16sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -47,7 +48,7 @@
                         android:paddingBottom="4dp"
                         android:paddingLeft="4dp"
                         android:paddingTop="4dp"
-                        android:text="Cash available notice"
+                        android:text="Cash Available Notice"
                         android:textColor="@android:color/black"
                         android:textSize="18sp" />
 
@@ -75,7 +76,7 @@
                         android:paddingBottom="4dp"
                         android:paddingLeft="4dp"
                         android:paddingTop="4dp"
-                        android:text="Payment due reminder"
+                        android:text="Payment Due Reminder"
                         android:textColor="@android:color/black"
                         android:textSize="18sp" />
 
@@ -103,7 +104,7 @@
                         android:paddingBottom="4dp"
                         android:paddingLeft="4dp"
                         android:paddingTop="4dp"
-                        android:text="Payment posted notice"
+                        android:text="Payment Posted Notice"
                         android:textColor="@android:color/black"
                         android:textSize="18sp" />
 
@@ -131,7 +132,7 @@
                         android:paddingBottom="4dp"
                         android:paddingLeft="4dp"
                         android:paddingTop="4dp"
-                        android:text="Coupons &amp; promotions"
+                        android:text="Coupons &amp; Promotions"
                         android:textColor="@android:color/black"
                         android:textSize="18sp" />
 
@@ -149,23 +150,26 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
+                    android:layout_marginBottom="16dp"
                     android:layout_marginTop="20dp"
                     android:paddingTop="16dp"
-                    android:text="Turn of notification sounds"
+                    android:text="Turn of Notification Sounds"
                     android:textColor="@android:color/black"
-                    android:textSize="16sp" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp">
 
                     <TextView
-                        android:layout_width="48dp"
+                        android:layout_width="54dp"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
                         android:paddingRight="8dp"
+                        android:textSize="16sp"
                         android:text="From:"
                         android:textColor="@android:color/black" />
 
@@ -175,20 +179,22 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="00:00"
-                        android:inputType="numberSigned" />
+                        android:inputType="time" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="112dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="48dp"
+                        android:layout_width="54dp"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
                         android:paddingRight="8dp"
+                        android:textSize="16sp"
                         android:text="To:"
                         android:textColor="@android:color/black" />
 
@@ -198,7 +204,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="11:59"
-                        android:inputType="numberSigned" />
+                        android:inputType="time" />
 
                 </LinearLayout>
 

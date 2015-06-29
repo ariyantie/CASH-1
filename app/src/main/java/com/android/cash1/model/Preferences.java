@@ -7,7 +7,7 @@ public class Preferences {
     @SerializedName("Location_Services")
     public boolean useCurrentLocation;
 
-    public boolean allowDetectLocation() {
+    public boolean useCurrentLocation() {
         return useCurrentLocation;
     }
 }

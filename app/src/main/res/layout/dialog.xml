@@ -1,63 +1,64 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:paddingLeft="24dp"
-              android:paddingRight="24dp"
-              android:paddingTop="24dp"
-              android:paddingBottom="18dp"
-              android:layout_marginLeft="16dp"
-              android:layout_marginRight="16dp"
-              android:orientation="vertical"
-              android:background="@drawable/dialog_bg"
-              tools:layout_gravity="center_vertical"
-              tools:context="com.android.cash1.model.InfoDialogFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:background="@drawable/dialog_bg"
+    android:orientation="vertical"
+    android:paddingBottom="18dp"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:paddingTop="24dp"
+    tools:context="com.android.cash1.model.InfoDialogFragment"
+    tools:layout_gravity="center_vertical">
 
     <ProgressBar
+        android:id="@+id/spinner"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner"
-        android:paddingTop="24dp"
-        android:paddingBottom="24dp"
         android:layout_gravity="center_horizontal"
-        tools:visibility="gone"/>
+        android:paddingBottom="24dp"
+        android:paddingTop="24dp"
+        tools:visibility="gone" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        android:visibility="gone"
-        android:gravity="center_horizontal"
         android:textStyle="bold"
-        android:layout_marginBottom="10dp"
-        tools:visibility="visible"
-        tools:text="Cash1 Mobile Security"/>
+        android:visibility="gone"
+        tools:text="Cash1 Mobile Security"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="24dp"
+        android:layout_marginTop="10dp"
+        android:autoLink="all"
+        android:textColor="@android:color/white"
         android:textSize="16sp"
         android:visibility="gone"
-        tools:visibility="visible"
-        tools:text="Cash1 is commited to protecting your privacy. We maintain Physical, electronic and procedurial safeguards to transmit and store information about you. Cash1 is commited to protecting your privacy. We maintain Physical, electronic and procedurial safeguards to transmit and store information about you."/>
+        tools:text="Cash1 is commited to protecting your privacy. We maintain Physical, electronic and procedurial safeguards to transmit and store information about you. Cash1 is commited to protecting your privacy. We maintain Physical, electronic and procedurial safeguards to transmit and store information about you."
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/confirm"
+        style="@style/ButtonDialog"
         android:visibility="gone"
         tools:text="Call Us Now"
-        tools:visibility="visible"
-        style="@style/ButtonDialog"/>
+        tools:visibility="visible" />
 
     <Button
         android:id="@+id/cancel"
-        tools:text="Return"
-        style="@style/ButtonDialog"/>
+        style="@style/ButtonDialog"
+        tools:text="Return" />
 
 </LinearLayout>

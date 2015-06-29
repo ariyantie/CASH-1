@@ -36,7 +36,7 @@ public class FindOfficeActivity extends Cash1Activity {
         service.getPreferences(getUserEmail(), getUserId(), new Callback<Preferences>() {
             @Override
             public void success(Preferences preferencesObject, Response response) {
-                boolean useCurrentLocation = preferencesObject.allowDetectLocation();
+                boolean useCurrentLocation = preferencesObject.useCurrentLocation();
                 if (!useCurrentLocation) {
                     promptToAllowLocation();
                 } else {

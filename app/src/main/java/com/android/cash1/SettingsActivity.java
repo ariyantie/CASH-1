@@ -9,6 +9,13 @@ import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
 import com.android.cash1.model.Cash1Activity;
+import com.android.cash1.rest.ApiService;
+import com.android.cash1.rest.RestClient;
+import com.google.gson.JsonObject;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class SettingsActivity extends Cash1Activity {
 
@@ -30,8 +37,35 @@ public class SettingsActivity extends Cash1Activity {
             }
         });
 
+        // TODO Provide location toggle preference functionality
+        ToggleButton locationToggle = (ToggleButton) findViewById(R.id.location_toggle);
+        locationToggle.setChecked(useCurrentLocation());
+        locationToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton toggleButton, boolean isChecked) {
+                SharedPreferences sharedPreferences =
+                        PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this);
+                sharedPreferences.edit().putBoolean("use_location", isChecked).apply();
+
+                submitUpdatedPreferences();
+            }
+        });
+
         setupActionBar();
         setupFooter();
+    }
+
+    private void submitUpdatedPreferences() {
+        ApiService service = new RestClient().getApiService();
+        service.setPreferences(getDeviceId(), getUserEmail(), getUserId(), null, useCurrentLocation(), new Callback<JsonObject>() {
+            @Override
+            public void success(JsonObject responseObject, Response response) {
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+            }
+        });
     }
 
     @Override

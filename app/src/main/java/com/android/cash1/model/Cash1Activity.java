@@ -21,6 +21,7 @@ import com.android.cash1.FaqActivity;
 import com.android.cash1.FindOfficeActivity;
 import com.android.cash1.LogoutActivity;
 import com.android.cash1.MainActivity;
+import com.android.cash1.PrivacyPolicyActivity;
 import com.android.cash1.R;
 import com.android.cash1.SettingsActivity;
 import com.google.gson.JsonObject;
@@ -184,6 +185,10 @@ public class Cash1Activity extends AppCompatActivity {
         return PreferenceManager.getDefaultSharedPreferences(this).getBoolean("remember", false);
     }
 
+    public boolean useCurrentLocation() {
+        return PreferenceManager.getDefaultSharedPreferences(this).getBoolean("use_location", false);
+    }
+
     @SuppressWarnings("unused")
     public void showSecurityQuestionPopup() {
         showDialog(7, "E", true);
@@ -261,5 +266,9 @@ public class Cash1Activity extends AppCompatActivity {
         }
         number = number.replaceAll("[^\\d.]", "");
         return "(" + number.substring(0, 3) + ") " + number.substring(3, 6) + "-" + number.substring(6, 10);
+    }
+
+    public void navigateToPrivacyPolicyActivity(View view) {
+        startActivity(new Intent(this, PrivacyPolicyActivity.class));
     }
 }
