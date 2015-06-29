@@ -175,4 +175,7 @@ public interface ApiService {
 
     @GET("/GetStoreInfo")
     void listStores(Callback<List<Store>> callback);
+
+    @POST("/GetStoreDetails")
+    void getStoreDetails(@Query("StoreName") String storeId, Callback<JsonObject> callback);
 }

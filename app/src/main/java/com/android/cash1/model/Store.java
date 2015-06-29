@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Store {
 
+    @SerializedName("StoreName")
+    public String name;
+
     @SerializedName("Latitude")
     public float latitude;
 
@@ -15,6 +18,10 @@ public class Store {
 
     @SerializedName("Street")
     public String street;
+
+    public int getId() {
+        return Integer.parseInt(name);
+    }
 
     public double getLatitude() {
         return latitude;

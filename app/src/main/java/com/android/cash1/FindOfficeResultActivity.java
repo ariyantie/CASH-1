@@ -1,7 +1,9 @@
 package com.android.cash1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -51,9 +53,9 @@ public class FindOfficeResultActivity extends Cash1Activity {
                 LinearLayout container = (LinearLayout) findViewById(R.id.list_container);
 
                 for (int i = 0; i < storeList.size(); i++) {
-                    Store store = storeList.get(i);
+                    final Store store = storeList.get(i);
 
-                    LinearLayout listItemContainer = (LinearLayout) View.inflate(
+                    FrameLayout listItemContainer = (FrameLayout) View.inflate(
                             FindOfficeResultActivity.this, R.layout.store_list_item, null);
 
                     TextView positionTextView = (TextView) listItemContainer.findViewById(R.id.position);
@@ -63,6 +65,15 @@ public class FindOfficeResultActivity extends Cash1Activity {
                     addressTextView.setText(store.getAddress());
                     TextView cityTextView = (TextView) listItemContainer.findViewById(R.id.city);
                     cityTextView.setText(store.getCity());
+
+                    listItemContainer.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(FindOfficeResultActivity.this, OfficeDetailActivity.class);
+                            intent.putExtra("store_id", store.getId());
+                            startActivity(intent);
+                        }
+                    });
 
                     container.addView(listItemContainer);
                 }
