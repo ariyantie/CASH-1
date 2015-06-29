@@ -7,6 +7,7 @@ import com.android.cash1.model.DialogContents;
 import com.android.cash1.model.FaqItem;
 import com.android.cash1.model.Preferences;
 import com.android.cash1.model.Store;
+import com.android.cash1.model.StoreDetails;
 import com.google.gson.JsonObject;
 
 import java.util.HashMap;
@@ -177,5 +178,5 @@ public interface ApiService {
     void listStores(Callback<List<Store>> callback);
 
     @POST("/GetStoreDetails")
-    void getStoreDetails(@Query("StoreName") String storeId, Callback<JsonObject> callback);
+    void getStoreDetails(@Query("StoreName") String storeId, Callback<StoreDetails> callback);
 }

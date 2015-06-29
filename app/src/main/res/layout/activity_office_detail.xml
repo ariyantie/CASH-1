@@ -50,7 +50,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@id/address"
+                            android:id="@+id/address"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             tools:text="AZ 85014, Phoenix"
@@ -64,7 +64,7 @@
                             android:layout_marginTop="6dp">
 
                             <TextView
-                                android:layout_width="64dp"
+                                android:layout_width="66dp"
                                 android:layout_height="wrap_content"
                                 android:text="Phone: "
                                 android:textSize="18sp"
@@ -88,7 +88,7 @@
                             android:layout_marginTop="5dp">
 
                             <TextView
-                                android:layout_width="64dp"
+                                android:layout_width="66dp"
                                 android:layout_height="wrap_content"
                                 android:text="Fax: "
                                 android:textSize="18sp"
@@ -106,38 +106,59 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:layout_width="64dp"
-                                android:layout_height="wrap_content"
-                                android:text="Services: "
-                                android:textSize="18sp"
-                                android:textStyle="bold"
-                                android:textColor="#bd000000"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Title Loans, Title Equity Loans, Personal Loans, Check Caching"
-                                android:autoLink="phone"
-                                android:textColor="#bd000000"/>
-
-                        </LinearLayout>
-
                     </LinearLayout>
 
                     <ImageView
+                        android:id="@+id/icon"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:scaleType="centerInside"
                         android:layout_weight="2"
                         tools:background="@android:color/darker_gray"
                         tools:minHeight="96dp"/>
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="6dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Services: "
+                        android:paddingRight="4dp"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="#bd000000"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Title Loans, Title Equity Loans, Personal Loans, Check Caching."
+                        android:autoLink="phone"
+                        android:textColor="#bd000000"/>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/directions_button"
+                    android:onClick="showDirectionsOnMap"
+                    android:text="Map &amp; Directions"
+                    android:layout_marginTop="48dp"
+                    style="@style/ButtonSubmitPrimary"/>
+
+                <Button
+                    android:id="@+id/main_menu"
+                    android:text="@string/main_menu_button_label"
+                    style="@style/ButtonMainMenu"
+                    android:textSize="20sp"
+                    android:layout_marginTop="16dp"
+                    android:onClick="navigateToMainMenu"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"/>
 
             </LinearLayout>
 
