@@ -37,7 +37,7 @@ public class FindOfficeActivity extends Cash1Activity {
             @Override
             public void success(Preferences preferencesObject, Response response) {
                 boolean useCurrentLocation = preferencesObject.useCurrentLocation();
-                if (!useCurrentLocation) {
+                if (useCurrentLocation || useCurrentLocation()) {
                     promptToAllowLocation();
                 } else {
                     displaySearchResults();

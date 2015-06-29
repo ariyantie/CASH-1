@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -98,6 +99,8 @@ public class InfoDialogFragment extends DialogFragment {
                     service.setPreferences(deviceId, userEmail, userId, notice, userCurrentLocation, new Callback<JsonObject>() {
                         @Override
                         public void success(JsonObject responseObject, Response response) {
+                            PreferenceManager.getDefaultSharedPreferences(getActivity()).edit()
+                                    .putBoolean("use_location", true).apply();
                             dismiss();
                             activity.displaySearchResults();
                         }
