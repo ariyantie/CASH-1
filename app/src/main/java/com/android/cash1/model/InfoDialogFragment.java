@@ -1,6 +1,7 @@
 package com.android.cash1.model;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -160,5 +161,14 @@ public class InfoDialogFragment extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(0));
         return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        if (getActivity() != null && getActivity().findViewById(R.id.loading) != null) {
+            getActivity().findViewById(R.id.loading).setVisibility(View.GONE);
+        }
+        super.onDismiss(dialog);
     }
 }

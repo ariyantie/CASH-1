@@ -13,6 +13,9 @@ import com.android.cash1.rest.ApiService;
 import com.android.cash1.rest.RestClient;
 import com.google.gson.JsonObject;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -24,7 +27,7 @@ public class GetCashActivity extends Cash1Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_cash);
-        
+
         setupActionBar();
         setupFooter();
 
@@ -43,6 +46,11 @@ public class GetCashActivity extends Cash1Activity {
                 String creditAvailable = getStringFromPrimitive(responseObj, "CreditAvailable");
                 String nextPaymentDue = getStringFromPrimitive(responseObj, "NextPaymentDueDate");
                 String nextPaymentAmount = getStringFromPrimitive(responseObj, "NextPaymentAmount");
+
+                NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
+                outBalance = formatter.format(Float.parseFloat(outBalance));
+                creditAvailable = formatter.format(Float.parseFloat(creditAvailable));
+                nextPaymentAmount = formatter.format(Float.parseFloat(nextPaymentAmount));
 
                 ((TextView) findViewById(R.id.account_name)).setText(accountName);
                 ((TextView) findViewById(R.id.account_number)).setText(accountNumber);
