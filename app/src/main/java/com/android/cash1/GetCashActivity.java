@@ -47,10 +47,12 @@ public class GetCashActivity extends Cash1Activity {
                 String nextPaymentDue = getStringFromPrimitive(responseObj, "NextPaymentDueDate");
                 String nextPaymentAmount = getStringFromPrimitive(responseObj, "NextPaymentAmount");
 
-                NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
-                outBalance = formatter.format(Float.parseFloat(outBalance));
-                creditAvailable = formatter.format(Float.parseFloat(creditAvailable));
-                nextPaymentAmount = formatter.format(Float.parseFloat(nextPaymentAmount));
+                if (!accountName.equals("null")) {
+                    NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
+                    outBalance = formatter.format(Float.parseFloat(outBalance));
+                    creditAvailable = formatter.format(Float.parseFloat(creditAvailable));
+                    nextPaymentAmount = formatter.format(Float.parseFloat(nextPaymentAmount));
+                }
 
                 ((TextView) findViewById(R.id.account_name)).setText(accountName);
                 ((TextView) findViewById(R.id.account_number)).setText(accountNumber);

@@ -145,11 +145,13 @@ public class Cash1Activity extends AppCompatActivity {
     }
 
     public int getUserId() {
-        return PreferenceManager.getDefaultSharedPreferences(this).getInt("user_id", 0);
+        return 252199;
+//        TODO: Uncomment
+//        return PreferenceManager.getDefaultSharedPreferences(this).getInt("user_id", 0);
     }
 
     public String getUserEmail() {
-        return PreferenceManager.getDefaultSharedPreferences(this).getString("username", "");
+         return PreferenceManager.getDefaultSharedPreferences(this).getString("username", "");
     }
 
     public int getStoreId() {

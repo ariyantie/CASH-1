@@ -49,7 +49,8 @@
                         android:background="@null"
                         android:padding="12dp"
                         android:src="@drawable/ic_info"
-                        tools:layout_marginTop="4dp" />
+                        tools:layout_marginTop="4dp"
+                        android:onClick="showNotificationsGuide"/>
 
                 </LinearLayout>
 
@@ -82,7 +83,8 @@
                         android:background="@null"
                         android:padding="12dp"
                         android:src="@drawable/ic_info"
-                        tools:layout_marginTop="4dp" />
+                        tools:layout_marginTop="4dp"
+                        android:onClick="showLoginSecurityGuide"/>
 
                 </LinearLayout>
 
@@ -138,7 +140,8 @@
                         android:background="@null"
                         android:padding="12dp"
                         android:src="@drawable/ic_info"
-                        tools:layout_marginTop="4dp" />
+                        tools:layout_marginTop="4dp"
+                        android:onClick="showLocationServicesGuide"/>
 
                 </LinearLayout>
 

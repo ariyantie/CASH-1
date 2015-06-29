@@ -27,4 +27,16 @@ public class SettingsActivity extends Cash1Activity {
     public void navigateToNotificationSettingsActivity(View view) {
         startActivity(new Intent(this, NotificationSettingsActivity.class));
     }
+
+    public void showNotificationsGuide(View view) {
+        showDialog(13, "I");
+    }
+
+    public void showLoginSecurityGuide(View view) {
+        showDialog(14, "I");
+    }
+
+    public void showLocationServicesGuide(View view) {
+        showDialog(15, "I");
+    }
 }
