@@ -106,6 +106,7 @@
                         android:textSize="18sp" />
 
                     <ToggleButton
+                        android:id="@+id/toggle_remember"
                         android:layout_width="86dp"
                         android:layout_height="26dp"
                         android:layout_marginRight="8dp"

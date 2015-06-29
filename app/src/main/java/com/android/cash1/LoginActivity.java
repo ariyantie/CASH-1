@@ -42,12 +42,10 @@ public class LoginActivity extends Cash1Activity {
 
         mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        boolean remember = mSharedPrefs.getBoolean("remember", false);
-
         ToggleButton rememberToggle = (ToggleButton) findViewById(R.id.toggle_remember);
-        rememberToggle.setChecked(remember);
+        rememberToggle.setChecked(rememberMe());
 
-        if (remember) {
+        if (rememberMe()) {
             login();
         }
 
@@ -265,5 +263,11 @@ public class LoginActivity extends Cash1Activity {
         dialog.setArguments(args);
 
         dialog.show(getSupportFragmentManager(), "dialog");
+    }
+
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        finish();
     }
 }

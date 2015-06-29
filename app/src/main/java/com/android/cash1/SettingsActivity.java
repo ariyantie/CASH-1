@@ -1,8 +1,12 @@
 package com.android.cash1;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.ToggleButton;
 
 import com.android.cash1.model.Cash1Activity;
 
@@ -14,6 +18,17 @@ public class SettingsActivity extends Cash1Activity {
         setContentView(R.layout.activity_settings);
 
         // TODO: Add functionality for settings
+
+        ToggleButton rememberToggle = (ToggleButton) findViewById(R.id.toggle_remember);
+        rememberToggle.setChecked(rememberMe());
+        rememberToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton toggleButton, boolean isChecked) {
+                SharedPreferences sharedPreferences =
+                        PreferenceManager.getDefaultSharedPreferences(SettingsActivity.this);
+                sharedPreferences.edit().putBoolean("remember", isChecked).apply();
+            }
+        });
 
         setupActionBar();
         setupFooter();

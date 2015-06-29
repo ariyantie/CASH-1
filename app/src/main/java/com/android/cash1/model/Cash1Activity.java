@@ -180,6 +180,10 @@ public class Cash1Activity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public boolean rememberMe() {
+        return PreferenceManager.getDefaultSharedPreferences(this).getBoolean("remember", false);
+    }
+
     @SuppressWarnings("unused")
     public void showSecurityQuestionPopup() {
         showDialog(7, "E", true);

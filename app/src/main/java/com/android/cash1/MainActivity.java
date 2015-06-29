@@ -87,5 +87,6 @@ public class MainActivity extends Cash1Activity {
     @Override
     public void onBackPressed() {
         moveTaskToBack(true);
+        finish();
     }
 }
