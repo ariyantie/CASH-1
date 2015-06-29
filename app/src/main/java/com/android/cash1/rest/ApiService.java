@@ -6,6 +6,7 @@ import com.android.cash1.model.CustomerSupportPhoneNumbers;
 import com.android.cash1.model.DialogContents;
 import com.android.cash1.model.FaqItem;
 import com.android.cash1.model.Preferences;
+import com.android.cash1.model.Store;
 import com.google.gson.JsonObject;
 
 import java.util.HashMap;
@@ -171,4 +172,7 @@ public interface ApiService {
     void setPreferences(@Query("Device_UID") String deviceId, @Query("Username") String userEmail,
                         @Query("CustomerID") int userId, @Query("Notice") String notice,
                         @Query("IsON") boolean useCurrentLocation, Callback<JsonObject> callback);
+
+    @GET("/GetStoreInfo")
+    void listStores(Callback<Store> callback);
 }

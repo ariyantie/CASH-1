@@ -63,7 +63,7 @@ public class InfoDialogFragment extends DialogFragment {
             });
         }
 
-        if (dialogId == -1) {
+        if (dialogId == -1 && messageType != null) {
             rootView.findViewById(R.id.spinner).setVisibility(View.GONE);
             TextView bodyTextView = (TextView) rootView.findViewById(R.id.body);
             bodyTextView.setVisibility(View.VISIBLE);
