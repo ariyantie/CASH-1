@@ -35,11 +35,10 @@ public class DispatchActivity extends Cash1Activity {
             return;
         }
 
-        // todo uncomment
-//        if (rememberMe()) {
-//            navigateToLoginScreen();
-//            return;
-//        }
+        if (rememberMe()) {
+            navigateToLoginScreen();
+            return;
+        }
 
         checkDeviceRegistration(getDeviceId());
     }

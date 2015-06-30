@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.cash1.model.Cash1Activity;
+import static com.android.cash1.FindOfficeResultActivity.RESULT_NOT_FOUND;
 
 public class FindOfficeWithAddressActivity extends Cash1Activity {
 
@@ -59,7 +60,7 @@ public class FindOfficeWithAddressActivity extends Cash1Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_FIND_OFFICE && resultCode == RESULT_CANCELED) {
+        if (requestCode == REQUEST_FIND_OFFICE && resultCode == RESULT_NOT_FOUND) {
             showDialog(19, "E");
         }
     }

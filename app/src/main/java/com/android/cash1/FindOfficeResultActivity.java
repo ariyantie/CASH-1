@@ -29,6 +29,7 @@ import retrofit.client.Response;
 
 public class FindOfficeResultActivity extends Cash1Activity {
 
+    public static final int RESULT_NOT_FOUND = -101;
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
     private String mWhereToSearch;
@@ -80,7 +81,7 @@ public class FindOfficeResultActivity extends Cash1Activity {
                 }
 
                 if (filteredList == null || filteredList.size() == 0) {
-                    setResult(RESULT_CANCELED);
+                    setResult(RESULT_NOT_FOUND);
                     finish();
                     return;
                 }
@@ -197,11 +198,5 @@ public class FindOfficeResultActivity extends Cash1Activity {
         } else {
             mMap.moveCamera(cu);
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        setResult(RESULT_OK);
-        finish();
     }
 }
