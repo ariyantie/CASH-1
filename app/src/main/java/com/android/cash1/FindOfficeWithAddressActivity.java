@@ -58,9 +58,9 @@ public class FindOfficeWithAddressActivity extends Cash1Activity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_FIND_OFFICE && resultCode == RESULT_CANCELED) {
             showDialog(19, "E");
         }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 }

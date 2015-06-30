@@ -61,16 +61,21 @@ public class FindOfficeResultActivity extends Cash1Activity {
             public void success(List<Office> officeList, Response response) {
                 findViewById(R.id.loading).setVisibility(View.GONE);
 
+                TextView queryTextView = (TextView) findViewById(R.id.query_textview);
                 List<Office> filteredList = null;
+
                 switch (mWhereToSearch) {
                     case "currentlocation":
                         filteredList = selectOnlyNearest(officeList);
+                        queryTextView.setText("Current location");
                         break;
                     case "zipcode":
                         filteredList = selectOnlyWithZipCode(officeList, mZipCodeString);
+                        queryTextView.setText("ZIP " + mZipCodeString);
                         break;
                     case "cityaddressstate":
                         filteredList = displayOnlyWithAddressCityAndState(officeList, mAddress, mCity, mState);
+                        queryTextView.setText(mAddress + ", " + mCity + ", " + mState);
                         break;
                 }
 
@@ -79,6 +84,8 @@ public class FindOfficeResultActivity extends Cash1Activity {
                     finish();
                     return;
                 }
+
+                setUpMapIfNeeded(filteredList);
 
                 LinearLayout container = (LinearLayout) findViewById(R.id.list_container);
                 for (int i = 0; i < filteredList.size(); i++) {
@@ -184,6 +191,17 @@ public class FindOfficeResultActivity extends Cash1Activity {
         int padding = 0;
         CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
 
-        mMap.moveCamera(cu);
+        if (officeList.size() == 1) {
+            Office office = officeList.get(0);
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(office.getLatitude(), office.getLongitude()) , 14.0f));
+        } else {
+            mMap.moveCamera(cu);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        setResult(RESULT_OK);
+        finish();
     }
 }
