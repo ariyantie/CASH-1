@@ -48,4 +48,8 @@ public class Office {
     public String getZipCodeString() {
         return zipCode;
     }
+
+    public String getCity() {
+        return city.toUpperCase();
+    }
 }

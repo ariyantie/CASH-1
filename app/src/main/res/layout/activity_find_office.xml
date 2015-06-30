@@ -24,9 +24,16 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    style="@style/Subheader"
-                    android:layout_marginTop="18dp"
-                    android:text="Find the nearest CASH 1 location" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingRight="10dp"
+                    android:paddingTop="4dp"
+                    android:text="Find the Nearest CASH 1 Location"
+                    android:textColor="#da000000"
+                    android:textSize="20sp"
+                    android:paddingBottom="8dp"
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/current_location_button"

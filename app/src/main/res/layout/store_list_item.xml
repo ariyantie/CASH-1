@@ -13,13 +13,12 @@
 
         <TextView
             android:id="@+id/position"
-            android:layout_width="wrap_content"
+            android:layout_width="56dp"
             android:layout_height="match_parent"
             android:paddingLeft="18dp"
-            android:paddingRight="16dp"
             android:paddingTop="16dp"
             android:textSize="24sp"
-            tools:text="1" />
+            tools:text="10" />
 
         <LinearLayout
             android:layout_width="match_parent"

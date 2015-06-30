@@ -179,4 +179,7 @@ public interface ApiService {
 
     @POST("/GetStoreDetails")
     void getStoreDetails(@Query("StoreName") String storeId, Callback<OfficeDetails> callback);
+
+    @GET("/GetStoreInfoByState")
+    void listOfficesInState(@Query("State") String stateAbbreviation, Callback<List<Office>> callback);
 }

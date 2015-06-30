@@ -86,6 +86,7 @@ public class FindOfficeResultActivity extends Cash1Activity {
                 }
 
                 if (filteredList == null || filteredList.size() == 0) {
+                    findViewById(R.id.loading).setVisibility(View.VISIBLE);
                     setResult(RESULT_NOT_FOUND);
                     finish();
                     return;
@@ -127,6 +128,8 @@ public class FindOfficeResultActivity extends Cash1Activity {
                     });
 
                     container.addView(listItemContainer);
+
+                    findViewById(R.id.loading).setVisibility(View.GONE);
                 }
             }
 

@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView style="@style/ContainerScroll">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="@drawable/actionbar_subheader"
+                android:gravity="top|center_horizontal"
+                android:text="Find locations"
+                android:textAllCaps="true"
+                android:textColor="#e1ffffff"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/container"
+                style="@style/ContainerLayout"
+                android:layout_height="wrap_content">
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

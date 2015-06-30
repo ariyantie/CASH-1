@@ -73,4 +73,26 @@ public class FindOfficeActivity extends Cash1Activity {
 
         dialog.show(getSupportFragmentManager(), "dialog");
     }
+
+    public static final String STATE_ARIZONA_ABBREVIATION = "AZ";
+    public static final String STATE_NEVADA_ABBREVIATION = "NV";
+    public static final String STATE_WASHINGTON_ABBREVIATION = "WA";
+
+    public void findInArizona(View view) {
+        Intent intent = new Intent(this, FindOfficeInStateActivity.class);
+        intent.putExtra("state_abbreviation", STATE_ARIZONA_ABBREVIATION);
+        startActivity(intent);
+    }
+
+    public void findInNevada(View view) {
+        Intent intent = new Intent(this, FindOfficeInStateActivity.class);
+        intent.putExtra("state_abbreviation", STATE_NEVADA_ABBREVIATION);
+        startActivity(intent);
+    }
+
+    public void findInWashington(View view) {
+        Intent intent = new Intent(this, FindOfficeInStateActivity.class);
+        intent.putExtra("state_abbreviation", STATE_WASHINGTON_ABBREVIATION);
+        startActivity(intent);
+    }
 }
