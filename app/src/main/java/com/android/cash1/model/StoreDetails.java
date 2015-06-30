@@ -1,5 +1,7 @@
 package com.android.cash1.model;
 
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
 
 public class StoreDetails {
@@ -42,6 +44,9 @@ public class StoreDetails {
     }
 
     public String formatNumber(String number) {
+        if (number == null) {
+            return "Not specified";
+        }
         if (number.replaceAll("[^\\d.]", "").length() < 10) {
             return number;
         }
@@ -50,6 +55,7 @@ public class StoreDetails {
     }
 
     public String getImageUrl() {
+        Log.d("StoreDetails", "Image URL: " + imageUrl.replaceAll("\\\\", ""));
         return imageUrl.replaceAll("\\\\", "");
     }
 }

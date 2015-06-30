@@ -50,6 +50,8 @@ public class FindOfficeResultActivity extends Cash1Activity {
         service.listStores(new Callback<List<Store>>() {
             @Override
             public void success(List<Store> storeList, Response response) {
+                findViewById(R.id.loading).setVisibility(View.GONE);
+
                 LinearLayout container = (LinearLayout) findViewById(R.id.list_container);
 
                 for (int i = 0; i < storeList.size(); i++) {
@@ -71,6 +73,8 @@ public class FindOfficeResultActivity extends Cash1Activity {
                         public void onClick(View v) {
                             Intent intent = new Intent(FindOfficeResultActivity.this, OfficeDetailActivity.class);
                             intent.putExtra("store_id", store.getId());
+                            intent.putExtra("latitude", store.getLatitude());
+                            intent.putExtra("longitude", store.getLongitude());
                             startActivity(intent);
                         }
                     });
