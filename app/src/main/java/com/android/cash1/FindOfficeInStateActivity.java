@@ -70,11 +70,7 @@ public class FindOfficeInStateActivity extends Cash1Activity {
 
                             TextView addressTextView = (TextView) listItemContainer.findViewById(R.id.address);
                             String address = office.getAddress();
-                            addressTextView.setText(address, TextView.BufferType.SPANNABLE);
-
-                            if (i + 1 == officeList.size()) {
-                                listItemContainer.findViewById(R.id.divider).setVisibility(View.GONE);
-                            }
+                            addressTextView.setText(address);
 
                             listItemContainer.setOnClickListener(new View.OnClickListener() {
                                 @Override

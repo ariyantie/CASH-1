@@ -69,5 +69,6 @@
     <string name="null_value_placeholder">Unspecified</string>
     <string name="title_activity_maps">Map</string>
     <string name="address_button_label">Use Zip Code or Address</string>
+    <string name="no_location_detected">No location detected. Make sure location is enabled on the device.</string>
 
 </resources>
