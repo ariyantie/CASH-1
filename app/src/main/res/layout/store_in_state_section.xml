@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:paddingBottom="14dp"
-        android:paddingTop="16dp"
+        android:paddingTop="24dp"
         android:textAllCaps="true"
         android:textColor="#da000000"
         android:textSize="20sp"

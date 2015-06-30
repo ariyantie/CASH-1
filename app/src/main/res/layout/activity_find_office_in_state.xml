@@ -22,7 +22,8 @@
             <LinearLayout
                 android:id="@+id/container"
                 style="@style/ContainerLayout"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingBottom="72dp">
 
             </LinearLayout>
 

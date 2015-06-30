@@ -25,6 +25,9 @@ public class Office {
     @SerializedName("City")
     public String city;
 
+    @SerializedName("Phone_No")
+    public String phone;
+
     public int getId() {
         return Integer.parseInt(name);
     }
@@ -51,5 +54,21 @@ public class Office {
 
     public String getCity() {
         return city.toUpperCase();
+    }
+
+    public String getPhone() {
+        if (phone != null) {
+            return formatNumber(phone);
+        } else {
+            return "";
+        }
+    }
+
+    private String formatNumber(String number) {
+        if (number.replaceAll("[^\\d.]", "").length() < 10) {
+            return number;
+        }
+        number = number.replaceAll("[^\\d.]", "");
+        return "(" + number.substring(0, 3) + ") " + number.substring(3, 6) + "-" + number.substring(6, 10);
     }
 }

@@ -58,8 +58,11 @@ public class FindOfficeInStateActivity extends Cash1Activity {
                             FrameLayout listItemContainer = (FrameLayout) View.inflate(
                                     FindOfficeInStateActivity.this, R.layout.store_list_item, null);
 
-                            TextView positionTextView = (TextView) listItemContainer.findViewById(R.id.position);
-                            positionTextView.setText((i + 1) + "");
+                            listItemContainer.findViewById(R.id.position).setVisibility(View.GONE);
+
+                            TextView phoneTextView = (TextView) listItemContainer.findViewById(R.id.distance_to);
+                            String phone = office.getPhone();
+                            phoneTextView.setText(phone);
 
                             TextView streetTextView = (TextView) listItemContainer.findViewById(R.id.street);
                             String street = office.getStreet();
