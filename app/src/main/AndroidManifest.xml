@@ -245,6 +245,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.FindOfficeResultActivity" />
         </activity>
+        <activity
+            android:name=".FindOfficeWithAddressActivity"
+            android:parentActivityName=".FindOfficeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.cash1.FindOfficeActivity" />
+        </activity>
     </application>
 
 </manifest>

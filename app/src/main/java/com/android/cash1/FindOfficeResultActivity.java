@@ -8,14 +8,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.cash1.model.Cash1Activity;
-import com.android.cash1.model.Store;
+import com.android.cash1.model.Office;
 import com.android.cash1.rest.ApiService;
 import com.android.cash1.rest.RestClient;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit.Callback;
@@ -26,6 +31,12 @@ public class FindOfficeResultActivity extends Cash1Activity {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
+    private String mWhereToSearch;
+    private String mZipCodeString;
+    private String mAddress;
+    private String mCity;
+    private String mState;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,28 +45,44 @@ public class FindOfficeResultActivity extends Cash1Activity {
         setupActionBar();
         setupFooter();
 
-        setUpMapIfNeeded();
+        mZipCodeString = getIntent().getStringExtra("zipcode_string");
+        mAddress = getIntent().getStringExtra("address");
+        mCity = getIntent().getStringExtra("city");
+        mState = getIntent().getStringExtra("state");
 
-        listStores();
-
-        if (getIntent().hasExtra("search_hint")) {
-            String hint = getIntent().getStringExtra("search_hint");
-            TextView hintTextView = (TextView) findViewById(R.id.hint_textview);
-            hintTextView.setText(hint);
-        }
+        mWhereToSearch = getIntent().getStringExtra("where_to_search");
+        listAllStores();
     }
 
-    private void listStores() {
+    private void listAllStores() {
         ApiService service = new RestClient().getApiService();
-        service.listStores(new Callback<List<Store>>() {
+        service.listAllStores(new Callback<List<Office>>() {
             @Override
-            public void success(List<Store> storeList, Response response) {
+            public void success(List<Office> officeList, Response response) {
                 findViewById(R.id.loading).setVisibility(View.GONE);
 
-                LinearLayout container = (LinearLayout) findViewById(R.id.list_container);
+                List<Office> filteredList = null;
+                switch (mWhereToSearch) {
+                    case "currentlocation":
+                        filteredList = selectOnlyNearest(officeList);
+                        break;
+                    case "zipcode":
+                        filteredList = selectOnlyWithZipCode(officeList, mZipCodeString);
+                        break;
+                    case "cityaddressstate":
+                        filteredList = displayOnlyWithAddressCityAndState(officeList, mAddress, mCity, mState);
+                        break;
+                }
 
-                for (int i = 0; i < storeList.size(); i++) {
-                    final Store store = storeList.get(i);
+                if (filteredList == null || filteredList.size() == 0) {
+                    setResult(RESULT_CANCELED);
+                    finish();
+                    return;
+                }
+
+                LinearLayout container = (LinearLayout) findViewById(R.id.list_container);
+                for (int i = 0; i < filteredList.size(); i++) {
+                    final Office office = filteredList.get(i);
 
                     FrameLayout listItemContainer = (FrameLayout) View.inflate(
                             FindOfficeResultActivity.this, R.layout.store_list_item, null);
@@ -64,17 +91,17 @@ public class FindOfficeResultActivity extends Cash1Activity {
                     positionTextView.setText((i + 1) + "");
 
                     TextView addressTextView = (TextView) listItemContainer.findViewById(R.id.address);
-                    addressTextView.setText(store.getAddress());
+                    addressTextView.setText(office.getStreet());
                     TextView cityTextView = (TextView) listItemContainer.findViewById(R.id.city);
-                    cityTextView.setText(store.getCity());
+                    cityTextView.setText(office.getAddress());
 
                     listItemContainer.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(FindOfficeResultActivity.this, OfficeDetailActivity.class);
-                            intent.putExtra("store_id", store.getId());
-                            intent.putExtra("latitude", store.getLatitude());
-                            intent.putExtra("longitude", store.getLongitude());
+                            intent.putExtra("store_id", office.getId());
+                            intent.putExtra("latitude", office.getLatitude());
+                            intent.putExtra("longitude", office.getLongitude());
                             startActivity(intent);
                         }
                     });
@@ -89,16 +116,28 @@ public class FindOfficeResultActivity extends Cash1Activity {
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        setUpMapIfNeeded();
+    private List<Office> displayOnlyWithAddressCityAndState(List<Office> officeList, String address, String city, String state) {
+        return officeList;
+    }
+
+    private List<Office> selectOnlyNearest(List<Office> officeList) {
+        return officeList;
+    }
+
+    private List<Office> selectOnlyWithZipCode(List<Office> officeList, String zipCodeQueryString) {
+        List<Office> filteredList = new ArrayList<>();
+        for (Office office : officeList) {
+            if (office.getZipCodeString().contains(zipCodeQueryString)) {
+                filteredList.add(office);
+            }
+        }
+        return filteredList;
     }
 
     /**
      * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
      * installed) and the map has not already been instantiated.. This will ensure that we only ever
-     * call {@link #setUpMap()} once when {@link #mMap} is not null.
+     * call once when {@link #mMap} is not null.
      * <p/>
      * If it isn't installed {@link SupportMapFragment} (and
      * {@link com.google.android.gms.maps.MapView MapView}) will show a prompt for the user to
@@ -109,8 +148,10 @@ public class FindOfficeResultActivity extends Cash1Activity {
      * have been completely destroyed during this process (it is likely that it would only be
      * stopped or paused), {@link #onCreate(Bundle)} may not be called again so we should call this
      * method in {@link #onResume()} to guarantee that it will be called.
+     *
+     * @param officeList
      */
-    private void setUpMapIfNeeded() {
+    private void setUpMapIfNeeded(List<Office> officeList) {
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
             // Try to obtain the map from the SupportMapFragment.
@@ -118,7 +159,7 @@ public class FindOfficeResultActivity extends Cash1Activity {
                     .getMap();
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
-                setUpMap();
+                setUpMap(officeList);
             }
         }
     }
@@ -129,8 +170,20 @@ public class FindOfficeResultActivity extends Cash1Activity {
      * <p/>
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
-    private void setUpMap() {
-        mMap.setMyLocationEnabled(true);
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+    private void setUpMap(List<Office> officeList) {
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
+        for (Office office : officeList) {
+            Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(
+                    office.getLatitude(), office.getLongitude())).title(office.getAddress()));
+
+            builder.include(marker.getPosition());
+        }
+        LatLngBounds bounds = builder.build();
+
+        int padding = 0;
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+
+        mMap.moveCamera(cu);
     }
 }

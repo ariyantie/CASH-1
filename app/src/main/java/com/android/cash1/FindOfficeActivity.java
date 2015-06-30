@@ -38,11 +38,11 @@ public class FindOfficeActivity extends Cash1Activity {
             public void success(Preferences preferencesObject, Response response) {
                 boolean useCurrentLocation = preferencesObject.useCurrentLocation();
                 if (useCurrentLocation()) {
-                    displaySearchResults("Current Location");
+                    searchOfficesWithCurrentLocation();
                 } else if (useCurrentLocation) {
                     promptToAllowLocation();
                 } else {
-                    displaySearchResults("Current Location");
+                    searchOfficesWithCurrentLocation();
                 }
             }
 
@@ -52,9 +52,13 @@ public class FindOfficeActivity extends Cash1Activity {
         });
     }
 
-    public void displaySearchResults(String searchHint) {
+    public void findWithAddress(View view) {
+        startActivity(new Intent(this, FindOfficeWithAddressActivity.class));
+    }
+
+    public void searchOfficesWithCurrentLocation() {
         Intent intent = new Intent(this, FindOfficeResultActivity.class);
-        intent.putExtra("search_hint", searchHint);
+        intent.putExtra("where_to_search", "currentlocation");
         startActivity(intent);
     }
 

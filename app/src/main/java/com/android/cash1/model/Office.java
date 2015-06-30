@@ -2,7 +2,7 @@ package com.android.cash1.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Store {
+public class Office {
 
     @SerializedName("StoreName")
     public String name;
@@ -13,11 +13,17 @@ public class Store {
     @SerializedName("Longitude")
     public float longitude;
 
-    @SerializedName("City")
-    public String city;
-
     @SerializedName("Street")
     public String street;
+
+    @SerializedName("State")
+    public String state;
+
+    @SerializedName("Zip_Code")
+    public String zipCode;
+
+    @SerializedName("City")
+    public String city;
 
     public int getId() {
         return Integer.parseInt(name);
@@ -31,11 +37,15 @@ public class Store {
         return longitude;
     }
 
-    public String getCity() {
-        return city;
+    public String getAddress() {
+        return state + " " + zipCode + ", " + city;
     }
 
-    public String getAddress() {
+    public String getStreet() {
         return street;
+    }
+
+    public String getZipCodeString() {
+        return zipCode;
     }
 }

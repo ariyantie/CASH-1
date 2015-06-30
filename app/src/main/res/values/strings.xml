@@ -53,10 +53,11 @@
     <string name="action_faq">FAQ</string>
     <string name="action_contact_us">Contact us</string>
     <string name="amount_hint">[$XXXXX]</string>
-    <string name="current_location_button_label">Use current location</string>
+    <string name="current_location_button_label">Use Current Location</string>
     <string name="enter_address_button_label">Use ZIP code or address</string>
     <string name="arizona_button_label">CASH 1 in Arizona</string>
     <string name="nevada_button_label">CASH 1 in Nevada</string>
+    <string name="washington_button_label">CASH 1 in Washington</string>
     <string name="title_activity_faq">FaqActivity</string>
     <string name="faq_load_error">Failed to load questions. Check your network connection.</string>
     <string name="close_button_label">Close</string>
@@ -67,5 +68,6 @@
     <string name="basic_error_message">We\'re sorry. There seems to be an issue with your account. Please call one of our Customer Service representatives for further assistance.</string>
     <string name="null_value_placeholder">Unspecified</string>
     <string name="title_activity_maps">Map</string>
+    <string name="address_button_label">Use Zip Code or Address</string>
 
 </resources>

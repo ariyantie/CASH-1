@@ -5,9 +5,9 @@ import com.android.cash1.model.CollectionsPhoneNumbers;
 import com.android.cash1.model.CustomerSupportPhoneNumbers;
 import com.android.cash1.model.DialogContents;
 import com.android.cash1.model.FaqItem;
+import com.android.cash1.model.OfficeDetails;
 import com.android.cash1.model.Preferences;
-import com.android.cash1.model.Store;
-import com.android.cash1.model.StoreDetails;
+import com.android.cash1.model.Office;
 import com.google.gson.JsonObject;
 
 import java.util.HashMap;
@@ -175,8 +175,8 @@ public interface ApiService {
                         @Query("IsON") boolean useCurrentLocation, Callback<JsonObject> callback);
 
     @GET("/GetStoreInfo")
-    void listStores(Callback<List<Store>> callback);
+    void listAllStores(Callback<List<Office>> callback);
 
     @POST("/GetStoreDetails")
-    void getStoreDetails(@Query("StoreName") String storeId, Callback<StoreDetails> callback);
+    void getStoreDetails(@Query("StoreName") String storeId, Callback<OfficeDetails> callback);
 }

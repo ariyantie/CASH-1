@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.cash1.model.Cash1Activity;
-import com.android.cash1.model.StoreDetails;
+import com.android.cash1.model.OfficeDetails;
 import com.android.cash1.rest.ApiService;
 import com.android.cash1.rest.RestClient;
 import com.squareup.picasso.Picasso;
@@ -36,9 +36,9 @@ public class OfficeDetailActivity extends Cash1Activity {
         mLongitude = getIntent().getDoubleExtra("longitude", -1);
 
         ApiService service = new RestClient().getApiService();
-        service.getStoreDetails(storeId + "", new Callback<StoreDetails>() {
+        service.getStoreDetails(storeId + "", new Callback<OfficeDetails>() {
             @Override
-            public void success(StoreDetails details, Response response) {
+            public void success(OfficeDetails details, Response response) {
                 TextView streetTextView = (TextView) findViewById(R.id.street);
                 streetTextView.setText(details.getStreet());
                 TextView addressTextView = (TextView) findViewById(R.id.address);
@@ -50,7 +50,6 @@ public class OfficeDetailActivity extends Cash1Activity {
                 ImageView iconImageView = (ImageView) findViewById(R.id.icon);
                 Picasso.with(OfficeDetailActivity.this)
                         .load(details.getImageUrl())
-                        .fit()
                         .placeholder(R.drawable.progress_animation)
                         .error(R.drawable.ic_image_error)
                         .into(iconImageView);

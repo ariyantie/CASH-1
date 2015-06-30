@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.google.gson.annotations.SerializedName;
 
-public class StoreDetails {
+public class OfficeDetails {
 
     @SerializedName("Street")
     public String street;
@@ -55,7 +55,7 @@ public class StoreDetails {
     }
 
     public String getImageUrl() {
-        Log.d("StoreDetails", "Image URL: " + imageUrl.replaceAll("\\\\", ""));
+        Log.d("OfficeDetails", "Image URL: " + imageUrl.replaceAll("\\\\", ""));
         return imageUrl.replaceAll("\\\\", "");
     }
 }

@@ -1,0 +1,98 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView style="@style/ContainerScroll">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="@drawable/actionbar_subheader"
+                android:gravity="top|center_horizontal"
+                android:text="Find locations"
+                android:textAllCaps="true"
+                android:textColor="#e1ffffff"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                style="@style/ContainerLayout"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingRight="10dp"
+                    android:paddingTop="4dp"
+                    android:text="Find the Nearest CASH 1 Location"
+                    android:textColor="#da000000"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/Subheader"
+                    android:layout_marginTop="34dp"
+                    android:text="Find by ZIP code"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/zip_code_edittext"
+                    style="@style/EditTextLogin"
+                    android:layout_marginTop="8dp"
+                    android:hint="ZIP code"
+                    android:inputType="number"
+                    android:nextFocusDown="@+id/find_button"/>
+
+                <TextView
+                    style="@style/Subheader"
+                    android:layout_marginTop="28dp"
+                    android:text="Find by address or intersection"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/address_edittext"
+                    style="@style/EditTextLogin"
+                    android:layout_marginTop="8dp"
+                    android:hint="Address"
+                    android:inputType="textPostalAddress|textCapWords" />
+
+                <EditText
+                    android:id="@+id/city_edittext"
+                    style="@style/EditTextLogin"
+                    android:layout_marginTop="8dp"
+                    android:hint="City"
+                    android:inputType="textPostalAddress|textCapWords" />
+
+                <EditText
+                    android:id="@+id/state_edittext"
+                    style="@style/EditTextLogin"
+                    android:layout_marginTop="8dp"
+                    android:hint="State"
+                    android:inputType="textPostalAddress|textCapWords" />
+
+                <Button
+                    android:id="@+id/find_button"
+                    style="@style/ButtonSubmitPrimary"
+                    android:layout_marginTop="24dp"
+                    android:onClick="find"
+                    android:layout_marginBottom="112dp"
+                    android:text="Find Store Location" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>
