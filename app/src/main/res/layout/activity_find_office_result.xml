@@ -80,7 +80,8 @@
                 android:id="@+id/list_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginBottom="64dp">
 
                 <ProgressBar
                     style="?android:attr/progressBarStyleLarge"

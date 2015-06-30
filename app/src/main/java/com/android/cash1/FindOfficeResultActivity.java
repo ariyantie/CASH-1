@@ -50,7 +50,10 @@ public class FindOfficeResultActivity extends Cash1Activity {
 
         mZipCodeString = getIntent().getStringExtra("zipcode_string");
         mAddress = getIntent().getStringExtra("address");
-        mCity = getIntent().getStringExtra("city").toUpperCase();
+        mCity = getIntent().getStringExtra("city");
+        if (mCity != null) {
+            mCity = mCity.toUpperCase();
+        }
         mState = getIntent().getStringExtra("state");
 
         mWhereToSearch = getIntent().getStringExtra("where_to_search");
@@ -108,6 +111,10 @@ public class FindOfficeResultActivity extends Cash1Activity {
                     Spanned address = highlightMatches(office.getAddress());
                     addressTextView.setText(address, TextView.BufferType.SPANNABLE);
 
+                    if (i + 1 == filteredList.size()) {
+                        listItemContainer.findViewById(R.id.divider).setVisibility(View.GONE);
+                    }
+
                     listItemContainer.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -141,10 +148,6 @@ public class FindOfficeResultActivity extends Cash1Activity {
         return Html.fromHtml(string);
     }
 
-    private List<Office> displayOnlyWithAddressCityAndState(List<Office> officeList, String address, String city, String state) {
-        return officeList;
-    }
-
     private List<Office> selectOnlyNearest(List<Office> officeList) {
         return officeList;
     }
@@ -153,6 +156,22 @@ public class FindOfficeResultActivity extends Cash1Activity {
         List<Office> filteredList = new ArrayList<>();
         for (Office office : officeList) {
             if (office.getZipCodeString().contains(zipCodeQueryString)) {
+                filteredList.add(office);
+            }
+        }
+        return filteredList;
+    }
+
+    private List<Office> displayOnlyWithAddressCityAndState(List<Office> officeList, String address, String city, String state) {
+        List<Office> filteredList = new ArrayList<>();
+        for (Office office : officeList) {
+            if (office.getAddress().contains(mAddress) ||
+                    office.getAddress().contains(mCity) ||
+                    office.getAddress().contains(mState)) {
+                filteredList.add(office);
+            } else if (office.getStreet().contains(mAddress) ||
+                    office.getStreet().contains(mCity) ||
+                    office.getStreet().contains(mState)) {
                 filteredList.add(office);
             }
         }
@@ -211,7 +230,7 @@ public class FindOfficeResultActivity extends Cash1Activity {
 
         if (officeList.size() == 1) {
             Office office = officeList.get(0);
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(office.getLatitude(), office.getLongitude()) , 14.0f));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(office.getLatitude(), office.getLongitude()), 14.0f));
         } else {
             mMap.moveCamera(cu);
         }
