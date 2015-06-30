@@ -2,6 +2,8 @@ package com.android.cash1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -48,7 +50,7 @@ public class FindOfficeResultActivity extends Cash1Activity {
 
         mZipCodeString = getIntent().getStringExtra("zipcode_string");
         mAddress = getIntent().getStringExtra("address");
-        mCity = getIntent().getStringExtra("city");
+        mCity = getIntent().getStringExtra("city").toUpperCase();
         mState = getIntent().getStringExtra("state");
 
         mWhereToSearch = getIntent().getStringExtra("where_to_search");
@@ -68,15 +70,15 @@ public class FindOfficeResultActivity extends Cash1Activity {
                 switch (mWhereToSearch) {
                     case "currentlocation":
                         filteredList = selectOnlyNearest(officeList);
-                        queryTextView.setText("Current location");
+                        queryTextView.setText("Current location" + "\n");
                         break;
                     case "zipcode":
                         filteredList = selectOnlyWithZipCode(officeList, mZipCodeString);
-                        queryTextView.setText("ZIP " + mZipCodeString);
+                        queryTextView.setText("ZIP code “" + mZipCodeString + "”" + "\n");
                         break;
                     case "cityaddressstate":
                         filteredList = displayOnlyWithAddressCityAndState(officeList, mAddress, mCity, mState);
-                        queryTextView.setText(mAddress + ", " + mCity + ", " + mState);
+                        queryTextView.setText(mAddress + ", " + mCity + ", " + mState + "\n");
                         break;
                 }
 
@@ -98,10 +100,13 @@ public class FindOfficeResultActivity extends Cash1Activity {
                     TextView positionTextView = (TextView) listItemContainer.findViewById(R.id.position);
                     positionTextView.setText((i + 1) + "");
 
+                    TextView streetTextView = (TextView) listItemContainer.findViewById(R.id.street);
+                    Spanned street = highlightMatches(office.getStreet());
+                    streetTextView.setText(street, TextView.BufferType.SPANNABLE);
+
                     TextView addressTextView = (TextView) listItemContainer.findViewById(R.id.address);
-                    addressTextView.setText(office.getStreet());
-                    TextView cityTextView = (TextView) listItemContainer.findViewById(R.id.city);
-                    cityTextView.setText(office.getAddress());
+                    Spanned address = highlightMatches(office.getAddress());
+                    addressTextView.setText(address, TextView.BufferType.SPANNABLE);
 
                     listItemContainer.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -122,6 +127,18 @@ public class FindOfficeResultActivity extends Cash1Activity {
             public void failure(RetrofitError error) {
             }
         });
+    }
+
+    private Spanned highlightMatches(String string) {
+        if (mZipCodeString != null) {
+            string = string.replaceAll("(?i)" + mZipCodeString, "<font color='red'>" + mZipCodeString + "</font>");
+        }
+        if (mAddress != null && mCity != null && mState != null) {
+            string = string.replaceAll("(?i)" + mAddress, "<font color='red'>" + mAddress + "</font>");
+            string = string.replaceAll("(?i)" + mCity, "<font color='red'>" + mCity + "</font>");
+            string = string.replaceAll("(?i)" + mState, "<font color='red'>" + mState + "</font>");
+        }
+        return Html.fromHtml(string);
     }
 
     private List<Office> displayOnlyWithAddressCityAndState(List<Office> officeList, String address, String city, String state) {

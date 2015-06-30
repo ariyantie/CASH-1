@@ -25,7 +25,8 @@
                 style="@style/ContainerLayout"
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
-                android:paddingRight="8dp">
+                android:paddingRight="8dp"
+                android:paddingBottom="0dp">
 
                 <TextView
                     android:layout_width="match_parent"

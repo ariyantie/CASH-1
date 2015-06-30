@@ -73,7 +73,7 @@
                     style="@style/EditTextLogin"
                     android:layout_marginTop="8dp"
                     android:hint="State"
-                    android:inputType="textPostalAddress|textCapWords" />
+                    android:inputType="textPostalAddress|textCapCharacters" />
 
                 <Button
                     android:id="@+id/find_button"
