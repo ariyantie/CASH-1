@@ -33,6 +33,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit.Callback;
@@ -264,7 +266,17 @@ public class FindOfficeResultActivity extends Cash1Activity implements
                 filteredList.add(office);
             }
         }
-        return filteredList;
+        return sortByDistance(filteredList);
+    }
+
+    private List<Office> sortByDistance(List<Office> officeList) {
+        Collections.sort(officeList, new Comparator<Office>() {
+            @Override
+            public int compare(Office lhs, Office rhs) {
+                return ((int) getDistanceFromMe(rhs)) - ((int) getDistanceFromMe(lhs));
+            }
+        });
+        return officeList;
     }
 
     private double getDistanceFromMe(Office office) {
@@ -288,7 +300,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
                 filteredList.add(office);
             }
         }
-        return filteredList;
+        return sortByDistance(filteredList);
     }
 
     private List<Office> displayOnlyWithAddressCityAndState(List<Office> officeList, String address, String city, String state) {
@@ -304,7 +316,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
                 filteredList.add(office);
             }
         }
-        return filteredList;
+        return sortByDistance(filteredList);
     }
 
     /**
