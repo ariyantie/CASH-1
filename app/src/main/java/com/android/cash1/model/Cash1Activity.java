@@ -160,6 +160,18 @@ public class Cash1Activity extends AppCompatActivity {
         return PreferenceManager.getDefaultSharedPreferences(this).getInt("store_id", 0);
     }
 
+    public double getLastLatitude() {
+        // todo uncomment
+        return 37.42;
+//        return PreferenceManager.getDefaultSharedPreferences(this).getFloat("latitude", -1);
+    }
+
+    public double getLastLongitude() {
+        // todo uncomment
+        return -122.08;
+//        return PreferenceManager.getDefaultSharedPreferences(this).getFloat("longitude", -1);
+    }
+
     public String getRedirectViewTitle() {
         return PreferenceManager.getDefaultSharedPreferences(this).getString("redirect_view", null);
     }

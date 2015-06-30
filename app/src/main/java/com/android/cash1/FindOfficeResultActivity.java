@@ -1,8 +1,10 @@
 package com.android.cash1;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.Spanned;
 import android.util.Log;
@@ -78,9 +80,19 @@ public class FindOfficeResultActivity extends Cash1Activity implements
         mState = getIntent().getStringExtra("state");
 
         mWhereToSearch = getIntent().getStringExtra("where_to_search");
-        listAllStores();
+        if (mWhereToSearch.equals("currentlocation")) {
+            buildGoogleApiClient();
+        } else {
+            listAllStores();
+        }
+    }
 
-        buildGoogleApiClient();
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (mGoogleApiClient != null) {
+            mGoogleApiClient.connect();
+        }
     }
 
     /**
@@ -95,9 +107,9 @@ public class FindOfficeResultActivity extends Cash1Activity implements
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (mGoogleApiClient.isConnected()) {
+    protected void onStop() {
+        super.onStop();
+        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
     }
@@ -112,12 +124,20 @@ public class FindOfficeResultActivity extends Cash1Activity implements
         // updates. Gets the best and most recent location currently available, which may be null
         // in rare cases when a location is not available.
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        if (mLastLocation != null) {
-            Log.d(TAG, "lat: " + mLastLocation.getLatitude() + ", lng: " + mLastLocation.getLongitude());
-//            mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
-//            mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
+        if (getLastLatitude() != -1 && getLastLongitude() != -1) {
+            if (mLastLocation != null) {
+                SharedPreferences sharedPreferences =
+                        PreferenceManager.getDefaultSharedPreferences(this);
+                sharedPreferences.edit()
+                        .putFloat("latitude", (float) mLastLocation.getLatitude())
+                        .putFloat("longitude", (float) mLastLocation.getLongitude())
+                        .apply();
+            }
+            listAllStores();
         } else {
             Toast.makeText(this, R.string.no_location_detected, Toast.LENGTH_LONG).show();
+            mGoogleApiClient.disconnect();
+            finish();
         }
     }
 
@@ -126,6 +146,8 @@ public class FindOfficeResultActivity extends Cash1Activity implements
         // Refer to the javadoc for ConnectionResult to see what error codes might be returned in
         // onConnectionFailed.
         Log.i(TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
+        Toast.makeText(this, "Install the latest Google Play Services to continue", Toast.LENGTH_LONG).show();
+        finish();
     }
 
 
@@ -151,7 +173,6 @@ public class FindOfficeResultActivity extends Cash1Activity implements
                     case "currentlocation":
                         filteredList = selectOnlyNearest(officeList);
                         queryTextView.setText("Current location" + "\n");
-                        mGoogleApiClient.connect();
                         break;
                     case "zipcode":
                         filteredList = selectOnlyWithZipCode(officeList, mZipCodeString);
@@ -189,6 +210,12 @@ public class FindOfficeResultActivity extends Cash1Activity implements
                     TextView addressTextView = (TextView) listItemContainer.findViewById(R.id.address);
                     Spanned address = highlightMatches(office.getAddress());
                     addressTextView.setText(address, TextView.BufferType.SPANNABLE);
+
+                    if (getLastLatitude() != -1 && getLastLongitude() != -1) {
+                        TextView distanceTextView = (TextView) listItemContainer.findViewById(R.id.distance_to);
+                        String distanceString = String.format("%.1f", getDistanceFromMe(office)) + " mi";
+                        distanceTextView.setText(distanceString);
+                    }
 
                     if (i + 1 == filteredList.size()) {
                         listItemContainer.findViewById(R.id.divider).setVisibility(View.GONE);
@@ -230,7 +257,28 @@ public class FindOfficeResultActivity extends Cash1Activity implements
     }
 
     private List<Office> selectOnlyNearest(List<Office> officeList) {
-        return officeList;
+        List<Office> filteredList = new ArrayList<>();
+        for (Office office : officeList) {
+            double distance = getDistanceFromMe(office);
+            if (distance < 2500) {
+                filteredList.add(office);
+            }
+        }
+        return filteredList;
+    }
+
+    private double getDistanceFromMe(Office office) {
+        Location myLocation = new Location("point A");
+        myLocation.setLatitude(getLastLatitude());
+        myLocation.setLongitude(getLastLongitude());
+
+        Location officeLocation = new Location("point B");
+        officeLocation.setLatitude(office.getLatitude());
+        officeLocation.setLongitude(office.getLongitude());
+
+        double milesInOneMeter = 0.000621371;
+        double distanceInMiles = myLocation.distanceTo(officeLocation) * milesInOneMeter;
+        return distanceInMiles;
     }
 
     private List<Office> selectOnlyWithZipCode(List<Office> officeList, String zipCodeQueryString) {
