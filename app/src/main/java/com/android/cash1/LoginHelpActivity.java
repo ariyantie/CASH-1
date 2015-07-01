@@ -44,5 +44,12 @@ public class LoginHelpActivity extends Cash1Activity {
     @Override
     public void onBackPressed() {
         startActivity(new Intent(this, LoginActivity.class));
+        finish();
+    }
+
+    @Override
+    public void goBack(View view) {
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
     }
 }

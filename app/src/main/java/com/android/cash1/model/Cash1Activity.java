@@ -163,15 +163,11 @@ public class Cash1Activity extends AppCompatActivity {
     }
 
     public double getLastLatitude() {
-        // todo uncomment
-        return 37.42;
-//        return PreferenceManager.getDefaultSharedPreferences(this).getFloat("latitude", -1);
+        return PreferenceManager.getDefaultSharedPreferences(this).getFloat("latitude", -1);
     }
 
     public double getLastLongitude() {
-        // todo uncomment
-        return -122.08;
-//        return PreferenceManager.getDefaultSharedPreferences(this).getFloat("longitude", -1);
+        return PreferenceManager.getDefaultSharedPreferences(this).getFloat("longitude", -1);
     }
 
     public String getRedirectViewTitle() {
