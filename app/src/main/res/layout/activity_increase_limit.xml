@@ -71,7 +71,7 @@
                         android:text="Current Credit Limit: " />
 
                     <TextView
-                        android:id="@+id/credit_limit"
+                        android:id="@+id/increase_limit"
                         style="@style/AccountDetailsValue"
                         tools:text="$0.00" />
 

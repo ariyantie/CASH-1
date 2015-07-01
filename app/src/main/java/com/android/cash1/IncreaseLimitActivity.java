@@ -56,7 +56,7 @@ public class IncreaseLimitActivity extends Cash1Activity {
                 ((TextView) findViewById(R.id.account_name)).setText(accountName);
                 ((TextView) findViewById(R.id.account_number)).setText(accountNumber);
                 ((TextView) findViewById(R.id.account_type)).setText(accountType);
-                ((TextView) findViewById(R.id.credit_limit)).setText(creditLimit);
+                ((TextView) findViewById(R.id.increase_limit)).setText(creditLimit);
                 ((TextView) findViewById(R.id.available_credit)).setText(creditAvailable);
             }
 

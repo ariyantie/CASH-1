@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -23,36 +24,66 @@
                 style="@style/ContainerLayout"
                 android:layout_height="wrap_content"
                 android:paddingBottom="32dp">
+                
+                <android.support.v4.widget.Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"/>
 
-                <ImageButton
+                <Button
                     android:id="@+id/get_cash"
                     style="@style/ButtonMainScreen"
+                    android:background="@drawable/btn_get_cash_selector"
                     android:onClick="getCash"
-                    android:src="@drawable/btn_get_cash_selector" />
+                    tools:layout_height="57dp"
+                    tools:layout_marginTop="8dp" />
 
-                <ImageButton
+                <android.support.v4.widget.Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+                <Button
                     android:id="@+id/make_payment"
                     style="@style/ButtonMainScreen"
+                    android:background="@drawable/btn_make_payment_selector"
                     android:onClick="makePayment"
-                    android:src="@drawable/btn_make_payment_selector" />
+                    tools:layout_height="57dp"
+                    tools:layout_marginTop="8dp" />
 
-                <ImageButton
+                <android.support.v4.widget.Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+                <Button
                     android:id="@+id/update_info"
                     style="@style/ButtonMainScreen"
+                    android:background="@drawable/btn_update_info_selector"
                     android:onClick="updateInfo"
-                    android:src="@drawable/btn_update_info_selector" />
+                    tools:layout_height="57dp"
+                    tools:layout_marginTop="8dp" />
 
-                <ImageButton
-                    android:id="@+id/account_details"
+                <android.support.v4.widget.Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+                <Button
+                    android:id="@+id/view_details"
                     style="@style/ButtonMainScreen"
+                    android:background="@drawable/btn_account_details_selector"
                     android:onClick="accountDetails"
-                    android:src="@drawable/btn_account_details_selector" />
+                    tools:layout_height="57dp"
+                    tools:layout_marginTop="8dp" />
 
-                <ImageButton
-                    android:id="@+id/credit_limit"
+                <android.support.v4.widget.Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+                <Button
+                    android:id="@+id/increase_limit"
                     style="@style/ButtonMainScreen"
+                    android:background="@drawable/btn_increase_limit_selector"
                     android:onClick="creditLimit"
-                    android:src="@drawable/btn_increase_limit_selector" />
+                    tools:layout_height="57dp"
+                    tools:layout_marginTop="8dp" />
 
             </LinearLayout>
 

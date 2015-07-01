@@ -3,7 +3,9 @@ package com.android.cash1;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.android.cash1.model.Cash1Activity;
 import com.android.cash1.rest.ApiService;
@@ -23,6 +25,18 @@ public class MainActivity extends Cash1Activity {
 
         setupActionBar();
         setupFooter();
+
+        Display display = getWindowManager().getDefaultDisplay();
+        int width = display.getWidth();
+        double ratio = ((float) (width))/273;
+        int height = (int)(ratio*50);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height);
+
+        findViewById(R.id.get_cash).setLayoutParams(layoutParams);
+        findViewById(R.id.make_payment).setLayoutParams(layoutParams);
+        findViewById(R.id.update_info).setLayoutParams(layoutParams);
+        findViewById(R.id.view_details).setLayoutParams(layoutParams);
+        findViewById(R.id.increase_limit).setLayoutParams(layoutParams);
     }
 
     @Override
