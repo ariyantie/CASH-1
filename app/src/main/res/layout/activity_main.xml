@@ -26,6 +26,7 @@
                 style="@style/ContainerLayout"
                 android:layout_height="wrap_content">
 
+                <!--TODO: Prevent button height squishing on smaller screen sizes-->
                 <ImageButton
                     android:id="@+id/get_cash"
                     style="@style/ButtonMainScreen"
@@ -60,7 +61,7 @@
 
         </LinearLayout>
 
-        <!--TODO: Pin menu button to the bottom of the screen-->
+        <!--TODO: Drag-to-open -->
         <include
             layout="@layout/footer"
             android:layout_width="match_parent"

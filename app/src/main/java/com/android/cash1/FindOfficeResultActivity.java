@@ -165,6 +165,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
         // onConnectionFailed.
         Log.i(TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
         Toast.makeText(this, "Install the latest Google Play Services to use your location", Toast.LENGTH_LONG).show();
+        // TODO Show built-in Google dialog instead, which will allow user to resolve error
         finish();
     }
 

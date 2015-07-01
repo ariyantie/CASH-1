@@ -1,6 +1,8 @@
 package com.android.cash1;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.android.cash1.model.Cash1Activity;
 
@@ -13,5 +15,9 @@ public class UpdateInfoActivity extends Cash1Activity {
 
         setupActionBar();
         setupFooter();
+    }
+
+    public void showComingSoonToast(View view) {
+        Toast.makeText(this, "Coming soon", Toast.LENGTH_SHORT).show();
     }
 }

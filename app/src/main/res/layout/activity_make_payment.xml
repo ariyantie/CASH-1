@@ -31,8 +31,6 @@
                         style="@style/AccountDetailsKey"
                         android:text="Account name: " />
 
-                    <!--TODO: Load data from web service-->
-
                     <TextView
                         android:id="@+id/account_name"
                         style="@style/AccountDetailsValue"

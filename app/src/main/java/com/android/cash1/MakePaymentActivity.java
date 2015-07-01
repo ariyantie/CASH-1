@@ -3,8 +3,8 @@ package com.android.cash1;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.cash1.model.Cash1Activity;
 import com.android.cash1.rest.ApiService;
@@ -69,7 +69,12 @@ public class MakePaymentActivity extends Cash1Activity {
     }
 
     public void submitPayment(View view) {
+        // TODO: Implement make payment funcionallity
+        Toast.makeText(this, "Coming soon", Toast.LENGTH_SHORT).show();
+        return;
+
         // TODO: Retrieve real bank ID from BankAccountInfo service (currently returns 404 error)
+        /*
         int bankId = 1;
 
         String paymentFrom = ((EditText) findViewById(R.id.payment_from)).getText().toString().trim();
@@ -88,5 +93,6 @@ public class MakePaymentActivity extends Cash1Activity {
             public void failure(RetrofitError error) {
             }
         });
+        */
     }
 }
