@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:orientation="horizontal"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_height="wrap_content">
 
     <ImageButton
         android:id="@+id/button_back"
@@ -30,9 +32,10 @@
         android:text="Log out"
         android:paddingBottom="3dp"
         android:textSize="12sp"
-        android:textColor="#D6EBDE"
+        android:textColor="#dff4e7"
         android:textStyle="bold"
         android:onClick="logout"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        tools:visibility="visible"/>
 
 </LinearLayout>

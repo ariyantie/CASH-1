@@ -176,6 +176,7 @@
         <activity
             android:name=".FaqActivity"
             android:label="@string/title_activity_faq"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -183,6 +184,7 @@
         </activity>
         <activity
             android:name=".ContactActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -190,6 +192,7 @@
         </activity>
         <activity
             android:name=".UpdateInfoActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -197,6 +200,7 @@
         </activity>
         <activity
             android:name=".MakePaymentActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -204,6 +208,7 @@
         </activity>
         <activity
             android:name=".SettingsActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -211,6 +216,7 @@
         </activity>
         <activity
             android:name=".NotificationSettingsActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -218,6 +224,7 @@
         </activity>
         <activity
             android:name=".PrivacyPolicyActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".SettingsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -225,10 +232,35 @@
         </activity>
         <activity
             android:name=".TermsActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".SettingsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.SettingsActivity" />
+        </activity>
+        <activity
+            android:name=".OfficeDetailActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".FindOfficeResultActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.cash1.FindOfficeResultActivity" />
+        </activity>
+        <activity
+            android:name=".FindOfficeWithAddressActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".FindOfficeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.cash1.FindOfficeActivity" />
+        </activity>
+        <activity
+            android:name=".FindOfficeInStateActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".FindOfficeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.cash1.FindOfficeActivity" />
         </activity>
 
         <meta-data
@@ -238,27 +270,6 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".OfficeDetailActivity"
-            android:parentActivityName=".FindOfficeResultActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.android.cash1.FindOfficeResultActivity" />
-        </activity>
-        <activity
-            android:name=".FindOfficeWithAddressActivity"
-            android:parentActivityName=".FindOfficeActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.android.cash1.FindOfficeActivity" />
-        </activity>
-        <activity
-            android:name=".FindOfficeInStateActivity"
-            android:parentActivityName=".FindOfficeActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.android.cash1.FindOfficeActivity" />
-        </activity>
     </application>
 
 </manifest>

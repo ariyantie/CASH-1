@@ -55,7 +55,7 @@
                     android:id="@+id/payment_account_button"
                     style="@style/ButtonSubmitPrimary"
                     android:layout_marginTop="16dp"
-                    android:text="Select primary payment account" />
+                    android:text="Select payment account" />
 
                 <Button
                     android:id="@+id/my_payment_button"

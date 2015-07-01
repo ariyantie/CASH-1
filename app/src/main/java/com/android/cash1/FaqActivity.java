@@ -20,9 +20,6 @@ import retrofit.client.Response;
 
 public class FaqActivity extends Cash1Activity {
 
-    private ViewGroup mFooterContainer;
-    private TextView mFooterToggle;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +68,8 @@ public class FaqActivity extends Cash1Activity {
 
                     container.addView(itemLayout);
                 }
+
+                findViewById(R.id.main_menu).setVisibility(View.VISIBLE);
             }
 
             @Override
