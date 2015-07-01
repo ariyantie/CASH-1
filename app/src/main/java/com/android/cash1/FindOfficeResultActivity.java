@@ -19,6 +19,7 @@ import com.android.cash1.model.Office;
 import com.android.cash1.rest.ApiService;
 import com.android.cash1.rest.RestClient;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
@@ -148,7 +149,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
         // Refer to the javadoc for ConnectionResult to see what error codes might be returned in
         // onConnectionFailed.
         Log.i(TAG, "Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
-        Toast.makeText(this, "Install the latest Google Play Services to continue", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Install the latest Google Play Services to use your location", Toast.LENGTH_LONG).show();
         finish();
     }
 
@@ -340,8 +341,15 @@ public class FindOfficeResultActivity extends Cash1Activity implements
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
             // Try to obtain the map from the SupportMapFragment.
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-                    .getMap();
+            if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS) {
+                View mapFragmentView = (getSupportFragmentManager().findFragmentById(R.id.map)).getView();
+                if (mapFragmentView != null) {
+                    mapFragmentView.setVisibility(View.GONE);
+                }
+            } else {
+                mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
+                        .getMap();
+            }
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 setUpMap(officeList);
@@ -355,6 +363,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
      * <p/>
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
+
     private void setUpMap(List<Office> officeList) {
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
 

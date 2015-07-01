@@ -85,7 +85,7 @@
                     android:id="@+id/list_container"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginBottom="64dp"
+                    android:layout_marginBottom="84dp"
                     android:orientation="vertical" />
 
             </LinearLayout>
@@ -95,7 +95,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#8d000000"
-                android:clickable="true"/>
+                android:clickable="true"
+                tools:visibility="gone"/>
 
         </FrameLayout>
 

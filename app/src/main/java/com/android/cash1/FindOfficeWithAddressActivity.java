@@ -3,10 +3,12 @@ package com.android.cash1;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.cash1.model.Cash1Activity;
+
 import static com.android.cash1.FindOfficeResultActivity.RESULT_NOT_FOUND;
 
 public class FindOfficeWithAddressActivity extends Cash1Activity {
@@ -20,9 +22,25 @@ public class FindOfficeWithAddressActivity extends Cash1Activity {
 
         setupActionBar();
         setupFooter();
+
+        Button findButton = (Button) findViewById(R.id.find_button);
+        findButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                find();
+            }
+        });
+        findButton.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View button, boolean hasFocus) {
+                if (button.isInTouchMode()) {
+                    button.performClick();
+                }
+            }
+        });
     }
 
-    public void find(View view) {
+    public void find() {
         EditText zipCodeEditText = (EditText) findViewById(R.id.zip_code_edittext);
         EditText addressEditText = (EditText) findViewById(R.id.address_edittext);
         EditText cityEditText = (EditText) findViewById(R.id.city_edittext);

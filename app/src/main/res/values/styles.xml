@@ -99,6 +99,7 @@
         <item name="android:fillViewport">true</item>
         <item name="android:clickable">true</item>
         <item name="android:focusableInTouchMode">true</item>
+        <item name="android:overScrollMode">never</item>
     </style>
 
     <style name="ButtonDialog">

@@ -46,6 +46,8 @@
                     android:layout_marginTop="8dp"
                     android:hint="ZIP code"
                     android:inputType="number"
+                    android:nextFocusForward="@+id/find_button"
+                    android:nextFocusRight="@+id/find_button"
                     android:nextFocusDown="@+id/find_button"/>
 
                 <TextView
@@ -59,28 +61,29 @@
                     style="@style/EditTextLogin"
                     android:layout_marginTop="8dp"
                     android:hint="Address"
-                    android:inputType="textPostalAddress|textCapWords" />
+                    android:inputType="textPostalAddress|textCapWords|textNoSuggestions" />
 
                 <EditText
                     android:id="@+id/city_edittext"
                     style="@style/EditTextLogin"
                     android:layout_marginTop="8dp"
                     android:hint="City"
-                    android:inputType="textPostalAddress|textCapWords" />
+                    android:inputType="textPostalAddress|textCapWords|textNoSuggestions" />
 
                 <EditText
                     android:id="@+id/state_edittext"
                     style="@style/EditTextLogin"
                     android:layout_marginTop="8dp"
                     android:hint="State"
-                    android:inputType="textPostalAddress|textCapCharacters" />
+                    android:inputType="textPostalAddress|textCapCharacters|textNoSuggestions" />
 
                 <Button
                     android:id="@+id/find_button"
                     style="@style/ButtonSubmitPrimary"
                     android:layout_marginTop="24dp"
-                    android:onClick="find"
-                    android:layout_marginBottom="112dp"
+                    android:focusableInTouchMode="true"
+                    android:focusable="true"
+                    android:layout_marginBottom="144dp"
                     android:text="Find Store Location" />
 
             </LinearLayout>
