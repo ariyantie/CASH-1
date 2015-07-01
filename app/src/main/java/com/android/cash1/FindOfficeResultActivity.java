@@ -353,7 +353,9 @@ public class FindOfficeResultActivity extends Cash1Activity implements
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
             // Try to obtain the map from the SupportMapFragment.
-            if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) != ConnectionResult.SUCCESS) {
+            int availabilityCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+            if (availabilityCode != ConnectionResult.SUCCESS
+                    && availabilityCode != ConnectionResult.SERVICE_VERSION_UPDATE_REQUIRED) {
                 View mapFragmentView = (getSupportFragmentManager().findFragmentById(R.id.map)).getView();
                 if (mapFragmentView != null) {
                     mapFragmentView.setVisibility(View.GONE);
