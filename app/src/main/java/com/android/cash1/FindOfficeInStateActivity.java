@@ -39,6 +39,8 @@ public class FindOfficeInStateActivity extends Cash1Activity {
         service.listOfficesInState(stateAbbreviation, new Callback<List<Office>>() {
             @Override
             public void success(List<Office> officeList, Response response) {
+                findViewById(R.id.loading).setVisibility(View.GONE);
+
                 TreeSet<String> headersHashSet = new TreeSet<>();
                 for (Office office : officeList) {
                     headersHashSet.add(office.getCity());
