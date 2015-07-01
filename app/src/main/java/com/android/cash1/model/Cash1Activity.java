@@ -9,14 +9,12 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.cash1.ContactActivity;
 import com.android.cash1.FaqActivity;
@@ -76,26 +74,6 @@ public class Cash1Activity extends AppCompatActivity {
                 }
             }
         });
-
-        mFooterToggle.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View toogleButton, MotionEvent event) {
-                Toast.makeText(Cash1Activity.this, event.getAction() + "", Toast.LENGTH_SHORT).show();
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_MOVE:
-                        if (mFooterContainer.getVisibility() == View.GONE) {
-                            openFooter();
-                        }
-                        break;
-                    case MotionEvent.ACTION_CANCEL:
-                        if (mFooterContainer.getVisibility() == View.VISIBLE) {
-                            closeFooter();
-                        }
-                        break;
-                }
-                return true;
-            }
-        });
     }
 
     public void logout(View view) {
@@ -103,6 +81,7 @@ public class Cash1Activity extends AppCompatActivity {
     }
 
     public void openFooter() {
+        // change toggle arrow from "up" to "down"
         mFooterToggle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down, 0);
 
         mFooterContainer.setVisibility(View.VISIBLE);
@@ -112,14 +91,14 @@ public class Cash1Activity extends AppCompatActivity {
     }
 
     public void closeFooter() {
+        // change toggle arrow from "down" to "up"
         mFooterToggle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_up, 0);
 
-        mFooterToggle.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_down_toggle));
+        Animation toggleAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_down_toggle);
+        mFooterToggle.startAnimation(toggleAnimation);
 
-        Animation slideDown = AnimationUtils.loadAnimation(this, R.anim.slide_down);
-        mFooterContainer.startAnimation(slideDown);
-
-        slideDown.setAnimationListener(new Animation.AnimationListener() {
+        Animation containerAnimation = AnimationUtils.loadAnimation(this, R.anim.slide_down);
+        containerAnimation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
 
@@ -135,6 +114,7 @@ public class Cash1Activity extends AppCompatActivity {
 
             }
         });
+        mFooterContainer.startAnimation(containerAnimation);
     }
 
     public void goHome(View view) {

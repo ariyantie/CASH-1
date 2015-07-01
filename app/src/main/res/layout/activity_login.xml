@@ -66,7 +66,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
 
-                    <ImageButton style="@style/ButtonGuarantee" />
+                    <ImageButton
+                        style="@style/ButtonGuarantee"
+                        android:paddingRight="6dp" />
 
                 </FrameLayout>
 
@@ -81,6 +83,7 @@
                         android:layout_height="24dp"
                         android:layout_gravity="bottom|end"
                         android:background="@drawable/btn_remember_selector"
+                        android:paddingLeft="6dp"
                         android:textOff=""
                         android:textOn="" />
 

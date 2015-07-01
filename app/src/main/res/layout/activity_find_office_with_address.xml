@@ -45,10 +45,8 @@
                     style="@style/EditTextLogin"
                     android:layout_marginTop="8dp"
                     android:hint="ZIP code"
-                    android:inputType="number"
-                    android:nextFocusForward="@+id/find_button"
-                    android:nextFocusRight="@+id/find_button"
-                    android:nextFocusDown="@+id/find_button"/>
+                    android:imeOptions="actionSearch"
+                    android:inputType="number" />
 
                 <TextView
                     style="@style/Subheader"
@@ -75,15 +73,14 @@
                     style="@style/EditTextLogin"
                     android:layout_marginTop="8dp"
                     android:hint="State"
+                    android:imeOptions="actionSearch"
                     android:inputType="textPostalAddress|textCapCharacters|textNoSuggestions" />
 
                 <Button
                     android:id="@+id/find_button"
                     style="@style/ButtonSubmitPrimary"
-                    android:layout_marginTop="24dp"
-                    android:focusableInTouchMode="true"
-                    android:focusable="true"
                     android:layout_marginBottom="144dp"
+                    android:layout_marginTop="24dp"
                     android:text="Find Store Location" />
 
             </LinearLayout>

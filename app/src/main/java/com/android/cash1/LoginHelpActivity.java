@@ -40,4 +40,9 @@ public class LoginHelpActivity extends Cash1Activity {
 
         startActivity(new Intent(this, SecurityChallengeActivity.class));
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, LoginActivity.class));
+    }
 }

@@ -88,6 +88,21 @@ public class FindOfficeResultActivity extends Cash1Activity implements
         } else {
             listAllStores();
         }
+
+        TextView queryTextView = (TextView) findViewById(R.id.query_textview);
+        switch (mWhereToSearch) {
+            case "currentlocation":
+                queryTextView.setText("Current location" + "\n");
+                break;
+            case "zipcode":
+                queryTextView.setText("ZIP code “" + mZipCodeString + "”" + "\n");
+                break;
+            case "cityaddressstate":
+                queryTextView.setText(mAddress + ", " + mCity + ", " + mState + "\n");
+                break;
+        }
+
+        setUpMap();
     }
 
     @Override
@@ -169,21 +184,17 @@ public class FindOfficeResultActivity extends Cash1Activity implements
             public void success(List<Office> officeList, Response response) {
                 findViewById(R.id.loading).setVisibility(View.GONE);
 
-                TextView queryTextView = (TextView) findViewById(R.id.query_textview);
                 List<Office> filteredList = null;
 
                 switch (mWhereToSearch) {
                     case "currentlocation":
                         filteredList = selectOnlyNearest(officeList);
-                        queryTextView.setText("Current location" + "\n");
                         break;
                     case "zipcode":
                         filteredList = selectOnlyWithZipCode(officeList, mZipCodeString);
-                        queryTextView.setText("ZIP code “" + mZipCodeString + "”" + "\n");
                         break;
                     case "cityaddressstate":
                         filteredList = displayOnlyWithAddressCityAndState(officeList, mAddress, mCity, mState);
-                        queryTextView.setText(mAddress + ", " + mCity + ", " + mState + "\n");
                         break;
                 }
 
@@ -194,7 +205,9 @@ public class FindOfficeResultActivity extends Cash1Activity implements
                     return;
                 }
 
-                setUpMapIfNeeded(filteredList);
+                if (mMap != null) {
+                    displayOfficesAsMarkersOnMap(filteredList);
+                }
 
                 LinearLayout container = (LinearLayout) findViewById(R.id.list_container);
                 for (int i = 0; i < filteredList.size(); i++) {
@@ -334,14 +347,12 @@ public class FindOfficeResultActivity extends Cash1Activity implements
      * have been completely destroyed during this process (it is likely that it would only be
      * stopped or paused), {@link #onCreate(Bundle)} may not be called again so we should call this
      * method in {@link #onResume()} to guarantee that it will be called.
-     *
-     * @param officeList
      */
-    private void setUpMapIfNeeded(List<Office> officeList) {
+    private void setUpMap() {
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
             // Try to obtain the map from the SupportMapFragment.
-            if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) != ConnectionResult.SUCCESS) {
                 View mapFragmentView = (getSupportFragmentManager().findFragmentById(R.id.map)).getView();
                 if (mapFragmentView != null) {
                     mapFragmentView.setVisibility(View.GONE);
@@ -349,10 +360,6 @@ public class FindOfficeResultActivity extends Cash1Activity implements
             } else {
                 mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                         .getMap();
-            }
-            // Check if we were successful in obtaining the map.
-            if (mMap != null) {
-                setUpMap(officeList);
             }
         }
     }
@@ -364,7 +371,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
 
-    private void setUpMap(List<Office> officeList) {
+    private void displayOfficesAsMarkersOnMap(List<Office> officeList) {
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
         for (Office office : officeList) {

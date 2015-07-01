@@ -94,9 +94,18 @@
                 android:id="@+id/loading"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#8d000000"
+                android:background="#58000000"
                 android:clickable="true"
-                tools:visibility="gone"/>
+                tools:visibility="gone">
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"/>
+
+            </FrameLayout>
+
 
         </FrameLayout>
 

@@ -2,9 +2,12 @@ package com.android.cash1;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.cash1.model.Cash1Activity;
@@ -23,24 +26,31 @@ public class FindOfficeWithAddressActivity extends Cash1Activity {
         setupActionBar();
         setupFooter();
 
+
+        EditText zipCodeEditText = (EditText) findViewById(R.id.zip_code_edittext);
+        EditText stateEditText = (EditText) findViewById(R.id.state_edittext);
+        TextView.OnEditorActionListener editTextListener = new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView editText, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    searchForOffice();
+                }
+                return false;
+            }
+        };
+        zipCodeEditText.setOnEditorActionListener(editTextListener);
+        stateEditText.setOnEditorActionListener(editTextListener);
+
         Button findButton = (Button) findViewById(R.id.find_button);
         findButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                find();
-            }
-        });
-        findButton.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View button, boolean hasFocus) {
-                if (button.isInTouchMode()) {
-                    button.performClick();
-                }
+                searchForOffice();
             }
         });
     }
 
-    public void find() {
+    public void searchForOffice() {
         EditText zipCodeEditText = (EditText) findViewById(R.id.zip_code_edittext);
         EditText addressEditText = (EditText) findViewById(R.id.address_edittext);
         EditText cityEditText = (EditText) findViewById(R.id.city_edittext);
