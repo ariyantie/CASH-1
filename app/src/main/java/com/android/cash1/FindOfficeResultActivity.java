@@ -299,7 +299,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
                         filteredList = selectOnlyWithZipCode(officeList, mZipCodeString);
                         break;
                     case "cityaddressstate":
-                        filteredList = displayOnlyWithAddressCityAndState(officeList, mAddress, mCity, mState);
+                        filteredList = displayOnlyWithAddressCityAndState(officeList);
                         break;
                 }
 
@@ -325,7 +325,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
                     positionTextView.setText((i + 1) + "");
 
                     TextView streetTextView = (TextView) listItemContainer.findViewById(R.id.street);
-                    Spanned street = null;
+                    Spanned street;
                     if (mZipCodeString == null) {
                         street = highlightMatches(office.getStreet());
                     } else {
@@ -374,9 +374,13 @@ public class FindOfficeResultActivity extends Cash1Activity implements
         if (mZipCodeString != null) {
             string = string.replaceAll("(?i)" + mZipCodeString, "<font color='red'>" + mZipCodeString + "</font>");
         }
-        if (mAddress != null && mCity != null && mState != null) {
+        if (mAddress != null) {
             string = string.replaceAll("(?i)" + mAddress, "<font color='red'>" + mAddress + "</font>");
+        }
+        if (mCity != null) {
             string = string.replaceAll("(?i)" + mCity, "<font color='red'>" + mCity + "</font>");
+        }
+        if (mState != null) {
             string = string.replaceAll("(?i)" + mState, "<font color='red'>" + mState + "</font>");
         }
         return Html.fromHtml(string);
@@ -427,7 +431,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
         return sortByDistance(filteredList);
     }
 
-    private List<Office> displayOnlyWithAddressCityAndState(List<Office> officeList, String address, String city, String state) {
+    private List<Office> displayOnlyWithAddressCityAndState(List<Office> officeList) {
         List<Office> filteredList = new ArrayList<>();
         for (Office office : officeList) {
             if (office.getAddress().contains(mAddress) ||
