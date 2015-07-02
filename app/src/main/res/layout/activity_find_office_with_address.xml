@@ -40,7 +40,7 @@
                     android:text="Find by ZIP code"
                     android:textSize="16sp" />
 
-                <AutoCompleteTextView
+                <com.android.cash1.model.AutoCompleteTextViewZeroThreshold
                     android:id="@+id/zip_code_edittext"
                     style="@style/EditTextLogin"
                     android:layout_marginTop="8dp"
@@ -54,21 +54,21 @@
                     android:text="Find by address or intersection"
                     android:textSize="16sp" />
 
-                <AutoCompleteTextView
+                <com.android.cash1.model.AutoCompleteTextViewZeroThreshold
                     android:id="@+id/address_edittext"
                     style="@style/EditTextLogin"
                     android:layout_marginTop="8dp"
                     android:hint="Address"
                     android:inputType="textPostalAddress|textCapWords|textNoSuggestions" />
 
-                <AutoCompleteTextView
+                <com.android.cash1.model.AutoCompleteTextViewZeroThreshold
                     android:id="@+id/city_edittext"
                     style="@style/EditTextLogin"
                     android:layout_marginTop="8dp"
                     android:hint="City"
                     android:inputType="textPostalAddress|textCapWords|textNoSuggestions" />
 
-                <AutoCompleteTextView
+                <com.android.cash1.model.AutoCompleteTextViewZeroThreshold
                     android:id="@+id/state_edittext"
                     style="@style/EditTextLogin"
                     android:layout_marginTop="8dp"
