@@ -5,31 +5,34 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingTop="4dp"
-    android:paddingBottom="4dp">
+    android:paddingBottom="4dp"
+    android:paddingTop="4dp">
 
     <TextView
         android:id="@+id/date"
         style="@style/StatementRowTextView"
-        android:layout_weight="2.5"
-        tools:text="xx/xx/xxxx" />
+        android:layout_weight="3"
+        tools:text="11/06/2015" />
 
     <TextView
         android:id="@+id/type"
         style="@style/StatementRowTextView"
         android:layout_weight="5"
-        tools:text="ACH Reverse" />
+        android:paddingRight="4dp"
+        tools:text="Late Payment Fee" />
 
     <TextView
         android:id="@+id/amount"
         style="@style/StatementRowTextView"
         android:layout_weight="2"
-        tools:text="$xxx" />
+        tools:text="$30.00" />
 
     <TextView
         android:id="@+id/balance"
         style="@style/StatementRowTextView"
-        android:layout_weight="2"
+        android:layout_weight="2.3"
+        android:paddingLeft="4dp"
+        android:gravity="center_horizontal"
         tools:text="Balance" />
 
 </LinearLayout>

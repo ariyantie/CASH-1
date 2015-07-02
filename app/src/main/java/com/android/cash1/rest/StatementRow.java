@@ -2,7 +2,9 @@ package com.android.cash1.rest;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.sql.Date;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Locale;
 
 public class StatementRow {
@@ -41,6 +43,7 @@ public class StatementRow {
     }
 
     public String getTransactionDate() {
-        return mTransactionDate;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/LL/yyyy");
+        return dateFormat.format(Date.parse(mTransactionDate));
     }
 }
