@@ -19,7 +19,8 @@
 
         <LinearLayout
             tools:context=".LoginActivity"
-            style="@style/ContainerLayout">
+            style="@style/ContainerLayout"
+            android:paddingBottom="32dp">
 
             <Button
                 android:id="@+id/emailUsername"

@@ -29,11 +29,13 @@
 
                     <TextView
                         style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
                         android:text="Account name: " />
 
                     <TextView
                         android:id="@+id/account_name"
                         style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
                         tools:text="NVPAYDAY PAYMENT" />
 
                 </LinearLayout>
@@ -42,11 +44,13 @@
 
                     <TextView
                         style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
                         android:text="Loan ID: " />
 
                     <TextView
                         android:id="@+id/account_number"
                         style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
                         tools:text="469" />
 
                 </LinearLayout>
@@ -55,11 +59,13 @@
 
                     <TextView
                         style="@style/AccountDetailsKey"
-                        android:text="Account type: " />
+                        android:layout_weight="6"
+                        android:text="Account type:" />
 
                     <TextView
                         android:id="@+id/account_type"
                         style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
                         tools:text="Not used" />
 
                 </LinearLayout>
@@ -68,11 +74,13 @@
 
                     <TextView
                         style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
                         android:text="Outstanding ballance: " />
 
                     <TextView
                         android:id="@+id/out_balance"
                         style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
                         tools:text="50.00" />
 
                 </LinearLayout>
@@ -81,11 +89,13 @@
 
                     <TextView
                         style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
                         android:text="Credit available: " />
 
                     <TextView
                         android:id="@+id/credit_available"
                         style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
                         tools:text="217.31" />
 
                 </LinearLayout>
@@ -94,11 +104,13 @@
 
                     <TextView
                         style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
                         android:text="Next payment due: " />
 
                     <TextView
                         android:id="@+id/next_payment_due"
                         style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
                         tools:text="08/10/2012" />
 
                 </LinearLayout>
@@ -107,11 +119,13 @@
 
                     <TextView
                         style="@style/AccountDetailsKey"
-                        android:text="Next payment amount: " />
+                        android:layout_weight="6"
+                        android:text="Payment amount: " />
 
                     <TextView
                         android:id="@+id/next_payment_amount"
                         style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
                         tools:text="0.00" />
 
                 </LinearLayout>
@@ -119,36 +133,38 @@
                 <EditText
                     android:id="@+id/payment_from"
                     style="@style/EditTextLogin"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="36dp"
                     android:hint="Payment from"
                     android:inputType="textPersonName|textCapWords|textNoSuggestions"
                     tools:text="Test Sender" />
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="16dp">
+
+                    <EditText
+                        android:id="@+id/amount"
+                        style="@style/EditTextLogin"
+                        android:layout_width="match_parent"
+                        android:hint="Amount"
+                        android:paddingLeft="38dp"
+                        android:inputType="numberDecimal"
+                        tools:text="250.00" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:paddingRight="8dp"
                         android:text="$"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="13dp"
+                        android:paddingRight="13dp"
+                        android:paddingBottom="1dp"
                         android:textColor="#a8000000"
-                        android:textSize="30sp" />
+                        android:textSize="26sp" />
 
-                    <EditText
-                        android:id="@+id/amount"
-                        style="@style/EditTextLogin"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:hint="Amount"
-                        android:inputType="numberDecimal"
-                        tools:text="250.00" />
-
-                </LinearLayout>
+                </RelativeLayout>
 
                 <EditText
                     android:id="@+id/date"

@@ -33,7 +33,7 @@ public class AccountDetailsActivity extends Cash1Activity {
 
         showAccountDetails();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("d/LL/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/LL/yyyy");
         TextView dateTextView = (TextView) findViewById(R.id.date);
         dateTextView.setText("Updated as of " +
                 dateFormat.format(new Date()));
