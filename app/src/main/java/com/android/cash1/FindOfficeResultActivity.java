@@ -235,7 +235,8 @@ public class FindOfficeResultActivity extends Cash1Activity implements
 
     /* A fragment to display an error dialog */
     public static class ErrorDialogFragment extends DialogFragment {
-        public ErrorDialogFragment() { }
+        public ErrorDialogFragment() {
+        }
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -247,7 +248,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
 
         @Override
         public void onDismiss(DialogInterface dialog) {
-            ((FindOfficeResultActivity)getActivity()).onDialogDismissed();
+            ((FindOfficeResultActivity) getActivity()).onDialogDismissed();
         }
     }
 
@@ -324,7 +325,12 @@ public class FindOfficeResultActivity extends Cash1Activity implements
                     positionTextView.setText((i + 1) + "");
 
                     TextView streetTextView = (TextView) listItemContainer.findViewById(R.id.street);
-                    Spanned street = highlightMatches(office.getStreet());
+                    Spanned street = null;
+                    if (mZipCodeString == null) {
+                        street = highlightMatches(office.getStreet());
+                    } else {
+                        street = Html.fromHtml(office.getStreet());
+                    }
                     streetTextView.setText(street, TextView.BufferType.SPANNABLE);
 
                     TextView addressTextView = (TextView) listItemContainer.findViewById(R.id.address);
