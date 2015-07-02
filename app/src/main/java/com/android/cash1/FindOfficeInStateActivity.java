@@ -66,13 +66,13 @@ public class FindOfficeInStateActivity extends Cash1Activity {
                             String phone = office.getPhone();
                             phoneTextView.setText(phone);
 
+                            // selectively hide bottom dividers for office list items
                             switch (cityHeader) {
                                 case "TEMPE":
                                 case "RENO":
                                 case "KENT":
                                     listItemContainer.findViewById(R.id.divider).setVisibility(View.GONE);
                             }
-
                             switch (phone) {
                                 case "(623) 376-8888":
                                 case "(480) 833-0674":

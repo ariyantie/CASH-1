@@ -27,7 +27,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:paddingRight="10dp"
+                    android:paddingRight="2dp"
                     android:paddingTop="4dp"
                     android:text="Find the Nearest CASH 1 Location"
                     android:textColor="#da000000"

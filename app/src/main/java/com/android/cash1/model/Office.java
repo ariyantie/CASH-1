@@ -56,6 +56,10 @@ public class Office {
         return city.toUpperCase();
     }
 
+    public String getState() {
+        return state;
+    }
+
     public String getPhone() {
         if (phone != null) {
             return formatNumber(phone);

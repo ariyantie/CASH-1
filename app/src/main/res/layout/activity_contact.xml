@@ -49,11 +49,14 @@
 
                     <TextView
                         style="@style/TextBodyMedium"
+                        android:layout_weight="6"
                         android:text="Account name:" />
 
                     <TextView
                         android:id="@+id/account_name"
                         style="@style/TextBodyMedium"
+                        android:lineSpacingMultiplier="1.05"
+                        android:layout_weight="7"
                         tools:text="NVPAYDAY PAYMENT" />
 
                 </LinearLayout>
@@ -66,11 +69,13 @@
 
                     <TextView
                         style="@style/TextBodyMedium"
+                        android:layout_weight="6"
                         android:text="Toll-free:" />
 
                     <TextView
                         android:id="@+id/customer_toll_free"
                         style="@style/TextBodyMedium"
+                        android:layout_weight="7"
                         android:clickable="true"
                         android:onClick="dialNumber"
                         tools:text="(877) 854-2243" />
@@ -85,11 +90,13 @@
 
                     <TextView
                         style="@style/TextBodyMedium"
+                        android:layout_weight="6"
                         android:text="Phone:" />
 
                     <TextView
                         android:id="@+id/customer_phone"
                         style="@style/TextBodyMedium"
+                        android:layout_weight="7"
                         android:clickable="true"
                         android:onClick="dialNumber"
                         tools:text="(755) 321-3576" />
@@ -120,11 +127,13 @@
 
                     <TextView
                         style="@style/TextBodyMedium"
+                        android:layout_weight="6"
                         android:text="Toll-free:" />
 
                     <TextView
                         android:id="@+id/collections_toll_free"
                         style="@style/TextBodyMedium"
+                        android:layout_weight="7"
                         android:clickable="true"
                         android:onClick="dialNumber"
                         tools:text="(866) 922-7434" />
@@ -139,11 +148,13 @@
 
                     <TextView
                         style="@style/TextBodyMedium"
+                        android:layout_weight="6"
                         android:text="Fax:" />
 
                     <TextView
                         android:id="@+id/collections_fax"
                         style="@style/TextBodyMedium"
+                        android:layout_weight="7"
                         android:clickable="true"
                         android:onClick="dialNumber"
                         tools:text="(800) 251-5715" />
@@ -175,11 +186,13 @@
 
                     <TextView
                         style="@style/TextBodyMedium"
+                        android:layout_weight="6"
                         android:text="For a nearest location:" />
 
                     <TextView
                         android:id="@+id/nearest_location_number"
                         style="@style/TextBodyMedium"
+                        android:layout_weight="7"
                         android:clickable="true"
                         android:onClick="dialNumber"
                         android:textColor="@color/link"

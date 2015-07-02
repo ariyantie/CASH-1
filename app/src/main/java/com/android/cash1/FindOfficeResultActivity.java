@@ -284,7 +284,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
 
     private void listAllStores() {
         ApiService service = new RestClient().getApiService();
-        service.listAllStores(new Callback<List<Office>>() {
+        service.listAllOffices(new Callback<List<Office>>() {
             @Override
             public void success(List<Office> officeList, Response response) {
                 findViewById(R.id.loading).setVisibility(View.GONE);
