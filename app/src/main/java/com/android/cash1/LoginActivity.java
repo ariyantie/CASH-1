@@ -2,6 +2,7 @@ package com.android.cash1;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
@@ -55,6 +56,7 @@ public class LoginActivity extends Cash1Activity {
 
         mUsernameEditText = (EditText) findViewById(R.id.username);
         mPasswordEditText = (EditText) findViewById(R.id.password);
+        mPasswordEditText.setTypeface(Typeface.create("sans-serif", Typeface.NORMAL));
 
         String username = mSharedPrefs.getString("username", "");
         String password = mSharedPrefs.getString("password", "");

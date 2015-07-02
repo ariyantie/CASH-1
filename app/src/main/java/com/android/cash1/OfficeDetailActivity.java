@@ -42,7 +42,7 @@ public class OfficeDetailActivity extends Cash1Activity {
                 TextView streetTextView = (TextView) findViewById(R.id.street);
                 streetTextView.setText(details.getStreet());
                 TextView addressTextView = (TextView) findViewById(R.id.address);
-                addressTextView.setText(details.getAddress());
+                addressTextView.setText(details.getAddress().replace("LAS VEGAS", "LAS\u00A0VEGAS"));
                 TextView phoneTextView = (TextView) findViewById(R.id.phone);
                 phoneTextView.setText(details.getPhoneNumber());
                 TextView faxTextView = (TextView) findViewById(R.id.fax);

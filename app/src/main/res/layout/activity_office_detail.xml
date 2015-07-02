@@ -31,7 +31,7 @@
                     android:gravity="center_horizontal"
                     android:paddingRight="10dp"
                     android:paddingTop="4dp"
-                    android:paddingBottom="18dp"
+                    android:paddingBottom="22dp"
                     tools:text="816 E. Camelback Rd. Phoenix"
                     android:textAllCaps="true"
                     android:textColor="#da000000"
@@ -46,7 +46,7 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="3"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
@@ -56,13 +56,14 @@
                             tools:text="AZ 85014, Phoenix"
                             android:textStyle="bold"
                             android:textSize="18sp"
+                            android:lineSpacingMultiplier="1.1"
                             android:layout_marginTop="4dp"
                             android:textColor="#bd000000"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
+                            android:layout_marginTop="10dp"
                             android:orientation="vertical">
 
                             <TextView
@@ -79,7 +80,7 @@
                                 android:layout_height="wrap_content"
                                 tools:text="(602) 277-8673"
                                 android:autoLink="phone"
-                                android:textSize="18sp"
+                                android:textSize="17sp"
                                 android:textColor="#bd000000"/>
 
                         </LinearLayout>
@@ -87,7 +88,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="8dp"
                             android:orientation="vertical">
 
                             <TextView
@@ -103,7 +104,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 tools:text="(602) 277-8685"
-                                android:textSize="18sp"
+                                android:textSize="17sp"
                                 android:autoLink="phone"
                                 android:textColor="#bd000000"
                                 android:layout_marginBottom="4dp"/>
@@ -118,7 +119,7 @@
                         android:layout_marginRight="4dp"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"
+                        android:layout_weight="1"
                         tools:background="@android:color/darker_gray"
                         tools:minHeight="112dp"/>
 
@@ -127,7 +128,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp">
+                    android:paddingTop="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
