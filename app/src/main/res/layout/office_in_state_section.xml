@@ -14,8 +14,7 @@
         android:paddingTop="48dp"
         android:paddingBottom="8dp"
         android:textAllCaps="true"
-        android:paddingRight="6dp"
-        android:textColor="#da000000"
+        android:textColor="#d3000000"
         android:textSize="20sp"
         android:textStyle="bold"
         tools:text="Las Vegas" />
