@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -206,9 +208,28 @@ public class FindOfficeResultActivity extends Cash1Activity implements
         dialogFragment.show(getSupportFragmentManager(), "errordialog");
     }
 
+    private static final String GooglePlayStorePackageNameOld = "com.google.market";
+    private static final String GooglePlayStorePackageNameNew = "com.android.vending";
+
+    private boolean isGooglePlayStoreAppInstalled() {
+        PackageManager packageManager = getApplication().getPackageManager();
+        List<PackageInfo> packages = packageManager.getInstalledPackages(0);
+        for (PackageInfo packageInfo : packages) {
+            if (packageInfo.packageName.equals(GooglePlayStorePackageNameOld) ||
+                    packageInfo.packageName.equals(GooglePlayStorePackageNameNew)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /* Called from ErrorDialogFragment when the dialog is dismissed. */
     public void onDialogDismissed() {
         mResolvingError = false;
+        if (!isGooglePlayStoreAppInstalled()) {
+            Toast.makeText(this, "Failed to install Google Play Services. " +
+                    "You need to manually install Google Play Store app.", Toast.LENGTH_LONG).show();
+        }
         finish();
     }
 

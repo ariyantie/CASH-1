@@ -57,7 +57,8 @@
                 android:paddingRight="16dp"
                 android:textColor="#de000000"
                 android:textSize="16sp"
-                tools:text="(1.14 mi)" />
+                android:autoLink="phone"
+                tools:text="1.14 mi" />
 
             <View
                 android:id="@+id/divider"

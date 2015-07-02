@@ -2,7 +2,6 @@ package com.android.cash1;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.util.Linkify;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -66,7 +65,6 @@ public class FindOfficeInStateActivity extends Cash1Activity {
                             TextView phoneTextView = (TextView) listItemContainer.findViewById(R.id.distance_to);
                             String phone = office.getPhone();
                             phoneTextView.setText(phone);
-                            phoneTextView.setAutoLinkMask(Linkify.PHONE_NUMBERS);
 
                             TextView streetTextView = (TextView) listItemContainer.findViewById(R.id.street);
                             String street = office.getStreet();
