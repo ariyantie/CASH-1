@@ -23,7 +23,7 @@
                 android:id="@+id/container"
                 style="@style/ContainerLayout"
                 android:layout_height="wrap_content"
-                android:paddingBottom="0dp">
+                android:paddingBottom="112dp">
 
                 <!--TODO: Add functionality for all buttons-->
 

@@ -18,10 +18,11 @@ public class FaqItem {
     }
 
     public String getQuestion() {
-        return question;
+        return question.replaceAll("Cash 1", "CASH 1");
     }
 
     public String getAnswer() {
-        return answer;
+        return answer.replaceAll("Cash 1", "CASH 1")
+                .replaceAll(",", ", ").replaceAll(",  ", ", ");
     }
 }
