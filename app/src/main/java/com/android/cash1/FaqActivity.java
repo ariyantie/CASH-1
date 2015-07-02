@@ -29,6 +29,7 @@ public class FaqActivity extends Cash1Activity {
         setupFooter();
 
         loadQuestionsAndAnswers();
+        // TODO: Close answer on tap of question (when opened)
     }
 
     private void loadQuestionsAndAnswers() {

@@ -52,6 +52,7 @@ public class OfficeDetailActivity extends Cash1Activity {
                         .load(details.getImageUrl())
                         .placeholder(R.drawable.progress_animation)
                         .error(R.drawable.ic_image_error)
+                        .fit()
                         .into(iconImageView);
             }
 
