@@ -33,6 +33,7 @@
 
                     <TextView
                         android:id="@+id/account_name"
+                        android:textColor="#9e000000"
                         style="@style/AccountDetailsValue"
                         tools:text="TTTEST TTTEST" />
 
@@ -47,6 +48,7 @@
                     <TextView
                         android:id="@+id/account_number"
                         style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
                         tools:text="4647" />
 
                 </LinearLayout>
@@ -60,6 +62,7 @@
                     <TextView
                         android:id="@+id/account_type"
                         style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
                         tools:text="Smart Loans" />
 
                 </LinearLayout>
@@ -73,6 +76,7 @@
                     <TextView
                         android:id="@+id/increase_limit"
                         style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
                         tools:text="$0.00" />
 
                 </LinearLayout>
@@ -85,6 +89,7 @@
 
                     <TextView
                         android:id="@+id/available_credit"
+                        android:textColor="#9e000000"
                         style="@style/AccountDetailsValue"
                         tools:text="$0.00" />
 

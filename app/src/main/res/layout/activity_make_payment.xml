@@ -133,7 +133,7 @@
                 <EditText
                     android:id="@+id/payment_from"
                     style="@style/EditTextLogin"
-                    android:layout_marginTop="36dp"
+                    android:layout_marginTop="40dp"
                     android:hint="Payment from"
                     android:inputType="textPersonName|textCapWords|textNoSuggestions"
                     tools:text="Test Sender" />
@@ -181,7 +181,7 @@
                     android:id="@+id/submit_button"
                     style="@style/ButtonSubmitPrimary"
                     android:layout_marginBottom="112dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="22dp"
                     android:onClick="submitPayment"
                     android:text="Submit" />
 
