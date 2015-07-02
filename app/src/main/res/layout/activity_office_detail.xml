@@ -56,12 +56,14 @@
                             tools:text="AZ 85014, Phoenix"
                             android:textStyle="bold"
                             android:textSize="18sp"
+                            android:layout_marginTop="4dp"
                             android:textColor="#bd000000"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp">
+                            android:layout_marginTop="6dp"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="66dp"
@@ -85,7 +87,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp">
+                            android:layout_marginTop="5dp"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="66dp"
@@ -102,7 +105,8 @@
                                 tools:text="(602) 277-8685"
                                 android:textSize="18sp"
                                 android:autoLink="phone"
-                                android:textColor="#bd000000"/>
+                                android:textColor="#bd000000"
+                                android:layout_marginBottom="4dp"/>
 
                         </LinearLayout>
 
@@ -110,6 +114,8 @@
 
                     <ImageView
                         android:id="@+id/icon"
+                        android:paddingLeft="4dp"
+                        android:layout_marginRight="4dp"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
