@@ -228,7 +228,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
         mResolvingError = false;
         if (!isGooglePlayStoreAppInstalled()) {
             Toast.makeText(this, "Failed to install Google Play Services. " +
-                    "You need to manually install Google Play Store app.", Toast.LENGTH_LONG).show();
+                    "You need to manually install Play Store app.", Toast.LENGTH_LONG).show();
         }
         finish();
     }

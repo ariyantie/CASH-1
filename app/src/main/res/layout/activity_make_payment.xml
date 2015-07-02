@@ -159,13 +159,14 @@
                         android:text="$"
                         android:layout_centerVertical="true"
                         android:paddingLeft="13dp"
-                        android:paddingRight="13dp"
+                        android:paddingRight="14dp"
                         android:paddingBottom="1dp"
-                        android:textColor="#a8000000"
+                        android:textColor="#7c000000"
                         android:textSize="26sp" />
 
                 </RelativeLayout>
 
+                <!--TODO: Implement date pickers-->
                 <EditText
                     android:id="@+id/date"
                     style="@style/EditTextLogin"

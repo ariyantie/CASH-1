@@ -28,7 +28,7 @@ public class MainActivity extends Cash1Activity {
 
         Display display = getWindowManager().getDefaultDisplay();
         int width = display.getWidth();
-        double ratio = ((float) (width))/273;
+        double ratio = ((float) (width))/269;
         int height = (int)(ratio*50);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height);
 

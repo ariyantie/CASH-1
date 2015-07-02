@@ -23,7 +23,9 @@
             <LinearLayout
                 style="@style/ContainerLayout"
                 android:layout_height="wrap_content"
-                android:paddingBottom="56dp">
+                android:paddingBottom="64dp"
+                android:paddingLeft="13dp"
+                android:paddingRight="13dp">
                 
                 <android.support.v4.widget.Space
                     android:layout_width="match_parent"
