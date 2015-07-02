@@ -40,10 +40,11 @@
                     android:text="Find by ZIP code"
                     android:textSize="16sp" />
 
-                <com.android.cash1.model.AutoCompleteTextViewZeroThreshold
+                <AutoCompleteTextView
                     android:id="@+id/zip_code_edittext"
                     style="@style/EditTextLogin"
                     android:layout_marginTop="8dp"
+                    android:completionThreshold="1"
                     android:hint="ZIP code"
                     android:imeOptions="actionSearch"
                     android:inputType="number" />

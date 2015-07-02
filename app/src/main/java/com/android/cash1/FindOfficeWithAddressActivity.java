@@ -119,14 +119,17 @@ public class FindOfficeWithAddressActivity extends Cash1Activity {
 
         Intent intent = new Intent(this, FindOfficeResultActivity.class);
 
-        if (!address.isEmpty() || !city.isEmpty() || !state.isEmpty()) {
+        if (!address.isEmpty() && !city.isEmpty() && !state.isEmpty()) {
             // search with address, city and state
             intent.putExtra("address", address);
             intent.putExtra("city", city);
             intent.putExtra("state", state);
             intent.putExtra("where_to_search", "cityaddressstate");
         } else {
-            if (!zipCodeString.isEmpty()) {
+            if (!address.isEmpty() || !city.isEmpty() || !state.isEmpty()) {
+                Toast.makeText(this, "Make sure to fill out address, city and state", Toast.LENGTH_LONG).show();
+                return;
+            } else if (!zipCodeString.isEmpty()) {
                 // search with zip code
                 intent.putExtra("zipcode_string", zipCodeString);
                 intent.putExtra("where_to_search", "zipcode");
