@@ -31,7 +31,7 @@
                     android:paddingBottom="14dp"
                     android:paddingTop="10dp"
                     android:text="Notification Preference"
-                    android:textColor="@android:color/black"
+                    android:textColor="#d1000000"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -154,7 +154,7 @@
                     android:layout_marginTop="20dp"
                     android:paddingTop="16dp"
                     android:text="Turn of Notification Sounds"
-                    android:textColor="@android:color/black"
+                    android:textColor="#d1000000"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
