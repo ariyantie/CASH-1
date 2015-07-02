@@ -290,6 +290,8 @@ public class Cash1Activity extends AppCompatActivity {
     @Override
     public void startActivity(Intent intent) {
         super.startActivity(intent);
-        closeFooter();
+        if (mFooterContainer != null && mFooterContainer.getVisibility() == View.VISIBLE) {
+            closeFooter();
+        }
     }
 }
