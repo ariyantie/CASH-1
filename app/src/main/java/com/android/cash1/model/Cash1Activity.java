@@ -286,4 +286,10 @@ public class Cash1Activity extends AppCompatActivity {
     public void navigateToTermsActivity(View view) {
         startActivity(new Intent(this, TermsActivity.class));
     }
+
+    @Override
+    public void startActivity(Intent intent) {
+        super.startActivity(intent);
+        closeFooter();
+    }
 }

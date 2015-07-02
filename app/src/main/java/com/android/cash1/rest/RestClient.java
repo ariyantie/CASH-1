@@ -1,9 +1,8 @@
 package com.android.cash1.rest;
 
-import com.squareup.okhttp.OkHttpClient;
-
 import retrofit.RestAdapter;
-import retrofit.client.OkClient;
+
+import static retrofit.RestAdapter.LogLevel.FULL;
 
 public class RestClient {
 
@@ -13,8 +12,7 @@ public class RestClient {
 
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint("http://mobile.cash1loans.com/Cash1WF.svc")
-                .setClient(new OkClient(new OkHttpClient()))
-                .setLogLevel(RestAdapter.LogLevel.FULL)
+                .setLogLevel(FULL)
                 .build();
 
         mService = restAdapter.create(ApiService.class);

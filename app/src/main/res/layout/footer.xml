@@ -28,12 +28,12 @@
     <LinearLayout
         android:id="@+id/footer_container"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="63dp"
         android:background="@drawable/footer_background"
         android:orientation="horizontal"
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
-        android:paddingTop="4dp"
+        android:paddingTop="3dp"
         android:visibility="gone"
         tools:visibility="visible">
 
