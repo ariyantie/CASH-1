@@ -319,7 +319,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
                     final Office office = filteredList.get(i);
 
                     FrameLayout listItemContainer = (FrameLayout) View.inflate(
-                            FindOfficeResultActivity.this, R.layout.store_list_item, null);
+                            FindOfficeResultActivity.this, R.layout.office_list_item, null);
 
                     TextView positionTextView = (TextView) listItemContainer.findViewById(R.id.position);
                     positionTextView.setText((i + 1) + "");

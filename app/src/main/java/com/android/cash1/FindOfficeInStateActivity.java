@@ -48,7 +48,7 @@ public class FindOfficeInStateActivity extends Cash1Activity {
                 LinearLayout mainContainer = (LinearLayout) findViewById(R.id.container);
                 for (String cityHeader : headersHashSet) {
                     LinearLayout sectionsContainer = (LinearLayout) View.inflate(
-                            FindOfficeInStateActivity.this, R.layout.store_in_state_section, null);
+                            FindOfficeInStateActivity.this, R.layout.office_in_state_section, null);
 
                     TextView sectionHeaderView = (TextView) sectionsContainer.findViewById(R.id.header_textview);
                     sectionHeaderView.setText(cityHeader);
@@ -58,13 +58,28 @@ public class FindOfficeInStateActivity extends Cash1Activity {
                         final Office office = officeList.get(i);
                         if (office.getCity().equals(cityHeader)) {
                             FrameLayout listItemContainer = (FrameLayout) View.inflate(
-                                    FindOfficeInStateActivity.this, R.layout.store_list_item, null);
+                                    FindOfficeInStateActivity.this, R.layout.office_list_item, null);
 
                             listItemContainer.findViewById(R.id.position).setVisibility(View.GONE);
 
                             TextView phoneTextView = (TextView) listItemContainer.findViewById(R.id.distance_to);
                             String phone = office.getPhone();
                             phoneTextView.setText(phone);
+
+                            switch (cityHeader) {
+                                case "TEMPE":
+                                case "RENO":
+                                case "KENT":
+                                    listItemContainer.findViewById(R.id.divider).setVisibility(View.GONE);
+                            }
+
+                            switch (phone) {
+                                case "(623) 376-8888":
+                                case "(480) 833-0674":
+                                case "(602) 674-5079":
+                                case "(775) 240-6317":
+                                    listItemContainer.findViewById(R.id.divider).setVisibility(View.GONE);
+                            }
 
                             TextView streetTextView = (TextView) listItemContainer.findViewById(R.id.street);
                             String street = office.getStreet();

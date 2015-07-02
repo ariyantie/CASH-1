@@ -28,7 +28,8 @@
                     android:id="@+id/container"
                     style="@style/ContainerLayout"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="112dp">
+                    android:paddingBottom="112dp"
+                    android:paddingTop="22dp">
 
                 </LinearLayout>
 
