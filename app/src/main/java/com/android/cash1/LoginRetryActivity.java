@@ -165,4 +165,14 @@ public class LoginRetryActivity extends Cash1Activity {
             mPasswordEditText.setSelection(password.length());
         }
     }
+
+    @Override
+    public void goBack(View view) {
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 }
