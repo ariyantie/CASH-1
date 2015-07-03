@@ -55,21 +55,23 @@
                     android:text="Find by address or intersection"
                     android:textSize="16sp" />
 
-                <com.android.cash1.model.AutoCompleteTextViewZeroThreshold
+                <AutoCompleteTextView
                     android:id="@+id/address_edittext"
                     style="@style/EditTextLogin"
                     android:layout_marginTop="8dp"
                     android:hint="Address"
+                    android:imeOptions="actionNext"
                     android:inputType="textPostalAddress|textCapWords|textNoSuggestions" />
 
-                <com.android.cash1.model.AutoCompleteTextViewZeroThreshold
+                <AutoCompleteTextView
                     android:id="@+id/city_edittext"
                     style="@style/EditTextLogin"
                     android:layout_marginTop="8dp"
+                    android:imeOptions="actionNext"
                     android:hint="City"
                     android:inputType="textPostalAddress|textCapWords|textNoSuggestions" />
 
-                <com.android.cash1.model.AutoCompleteTextViewZeroThreshold
+                <AutoCompleteTextView
                     android:id="@+id/state_edittext"
                     style="@style/EditTextLogin"
                     android:layout_marginTop="8dp"
