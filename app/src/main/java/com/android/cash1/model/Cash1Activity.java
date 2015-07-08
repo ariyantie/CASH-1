@@ -15,15 +15,15 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
-import com.android.cash1.ContactActivity;
-import com.android.cash1.FaqActivity;
-import com.android.cash1.FindOfficeActivity;
-import com.android.cash1.LogoutActivity;
-import com.android.cash1.MainActivity;
-import com.android.cash1.PrivacyPolicyActivity;
+import com.android.cash1.activities.support.ContactActivity;
+import com.android.cash1.activities.support.FaqActivity;
+import com.android.cash1.activities.search.FindOfficeActivity;
+import com.android.cash1.activities.login.LogoutActivity;
+import com.android.cash1.activities.MainActivity;
+import com.android.cash1.activities.login.PrivacyPolicyActivity;
 import com.android.cash1.R;
-import com.android.cash1.SettingsActivity;
-import com.android.cash1.TermsActivity;
+import com.android.cash1.activities.support.SettingsActivity;
+import com.android.cash1.activities.support.TermsActivity;
 import com.google.gson.JsonObject;
 
 public class Cash1Activity extends AppCompatActivity {

@@ -8,6 +8,7 @@ import com.android.cash1.model.FaqItem;
 import com.android.cash1.model.OfficeDetails;
 import com.android.cash1.model.Preferences;
 import com.android.cash1.model.Office;
+import com.android.cash1.model.StatementRow;
 import com.google.gson.JsonObject;
 
 import java.util.HashMap;

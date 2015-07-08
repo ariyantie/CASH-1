@@ -68,12 +68,6 @@
                     android:text="@string/nevada_button_label" />
 
                 <Button
-                    android:id="@+id/washington_button"
-                    style="@style/ButtonSubmitPrimary"
-                    android:onClick="findInWashington"
-                    android:text="@string/washington_button_label" />
-
-                <Button
                     android:id="@+id/main_menu"
                     style="@style/ButtonMainMenu"
                     android:layout_width="match_parent"

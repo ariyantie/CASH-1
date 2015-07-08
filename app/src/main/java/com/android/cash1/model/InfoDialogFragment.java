@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.android.cash1.FindOfficeActivity;
+import com.android.cash1.activities.search.FindOfficeActivity;
 import com.android.cash1.R;
 import com.android.cash1.rest.ApiService;
 import com.android.cash1.rest.RestClient;
