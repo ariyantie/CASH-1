@@ -104,7 +104,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
         TextView queryTextView = (TextView) findViewById(R.id.query_textview);
 
         switch (mWhereToSearch) {
-            case "current location":
+            case "currentlocation":
                 queryTextView.setText("Current location" + "\n");
                 buildGoogleApiClient();
                 break;
@@ -389,7 +389,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
                         distance = Integer.parseInt(distanceString.replace(" mi", ""));
                     }
 
-                    if (distance < 5) {
+                    if (distance < 4.2) {
                         View itemContainer = listItemContainer.findViewById(R.id.container);
                         itemContainer.setBackgroundColor(Color.parseColor("#5940d47e"));
                         distanceTextView.setText(getString(R.string.very_close));
@@ -431,7 +431,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
         Collections.sort(officeList, new Comparator<Office>() {
             @Override
             public int compare(Office lhs, Office rhs) {
-                return ((int) getDistanceToMe(lhs)) - ((int) getDistanceToMe(rhs));
+                return (int) (getDistanceToMe(lhs) - getDistanceToMe(rhs));
             }
         });
         return officeList;
@@ -458,7 +458,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
         Collections.sort(officeList, new Comparator<Office>() {
             @Override
             public int compare(Office lhs, Office rhs) {
-                return ((int) getDistanceToAddress(lhs)) - ((int) getDistanceToAddress(rhs));
+                return (int) (getDistanceToAddress(lhs) - getDistanceToAddress(rhs));
             }
         });
         return officeList;
