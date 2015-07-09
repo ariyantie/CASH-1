@@ -7,6 +7,8 @@ import android.content.IntentSender.SendIntentException;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -40,7 +42,6 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -87,6 +88,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
 
         setupActionBar();
         setupFooter();
+
 
         mZipCodeString = getIntent().getStringExtra("zipcode_string");
         mAddress = getIntent().getStringExtra("address");
@@ -290,21 +292,21 @@ public class FindOfficeResultActivity extends Cash1Activity implements
             public void success(List<Office> officeList, Response response) {
                 findViewById(R.id.loading).setVisibility(View.GONE);
 
-                List<Office> filteredList = null;
+                List<Office> sortedList = null;
 
                 switch (mWhereToSearch) {
                     case "currentlocation":
-                        filteredList = selectOnlyNearest(officeList);
+                        sortedList = sortByDistanceToMe(officeList);
                         break;
                     case "zipcode":
-                        filteredList = selectOnlyWithZipCode(officeList, mZipCodeString);
+                        sortedList = sortByDistanceToAddress(officeList, mZipCodeString);
                         break;
                     case "cityaddressstate":
-                        filteredList = displayOnlyWithAddressCityAndState(officeList, mAddress, mCity, mState);
+                        sortedList = sortByDistanceToAddress(officeList, (mAddress + ", " + mCity + ", " + mState));
                         break;
                 }
 
-                if (filteredList == null || filteredList.size() == 0) {
+                if (sortedList == null || sortedList.size() == 0) {
                     findViewById(R.id.loading).setVisibility(View.VISIBLE);
                     setResult(RESULT_NOT_FOUND);
                     finish();
@@ -312,12 +314,12 @@ public class FindOfficeResultActivity extends Cash1Activity implements
                 }
 
                 if (mMap != null) {
-                    displayOfficesAsMarkersOnMap(filteredList);
+                    displayMarkersOnMap(sortedList);
                 }
 
                 LinearLayout container = (LinearLayout) findViewById(R.id.list_container);
-                for (int i = 0; i < filteredList.size(); i++) {
-                    final Office office = filteredList.get(i);
+                for (int i = 0; i < sortedList.size(); i++) {
+                    final Office office = sortedList.get(i);
 
                     FrameLayout listItemContainer = (FrameLayout) View.inflate(
                             FindOfficeResultActivity.this, R.layout.office_list_item, null);
@@ -326,7 +328,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
                     positionTextView.setText((i + 1) + "");
 
                     TextView streetTextView = (TextView) listItemContainer.findViewById(R.id.street);
-                    Spanned street = null;
+                    Spanned street;
                     if (mZipCodeString == null) {
                         street = highlightMatches(office.getStreet());
                     } else {
@@ -340,11 +342,11 @@ public class FindOfficeResultActivity extends Cash1Activity implements
 
                     if (getLastLatitude() != -1 && getLastLongitude() != -1) {
                         TextView distanceTextView = (TextView) listItemContainer.findViewById(R.id.distance_to);
-                        String distanceString = String.format("%.1f", getDistanceFromMe(office)) + " mi";
+                        String distanceString = String.format("%.1f", getDistanceToMe(office)) + " mi";
                         distanceTextView.setText(distanceString);
                     }
 
-                    if (i + 1 == filteredList.size()) {
+                    if (i + 1 == sortedList.size()) {
                         listItemContainer.findViewById(R.id.divider).setVisibility(View.GONE);
                     }
 
@@ -371,6 +373,87 @@ public class FindOfficeResultActivity extends Cash1Activity implements
         });
     }
 
+    /**
+     * Sorts stores by distance from current location
+     */
+    private List<Office> sortByDistanceToMe(List<Office> officeList) {
+        Collections.sort(officeList, new Comparator<Office>() {
+            @Override
+            public int compare(Office lhs, Office rhs) {
+                return ((int) getDistanceToMe(rhs)) - ((int) getDistanceToMe(lhs));
+            }
+        });
+        return officeList;
+    }
+
+    private double getDistanceToMe(Office office) {
+        Location myLocation = new Location("point A");
+        myLocation.setLatitude(getLastLatitude());
+        myLocation.setLongitude(getLastLongitude());
+
+        Location officeLocation = new Location("point B");
+        officeLocation.setLatitude(office.getLatitude());
+        officeLocation.setLongitude(office.getLongitude());
+
+        double milesPerMeter = 0.000621371;
+        double distanceInMiles = myLocation.distanceTo(officeLocation) * milesPerMeter;
+        return distanceInMiles;
+    }
+
+    /**
+     * Sorts stores by distance from specified address
+     */
+    private List<Office> sortByDistanceToAddress(List<Office> officeList, final String address) {
+        Collections.sort(officeList, new Comparator<Office>() {
+            @Override
+            public int compare(Office lhs, Office rhs) {
+                return ((int) getDistanceToAddress(rhs, address)) - ((int) getDistanceToAddress(lhs, address));
+            }
+        });
+        return officeList;
+    }
+
+    private double getDistanceToAddress(Office office, String address) {
+        LatLng coordinates = getCoordinates(address);
+        if (coordinates == null) return 0;
+
+        Location specifiedLocation = new Location("point A");
+        specifiedLocation.setLatitude(coordinates.latitude);
+        specifiedLocation.setLongitude(coordinates.longitude);
+
+        Location officeLocation = new Location("point B");
+        officeLocation.setLatitude(office.getLatitude());
+        officeLocation.setLongitude(office.getLongitude());
+
+        double milesPerMeter = 0.000621371;
+        double distanceInMiles = specifiedLocation.distanceTo(officeLocation) * milesPerMeter;
+        return distanceInMiles;
+    }
+
+    public LatLng getCoordinates(String addressString) {
+        if (!Geocoder.isPresent()) return null;
+
+        Geocoder coder = new Geocoder(this);
+        List<Address> address;
+        LatLng latLng = null;
+
+        try {
+            address = coder.getFromLocationName(addressString, 5);
+            if (address == null) {
+                return null;
+            }
+            Address location = address.get(0);
+            location.getLatitude();
+            location.getLongitude();
+
+            latLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return latLng;
+    }
+
     private Spanned highlightMatches(String string) {
         if (mZipCodeString != null) {
             string = string.replaceAll("(?i)" + mZipCodeString, "<font color='red'>" + mZipCodeString + "</font>");
@@ -381,67 +464,6 @@ public class FindOfficeResultActivity extends Cash1Activity implements
             string = string.replaceAll("(?i)" + mState, "<font color='red'>" + mState + "</font>");
         }
         return Html.fromHtml(string);
-    }
-
-    private List<Office> selectOnlyNearest(List<Office> officeList) {
-        List<Office> filteredList = new ArrayList<>();
-        for (Office office : officeList) {
-            double distance = getDistanceFromMe(office);
-            if (distance < 2500) {
-                filteredList.add(office);
-            }
-        }
-        return sortByDistance(filteredList);
-    }
-
-    private List<Office> sortByDistance(List<Office> officeList) {
-        Collections.sort(officeList, new Comparator<Office>() {
-            @Override
-            public int compare(Office lhs, Office rhs) {
-                return ((int) getDistanceFromMe(rhs)) - ((int) getDistanceFromMe(lhs));
-            }
-        });
-        return officeList;
-    }
-
-    private double getDistanceFromMe(Office office) {
-        Location myLocation = new Location("point A");
-        myLocation.setLatitude(getLastLatitude());
-        myLocation.setLongitude(getLastLongitude());
-
-        Location officeLocation = new Location("point B");
-        officeLocation.setLatitude(office.getLatitude());
-        officeLocation.setLongitude(office.getLongitude());
-
-        double milesInOneMeter = 0.000621371;
-        double distanceInMiles = myLocation.distanceTo(officeLocation) * milesInOneMeter;
-        return distanceInMiles;
-    }
-
-    private List<Office> selectOnlyWithZipCode(List<Office> officeList, String zipCodeQueryString) {
-        List<Office> filteredList = new ArrayList<>();
-        for (Office office : officeList) {
-            if (office.getZipCodeString().contains(zipCodeQueryString)) {
-                filteredList.add(office);
-            }
-        }
-        return sortByDistance(filteredList);
-    }
-
-    private List<Office> displayOnlyWithAddressCityAndState(List<Office> officeList, String address, String city, String state) {
-        List<Office> filteredList = new ArrayList<>();
-        for (Office office : officeList) {
-            if (office.getAddress().contains(mAddress) ||
-                    office.getAddress().contains(mCity) ||
-                    office.getAddress().contains(mState)) {
-                filteredList.add(office);
-            } else if (office.getStreet().contains(mAddress) ||
-                    office.getStreet().contains(mCity) ||
-                    office.getStreet().contains(mState)) {
-                filteredList.add(office);
-            }
-        }
-        return sortByDistance(filteredList);
     }
 
     /**
@@ -483,7 +505,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
 
-    private void displayOfficesAsMarkersOnMap(List<Office> officeList) {
+    private void displayMarkersOnMap(List<Office> officeList) {
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
         for (Office office : officeList) {

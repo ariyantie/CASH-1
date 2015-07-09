@@ -9,19 +9,20 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
+import com.android.cash1.R;
+import com.android.cash1.activities.MainActivity;
+import com.android.cash1.activities.login.LogoutActivity;
+import com.android.cash1.activities.login.PrivacyPolicyActivity;
+import com.android.cash1.activities.search.FindOfficeActivity;
 import com.android.cash1.activities.support.ContactActivity;
 import com.android.cash1.activities.support.FaqActivity;
-import com.android.cash1.activities.search.FindOfficeActivity;
-import com.android.cash1.activities.login.LogoutActivity;
-import com.android.cash1.activities.MainActivity;
-import com.android.cash1.activities.login.PrivacyPolicyActivity;
-import com.android.cash1.R;
 import com.android.cash1.activities.support.SettingsActivity;
 import com.android.cash1.activities.support.TermsActivity;
 import com.google.gson.JsonObject;
@@ -291,5 +292,20 @@ public class Cash1Activity extends AppCompatActivity {
         if (mFooterContainer != null && mFooterContainer.getVisibility() == View.VISIBLE) {
             closeFooter();
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ( keyCode == KeyEvent.KEYCODE_MENU ) {
+            if (mFooterContainer != null ) {
+                if (mFooterContainer.getVisibility() == View.VISIBLE) {
+                    closeFooter();
+                } else {
+                    openFooter();
+                }
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
