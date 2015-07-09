@@ -366,16 +366,33 @@ public class FindOfficeResultActivity extends Cash1Activity implements
                     TextView distanceTextView = (TextView) listItemContainer.findViewById(R.id.distance_to);
                     String distanceString;
                     if (mWhereToSearch.equals("currentlocation")) {
-                        distanceString = String.format("%.1f", getDistanceToMe(office)) + " mi";
+                        double distance = getDistanceToMe(office);
+                        if (distance <= 99) {
+                            distanceString = String.format("%.1f", distance) + " mi";
+                        } else {
+                            distanceString = String.format("%.0f", distance) + " mi";
+                        }
                     } else {
-                        distanceString = String.format("%.1f", getDistanceToAddress(office)) + " mi";
+                        double distance = getDistanceToAddress(office);
+                        if (distance <= 99) {
+                            distanceString = String.format("%.1f", distance) + " mi";
+                        } else {
+                            distanceString = String.format("%.0f", distance) + " mi";
+                        }
                     }
                     distanceTextView.setText(distanceString);
-                    Log.d("tag", "distanceString = " + distanceString);
-                    if (distanceString.equals("0.0 mi")) {
+
+                    int distance;
+                    if (distanceString.contains(".")) {
+                        distance = Integer.parseInt(distanceString.split("\\.")[0]);
+                    } else {
+                        distance = Integer.parseInt(distanceString.replace(" mi", ""));
+                    }
+
+                    if (distance < 5) {
                         View itemContainer = listItemContainer.findViewById(R.id.container);
                         itemContainer.setBackgroundColor(Color.parseColor("#5940d47e"));
-                        distanceTextView.setText("0 mi");
+                        distanceTextView.setText(getString(R.string.very_close));
                         listItemContainer.findViewById(R.id.divider).setVisibility(View.GONE);
                     }
 
