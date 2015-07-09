@@ -11,8 +11,8 @@ import android.widget.Toast;
 
 import com.android.cash1.R;
 import com.android.cash1.model.Cash1Activity;
-import com.android.cash1.rest.ApiService;
-import com.android.cash1.rest.RestClient;
+import com.android.cash1.rest.Cash1ApiService;
+import com.android.cash1.rest.Cash1Client;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
@@ -46,7 +46,7 @@ public class SecurityQuestionActivity extends Cash1Activity {
 
         mAnswerEditText = (EditText) findViewById(R.id.answer);
 
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.listSecurityQuestions(new Callback<List<HashMap<String, String>>>() {
             @Override
             public void success(List<HashMap<String, String>> questionHashMaps, Response response) {
@@ -73,7 +73,7 @@ public class SecurityQuestionActivity extends Cash1Activity {
             return;
         }
 
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.saveSecurityQuestion(questionId, answer, userId, new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObj, Response response) {

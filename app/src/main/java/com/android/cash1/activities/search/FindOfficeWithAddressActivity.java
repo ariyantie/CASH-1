@@ -14,8 +14,8 @@ import android.widget.Toast;
 import com.android.cash1.R;
 import com.android.cash1.model.Cash1Activity;
 import com.android.cash1.model.Office;
-import com.android.cash1.rest.ApiService;
-import com.android.cash1.rest.RestClient;
+import com.android.cash1.rest.Cash1ApiService;
+import com.android.cash1.rest.Cash1Client;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -75,7 +75,7 @@ public class FindOfficeWithAddressActivity extends Cash1Activity {
     }
 
     private void setAutoCompleteValuesToFields() {
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.listAllOffices(new Callback<List<Office>>() {
             @Override
             public void success(List<Office> officeList, Response response) {

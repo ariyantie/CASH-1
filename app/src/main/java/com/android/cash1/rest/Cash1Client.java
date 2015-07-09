@@ -4,21 +4,21 @@ import retrofit.RestAdapter;
 
 import static retrofit.RestAdapter.LogLevel.FULL;
 
-public class RestClient {
+public class Cash1Client {
 
-    private ApiService mService;
+    private Cash1ApiService mService;
 
-    public RestClient() {
+    public Cash1Client() {
 
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint("http://mobile.cash1loans.com/Cash1WF.svc")
                 .setLogLevel(FULL)
                 .build();
 
-        mService = restAdapter.create(ApiService.class);
+        mService = restAdapter.create(Cash1ApiService.class);
     }
 
-    public ApiService getApiService() {
+    public Cash1ApiService getApiService() {
         return mService;
     }
 }

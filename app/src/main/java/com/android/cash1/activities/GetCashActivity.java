@@ -11,8 +11,8 @@ import android.widget.Toast;
 import com.android.cash1.R;
 import com.android.cash1.activities.support.GetCashNotifyActivity;
 import com.android.cash1.model.Cash1Activity;
-import com.android.cash1.rest.ApiService;
-import com.android.cash1.rest.RestClient;
+import com.android.cash1.rest.Cash1ApiService;
+import com.android.cash1.rest.Cash1Client;
 import com.google.gson.JsonObject;
 
 import java.text.NumberFormat;
@@ -37,7 +37,7 @@ public class GetCashActivity extends Cash1Activity {
     }
 
     private void showAccountDetails() {
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.getAccountDetails(getUserId(), new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObj, Response response) {
@@ -81,7 +81,7 @@ public class GetCashActivity extends Cash1Activity {
             return;
         }
 
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.sendCashRequest(getUserId(), amount, new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObj, Response response) {

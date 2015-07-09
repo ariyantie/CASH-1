@@ -10,8 +10,8 @@ import android.widget.ToggleButton;
 
 import com.android.cash1.R;
 import com.android.cash1.model.Cash1Activity;
-import com.android.cash1.rest.ApiService;
-import com.android.cash1.rest.RestClient;
+import com.android.cash1.rest.Cash1ApiService;
+import com.android.cash1.rest.Cash1Client;
 import com.google.gson.JsonObject;
 
 import retrofit.Callback;
@@ -54,7 +54,7 @@ public class SettingsActivity extends Cash1Activity {
     }
 
     private void submitUpdatedPreferences() {
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.setPreferences(getDeviceId(), getUserEmail(), getUserId(), null, useCurrentLocation(), new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObject, Response response) {

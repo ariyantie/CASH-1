@@ -7,8 +7,8 @@ import android.widget.TextView;
 import com.android.cash1.R;
 import com.android.cash1.model.Cash1Activity;
 import com.android.cash1.model.DialogContents;
-import com.android.cash1.rest.ApiService;
-import com.android.cash1.rest.RestClient;
+import com.android.cash1.rest.Cash1ApiService;
+import com.android.cash1.rest.Cash1Client;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -30,7 +30,7 @@ public class PrivacyPolicyActivity extends Cash1Activity {
     }
 
     private void displayPrivacyPolicy() {
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.getDialogContents(16, "I", new Callback<DialogContents>() {
             @Override
             public void success(DialogContents contents, Response response) {

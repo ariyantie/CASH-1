@@ -13,8 +13,8 @@ import com.android.cash1.R;
 import com.android.cash1.activities.MainActivity;
 import com.android.cash1.model.Cash1Activity;
 import com.android.cash1.model.DialogContents;
-import com.android.cash1.rest.ApiService;
-import com.android.cash1.rest.RestClient;
+import com.android.cash1.rest.Cash1ApiService;
+import com.android.cash1.rest.Cash1Client;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -38,7 +38,7 @@ public class CongratsActivity extends Cash1Activity {
         actionBar.setCustomView(actionBarLayout);
 
 
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.getDialogContents(25, "I", new Callback<DialogContents>() {
             @Override
             public void success(DialogContents contents, Response response) {

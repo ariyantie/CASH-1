@@ -11,8 +11,8 @@ import android.widget.TextView;
 import com.android.cash1.R;
 import com.android.cash1.model.Cash1Activity;
 import com.android.cash1.model.DialogContents;
-import com.android.cash1.rest.ApiService;
-import com.android.cash1.rest.RestClient;
+import com.android.cash1.rest.Cash1ApiService;
+import com.android.cash1.rest.Cash1Client;
 import com.google.gson.JsonObject;
 
 import java.text.NumberFormat;
@@ -40,7 +40,7 @@ public class IncreaseLimitActivity extends Cash1Activity {
     private void showAccountHeaderDetails() {
         int userId = getUserId();
 
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.getAccountHeaderDetails(userId, new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObj, Response response) {
@@ -69,7 +69,7 @@ public class IncreaseLimitActivity extends Cash1Activity {
     }
 
     private void showScreenMessage() {
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.getDialogContents(21, "I", new Callback<DialogContents>() {
             @Override
             public void success(DialogContents contents, Response response) {

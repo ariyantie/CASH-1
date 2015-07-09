@@ -11,8 +11,8 @@ import android.widget.Toast;
 import com.android.cash1.R;
 import com.android.cash1.model.Cash1Activity;
 import com.android.cash1.model.OfficeDetails;
-import com.android.cash1.rest.ApiService;
-import com.android.cash1.rest.RestClient;
+import com.android.cash1.rest.Cash1ApiService;
+import com.android.cash1.rest.Cash1Client;
 import com.squareup.picasso.Picasso;
 
 import retrofit.Callback;
@@ -36,7 +36,7 @@ public class OfficeDetailActivity extends Cash1Activity {
         mLatitude = getIntent().getDoubleExtra("latitude", -1);
         mLongitude = getIntent().getDoubleExtra("longitude", -1);
 
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.getStoreDetails(storeId + "", new Callback<OfficeDetails>() {
             @Override
             public void success(OfficeDetails details, Response response) {

@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.android.cash1.R;
 import com.android.cash1.model.Cash1Activity;
-import com.android.cash1.rest.ApiService;
-import com.android.cash1.rest.RestClient;
+import com.android.cash1.rest.Cash1ApiService;
+import com.android.cash1.rest.Cash1Client;
 import com.google.gson.JsonObject;
 
 import retrofit.Callback;
@@ -35,7 +35,7 @@ public class SecurityChallengeActivity extends Cash1Activity {
                 PreferenceManager.getDefaultSharedPreferences(this);
         String username = sharedPrefs.getString("username", "");
 
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.getSecurityQuestion(username, new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObj, Response response) {
@@ -71,7 +71,7 @@ public class SecurityChallengeActivity extends Cash1Activity {
         int userId = getUserId();
         String answer = mAnswerEditText.getText().toString();
 
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.validateSecurityAnswer(userId, answer, isEmailUsername, isEmailPassword, isTextUsername, isTextPassword, new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObj, Response response) {

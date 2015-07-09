@@ -12,8 +12,8 @@ import android.view.View;
 
 import com.android.cash1.R;
 import com.android.cash1.model.Cash1Activity;
-import com.android.cash1.rest.ApiService;
-import com.android.cash1.rest.RestClient;
+import com.android.cash1.rest.Cash1ApiService;
+import com.android.cash1.rest.Cash1Client;
 import com.google.gson.JsonObject;
 
 import java.util.TimeZone;
@@ -45,7 +45,7 @@ public class DispatchActivity extends Cash1Activity {
     }
 
     private void checkDeviceRegistration(String deviceId) {
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.checkDeviceRegistration(deviceId, new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObject, Response response) {
@@ -65,7 +65,7 @@ public class DispatchActivity extends Cash1Activity {
     }
 
     private void registerDevice(String deviceId) {
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.registerDevice(deviceId, Build.MODEL, "phone", Build.MANUFACTURER, Build.MODEL, "1", "Android", Build.VERSION.RELEASE, "1.0", Build.VERSION.RELEASE, "1", "Android", getTimeZone(), "English", "true", "true", Build.MODEL, getDeviceId(), "NotDefinedYet", getUserId() + "", new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObject, Response response) {
@@ -82,7 +82,7 @@ public class DispatchActivity extends Cash1Activity {
     }
 
     private void checkUserRegistration(String deviceId) {
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.checkUserReg(deviceId, new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObject, Response response) {

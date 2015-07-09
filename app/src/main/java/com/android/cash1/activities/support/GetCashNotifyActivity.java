@@ -10,8 +10,8 @@ import android.widget.TextView;
 import com.android.cash1.R;
 import com.android.cash1.model.Cash1Activity;
 import com.android.cash1.model.DialogContents;
-import com.android.cash1.rest.ApiService;
-import com.android.cash1.rest.RestClient;
+import com.android.cash1.rest.Cash1ApiService;
+import com.android.cash1.rest.Cash1Client;
 import com.google.gson.JsonObject;
 
 import retrofit.Callback;
@@ -36,7 +36,7 @@ public class GetCashNotifyActivity extends Cash1Activity {
     }
 
     private void showScreenMessage(int messageId) {
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.getDialogContents(messageId, "I", new Callback<DialogContents>() {
             @Override
             public void success(DialogContents contents, Response response) {
@@ -64,7 +64,7 @@ public class GetCashNotifyActivity extends Cash1Activity {
     }
 
     private void displayPhoneNumberForCurrentStore() {
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.getPhoneForStore(getStoreId(), new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObj, Response response) {

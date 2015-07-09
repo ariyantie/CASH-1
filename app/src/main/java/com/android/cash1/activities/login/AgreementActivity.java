@@ -11,8 +11,8 @@ import android.widget.Toast;
 
 import com.android.cash1.R;
 import com.android.cash1.model.Cash1Activity;
-import com.android.cash1.rest.ApiService;
-import com.android.cash1.rest.RestClient;
+import com.android.cash1.rest.Cash1ApiService;
+import com.android.cash1.rest.Cash1Client;
 import com.google.gson.JsonObject;
 
 import java.util.HashMap;
@@ -39,7 +39,7 @@ public class AgreementActivity extends Cash1Activity {
         actionBar.setCustomView(actionBarLayout);
 
 
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.getAgreementText(new Callback<HashMap<String, String>>() {
             @Override
             public void success(HashMap<String, String> responseHashMap, Response response) {
@@ -62,7 +62,7 @@ public class AgreementActivity extends Cash1Activity {
     public void agree(View view) {
         int userId = getUserId();
 
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.saveAgreement(userId, new Callback<JsonObject>() {
             @Override
             public void success(JsonObject jsonObject, Response response) {

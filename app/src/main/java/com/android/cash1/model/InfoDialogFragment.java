@@ -17,8 +17,8 @@ import android.widget.TextView;
 
 import com.android.cash1.activities.search.FindOfficeActivity;
 import com.android.cash1.R;
-import com.android.cash1.rest.ApiService;
-import com.android.cash1.rest.RestClient;
+import com.android.cash1.rest.Cash1ApiService;
+import com.android.cash1.rest.Cash1Client;
 import com.google.gson.JsonObject;
 
 import retrofit.Callback;
@@ -95,7 +95,7 @@ public class InfoDialogFragment extends DialogFragment {
                     String notice = null;
                     boolean userCurrentLocation = true;
 
-                    ApiService service = new RestClient().getApiService();
+                    Cash1ApiService service = new Cash1Client().getApiService();
                     service.setPreferences(deviceId, userEmail, userId, notice, userCurrentLocation, new Callback<JsonObject>() {
                         @Override
                         public void success(JsonObject responseObject, Response response) {
@@ -124,7 +124,7 @@ public class InfoDialogFragment extends DialogFragment {
             return builder.create();
         }
 
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.getDialogContents(dialogId, messageType, new Callback<DialogContents>() {
             @Override
             public void success(DialogContents contents, Response response) {

@@ -10,8 +10,8 @@ import android.widget.LinearLayout;
 import com.android.cash1.R;
 import com.android.cash1.activities.support.GetCashNotifyActivity;
 import com.android.cash1.model.Cash1Activity;
-import com.android.cash1.rest.ApiService;
-import com.android.cash1.rest.RestClient;
+import com.android.cash1.rest.Cash1ApiService;
+import com.android.cash1.rest.Cash1Client;
 import com.google.gson.JsonObject;
 
 import retrofit.Callback;
@@ -48,7 +48,7 @@ public class MainActivity extends Cash1Activity {
     }
 
     public void getCash(View view) {
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.checkCashAdvance(getUserId(), new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObj, Response response) {

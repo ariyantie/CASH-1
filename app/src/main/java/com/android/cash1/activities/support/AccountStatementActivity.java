@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import com.android.cash1.R;
 import com.android.cash1.model.Cash1Activity;
-import com.android.cash1.rest.ApiService;
-import com.android.cash1.rest.RestClient;
+import com.android.cash1.rest.Cash1ApiService;
+import com.android.cash1.rest.Cash1Client;
 import com.android.cash1.model.StatementRow;
 
 import java.util.List;
@@ -36,7 +36,7 @@ public class AccountStatementActivity extends Cash1Activity {
         int userId = PreferenceManager.getDefaultSharedPreferences(this)
                 .getInt("user_id", 12345);
 
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.getAccountStatement(userId, new Callback<List<StatementRow>>() {
             @Override
             public void success(List<StatementRow> statementList, Response response) {

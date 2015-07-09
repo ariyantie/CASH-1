@@ -20,7 +20,7 @@ import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.Query;
 
-public interface ApiService {
+public interface Cash1ApiService {
 
     @GET("/CheckDeviceReg")
     void checkDeviceRegistration(@Query("Device_UID") String devId, Callback<JsonObject> callback);

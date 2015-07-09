@@ -11,8 +11,8 @@ import com.android.cash1.model.Cash1Activity;
 import com.android.cash1.model.Cash1LocationsNumber;
 import com.android.cash1.model.CollectionsPhoneNumbers;
 import com.android.cash1.model.CustomerSupportPhoneNumbers;
-import com.android.cash1.rest.ApiService;
-import com.android.cash1.rest.RestClient;
+import com.android.cash1.rest.Cash1ApiService;
+import com.android.cash1.rest.Cash1Client;
 import com.google.gson.JsonObject;
 
 import retrofit.Callback;
@@ -34,7 +34,7 @@ public class ContactActivity extends Cash1Activity {
     }
 
     private void displayPhoneNumbers() {
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
 
         service.getCustomerSupportPhoneNumbers(new Callback<CustomerSupportPhoneNumbers>() {
             @Override
@@ -76,7 +76,7 @@ public class ContactActivity extends Cash1Activity {
     }
 
     private void displayAccountName() {
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.getAccountHeaderDetails(getUserId(), new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObj, Response response) {

@@ -7,8 +7,6 @@ import android.content.IntentSender.SendIntentException;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -25,8 +23,11 @@ import android.widget.Toast;
 import com.android.cash1.R;
 import com.android.cash1.model.Cash1Activity;
 import com.android.cash1.model.Office;
-import com.android.cash1.rest.ApiService;
-import com.android.cash1.rest.RestClient;
+import com.android.cash1.rest.Cash1ApiService;
+import com.android.cash1.rest.Cash1Client;
+import com.android.cash1.rest.GeofenceObject;
+import com.android.cash1.rest.LocationApiService;
+import com.android.cash1.rest.LocationClient;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -41,6 +42,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.JsonElement;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -54,6 +56,8 @@ public class FindOfficeResultActivity extends Cash1Activity implements
         ConnectionCallbacks, OnConnectionFailedListener {
 
     protected static final String TAG = "basic-location-sample";
+
+    private LatLng mCoordinates;
 
     // Request code to use when launching the resolution activity
     private static final int REQUEST_RESOLVE_ERROR = 1001;
@@ -76,7 +80,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
     private String mWhereToSearch;
-    private String mZipCodeString;
+    private String mZipCode;
     private String mAddress;
     private String mCity;
     private String mState;
@@ -90,38 +94,59 @@ public class FindOfficeResultActivity extends Cash1Activity implements
         setupFooter();
 
 
-        mZipCodeString = getIntent().getStringExtra("zipcode_string");
+        mZipCode = getIntent().getStringExtra("zipcode_string");
         mAddress = getIntent().getStringExtra("address");
         mCity = getIntent().getStringExtra("city");
-        if (mCity != null) {
-            mCity = mCity.toUpperCase();
-        }
         mState = getIntent().getStringExtra("state");
-
         mWhereToSearch = getIntent().getStringExtra("where_to_search");
-        if (mWhereToSearch.equals("currentlocation")) {
-            buildGoogleApiClient();
-        } else {
-            listAllStores();
-        }
 
         TextView queryTextView = (TextView) findViewById(R.id.query_textview);
+
         switch (mWhereToSearch) {
-            case "currentlocation":
+            case "current location":
                 queryTextView.setText("Current location" + "\n");
+                buildGoogleApiClient();
                 break;
             case "zipcode":
-                queryTextView.setText("ZIP code “" + mZipCodeString + "”" + "\n");
+                queryTextView.setText("ZIP code “" + mZipCode + "”" + "\n");
+                preloadCoordinates(mZipCode);
                 break;
             case "cityaddressstate":
                 queryTextView.setText(mAddress + ", " + mCity + ", " + mState + "\n");
+                preloadCoordinates(mAddress + ", " + mCity + ", " + mState);
                 break;
         }
 
         setUpMap();
 
-        mResolvingError = savedInstanceState != null
-                && savedInstanceState.getBoolean(STATE_RESOLVING_ERROR, false);
+        mResolvingError = (savedInstanceState != null
+                && savedInstanceState.getBoolean(STATE_RESOLVING_ERROR, false));
+    }
+
+    private void preloadCoordinates(String address) {
+        LocationApiService service = new LocationClient().getApiService();
+        service.getCoordinatesForAddress(address, new Callback<GeofenceObject>() {
+            @Override
+            public void success(GeofenceObject geofenceObject, Response response) {
+                if (geofenceObject.getStatus().equals("OK")) {
+                    JsonElement coordinatesObject = geofenceObject.getContentObjects().get(0).getAsJsonObject("geometry").get("location");
+                    double latitude = coordinatesObject.getAsJsonObject().getAsJsonPrimitive("lat").getAsDouble();
+                    double longitude = coordinatesObject.getAsJsonObject().getAsJsonPrimitive("lng").getAsDouble();
+                    mCoordinates = new LatLng(latitude, longitude);
+
+                    Log.d("FindOfficeResultActivit", "Coordinates: " + mCoordinates.latitude + ", " + mCoordinates.longitude);
+
+                    listAllStores();
+                } else {
+                    setResult(RESULT_NOT_FOUND);
+                    finish();
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+            }
+        });
     }
 
     @Override
@@ -286,7 +311,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
     }
 
     private void listAllStores() {
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.listAllOffices(new Callback<List<Office>>() {
             @Override
             public void success(List<Office> officeList, Response response) {
@@ -299,10 +324,8 @@ public class FindOfficeResultActivity extends Cash1Activity implements
                         sortedList = sortByDistanceToMe(officeList);
                         break;
                     case "zipcode":
-                        sortedList = sortByDistanceToAddress(officeList, mZipCodeString);
-                        break;
                     case "cityaddressstate":
-                        sortedList = sortByDistanceToAddress(officeList, (mAddress + ", " + mCity + ", " + mState));
+                        sortedList = sortByDistanceToAddress(officeList);
                         break;
                 }
 
@@ -329,7 +352,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
 
                     TextView streetTextView = (TextView) listItemContainer.findViewById(R.id.street);
                     Spanned street;
-                    if (mZipCodeString == null) {
+                    if (mZipCode == null) {
                         street = highlightMatches(office.getStreet());
                     } else {
                         street = Html.fromHtml(office.getStreet());
@@ -340,11 +363,16 @@ public class FindOfficeResultActivity extends Cash1Activity implements
                     Spanned address = highlightMatches(office.getAddress());
                     addressTextView.setText(address, TextView.BufferType.SPANNABLE);
 
-                    if (getLastLatitude() != -1 && getLastLongitude() != -1) {
-                        TextView distanceTextView = (TextView) listItemContainer.findViewById(R.id.distance_to);
-                        String distanceString = String.format("%.1f", getDistanceToMe(office)) + " mi";
-                        distanceTextView.setText(distanceString);
+
+                    TextView distanceTextView = (TextView) listItemContainer.findViewById(R.id.distance_to);
+                    String distanceString;
+                    if (mWhereToSearch.equals("currentlocation")) {
+                        distanceString = String.format("%.1f", getDistanceToMe(office)) + " mi";
+                    } else {
+                        distanceString = String.format("%.1f", getDistanceToAddress(office)) + " mi";
                     }
+                    distanceTextView.setText(distanceString);
+
 
                     if (i + 1 == sortedList.size()) {
                         listItemContainer.findViewById(R.id.divider).setVisibility(View.GONE);
@@ -380,7 +408,7 @@ public class FindOfficeResultActivity extends Cash1Activity implements
         Collections.sort(officeList, new Comparator<Office>() {
             @Override
             public int compare(Office lhs, Office rhs) {
-                return ((int) getDistanceToMe(rhs)) - ((int) getDistanceToMe(lhs));
+                return ((int) getDistanceToMe(lhs)) - ((int) getDistanceToMe(rhs));
             }
         });
         return officeList;
@@ -403,23 +431,22 @@ public class FindOfficeResultActivity extends Cash1Activity implements
     /**
      * Sorts stores by distance from specified address
      */
-    private List<Office> sortByDistanceToAddress(List<Office> officeList, final String address) {
+    private List<Office> sortByDistanceToAddress(List<Office> officeList) {
         Collections.sort(officeList, new Comparator<Office>() {
             @Override
             public int compare(Office lhs, Office rhs) {
-                return ((int) getDistanceToAddress(rhs, address)) - ((int) getDistanceToAddress(lhs, address));
+                return ((int) getDistanceToAddress(lhs)) - ((int) getDistanceToAddress(rhs));
             }
         });
         return officeList;
     }
 
-    private double getDistanceToAddress(Office office, String address) {
-        LatLng coordinates = getCoordinates(address);
-        if (coordinates == null) return 0;
+    private double getDistanceToAddress(Office office) {
+        if (mCoordinates == null) return 0;
 
         Location specifiedLocation = new Location("point A");
-        specifiedLocation.setLatitude(coordinates.latitude);
-        specifiedLocation.setLongitude(coordinates.longitude);
+        specifiedLocation.setLatitude(mCoordinates.latitude);
+        specifiedLocation.setLongitude(mCoordinates.longitude);
 
         Location officeLocation = new Location("point B");
         officeLocation.setLatitude(office.getLatitude());
@@ -427,36 +454,13 @@ public class FindOfficeResultActivity extends Cash1Activity implements
 
         double milesPerMeter = 0.000621371;
         double distanceInMiles = specifiedLocation.distanceTo(officeLocation) * milesPerMeter;
+        Log.d("FindOfficeResultActivit", "Distance: " + distanceInMiles);
         return distanceInMiles;
     }
 
-    public LatLng getCoordinates(String addressString) {
-        if (!Geocoder.isPresent()) return null;
-
-        Geocoder coder = new Geocoder(this);
-        List<Address> address;
-        LatLng latLng = null;
-
-        try {
-            address = coder.getFromLocationName(addressString, 5);
-            if (address == null) {
-                return null;
-            }
-            Address location = address.get(0);
-            location.getLatitude();
-            location.getLongitude();
-
-            latLng = new LatLng(location.getLatitude(), location.getLongitude());
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return latLng;
-    }
-
     private Spanned highlightMatches(String string) {
-        if (mZipCodeString != null) {
-            string = string.replaceAll("(?i)" + mZipCodeString, "<font color='red'>" + mZipCodeString + "</font>");
+        if (mZipCode != null) {
+            string = string.replaceAll("(?i)" + mZipCode, "<font color='red'>" + mZipCode + "</font>");
         }
         if (mAddress != null && mCity != null && mState != null) {
             string = string.replaceAll("(?i)" + mAddress, "<font color='red'>" + mAddress + "</font>");

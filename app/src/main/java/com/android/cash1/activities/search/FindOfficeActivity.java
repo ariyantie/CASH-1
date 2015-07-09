@@ -9,8 +9,8 @@ import com.android.cash1.R;
 import com.android.cash1.model.Cash1Activity;
 import com.android.cash1.model.InfoDialogFragment;
 import com.android.cash1.model.Preferences;
-import com.android.cash1.rest.ApiService;
-import com.android.cash1.rest.RestClient;
+import com.android.cash1.rest.Cash1ApiService;
+import com.android.cash1.rest.Cash1Client;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -33,7 +33,7 @@ public class FindOfficeActivity extends Cash1Activity {
     }
 
     public void findUsingCurrentLocation(View view) {
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.getPreferences(getUserEmail(), getUserId(), new Callback<Preferences>() {
             @Override
             public void success(Preferences preferencesObject, Response response) {

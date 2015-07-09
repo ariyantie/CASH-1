@@ -15,8 +15,8 @@ import com.android.cash1.R;
 import com.android.cash1.activities.MainActivity;
 import com.android.cash1.model.Cash1Activity;
 import com.android.cash1.model.InfoDialogFragment;
-import com.android.cash1.rest.ApiService;
-import com.android.cash1.rest.RestClient;
+import com.android.cash1.rest.Cash1ApiService;
+import com.android.cash1.rest.Cash1Client;
 import com.google.gson.JsonObject;
 
 import retrofit.Callback;
@@ -110,7 +110,7 @@ public class LoginActivity extends Cash1Activity {
             password = mSharedPrefs.getString("password", "");
         }
 
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.login(username, password, new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObj, Response response) {
@@ -165,7 +165,7 @@ public class LoginActivity extends Cash1Activity {
         final String username = mUsernameEditText.getText().toString();
         final int userId = getUserId();
 
-        final ApiService service = new RestClient().getApiService();
+        final Cash1ApiService service = new Cash1Client().getApiService();
         service.checkUserDevice(deviceId, username, userId, new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObj, Response response) {

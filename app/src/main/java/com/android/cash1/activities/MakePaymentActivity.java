@@ -8,8 +8,8 @@ import android.widget.Toast;
 
 import com.android.cash1.R;
 import com.android.cash1.model.Cash1Activity;
-import com.android.cash1.rest.ApiService;
-import com.android.cash1.rest.RestClient;
+import com.android.cash1.rest.Cash1ApiService;
+import com.android.cash1.rest.Cash1Client;
 import com.google.gson.JsonObject;
 
 import java.text.NumberFormat;
@@ -36,7 +36,7 @@ public class MakePaymentActivity extends Cash1Activity {
         int userId = PreferenceManager.getDefaultSharedPreferences(this)
                 .getInt("user_id", 12345);
 
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.getAccountDetails(userId, new Callback<JsonObject>() {
             @Override
             public void success(JsonObject responseObj, Response response) {
@@ -82,7 +82,7 @@ public class MakePaymentActivity extends Cash1Activity {
         String amount = ((EditText) findViewById(R.id.amount)).getText().toString().trim();
         String date = ((EditText) findViewById(R.id.date)).getText().toString().trim();
 
-        ApiService service = new RestClient().getApiService();
+        Cash1ApiService service = new Cash1Client().getApiService();
         service.submitPayment(getUserId(), bankId, getStoreId(), paymentFrom, amount, date,
                 false, null, false, null, false, null, new Callback<JsonObject>() {
             @Override
