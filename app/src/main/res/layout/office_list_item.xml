@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:foreground="?android:selectableItemBackground"
-    android:clickable="true">
+<FrameLayout android:id="@+id/container"
+             xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:clickable="true"
+             tools:background="#5940d47e"
+             android:foreground="?android:selectableItemBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +20,7 @@
             android:paddingLeft="18dp"
             android:paddingTop="16dp"
             android:textSize="24sp"
-            tools:text="10" />
+            tools:text="10"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,7 +37,7 @@
                 android:paddingTop="16dp"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
-                tools:text="12734 W. Union Hills" />
+                tools:text="12734 W. Union Hills"/>
 
             <TextView
                 android:id="@+id/address"
@@ -46,7 +48,7 @@
                 android:paddingRight="16dp"
                 android:textColor="#de000000"
                 android:textSize="18sp"
-                tools:text="GRENDALE" />
+                tools:text="GRENDALE"/>
 
             <TextView
                 android:id="@+id/distance_to"
@@ -57,14 +59,14 @@
                 android:paddingRight="16dp"
                 android:textColor="#de000000"
                 android:textSize="16sp"
-                tools:text="1.14 mi" />
+                tools:text="1.14 mi"/>
 
             <View
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginLeft="24dp"
-                android:background="#28000000" />
+                android:background="#28000000"/>
 
         </LinearLayout>
 

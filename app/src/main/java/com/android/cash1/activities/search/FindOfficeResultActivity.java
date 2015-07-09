@@ -7,6 +7,7 @@ import android.content.IntentSender.SendIntentException;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -133,8 +134,6 @@ public class FindOfficeResultActivity extends Cash1Activity implements
                     double latitude = coordinatesObject.getAsJsonObject().getAsJsonPrimitive("lat").getAsDouble();
                     double longitude = coordinatesObject.getAsJsonObject().getAsJsonPrimitive("lng").getAsDouble();
                     mCoordinates = new LatLng(latitude, longitude);
-
-                    Log.d("FindOfficeResultActivit", "Coordinates: " + mCoordinates.latitude + ", " + mCoordinates.longitude);
 
                     listAllStores();
                 } else {
@@ -372,6 +371,13 @@ public class FindOfficeResultActivity extends Cash1Activity implements
                         distanceString = String.format("%.1f", getDistanceToAddress(office)) + " mi";
                     }
                     distanceTextView.setText(distanceString);
+                    Log.d("tag", "distanceString = " + distanceString);
+                    if (distanceString.equals("0.0 mi")) {
+                        View itemContainer = listItemContainer.findViewById(R.id.container);
+                        itemContainer.setBackgroundColor(Color.parseColor("#5940d47e"));
+                        distanceTextView.setText("0 mi");
+                        listItemContainer.findViewById(R.id.divider).setVisibility(View.GONE);
+                    }
 
 
                     if (i + 1 == sortedList.size()) {
@@ -454,7 +460,6 @@ public class FindOfficeResultActivity extends Cash1Activity implements
 
         double milesPerMeter = 0.000621371;
         double distanceInMiles = specifiedLocation.distanceTo(officeLocation) * milesPerMeter;
-        Log.d("FindOfficeResultActivit", "Distance: " + distanceInMiles);
         return distanceInMiles;
     }
 
