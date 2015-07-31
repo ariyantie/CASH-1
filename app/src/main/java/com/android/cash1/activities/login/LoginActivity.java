@@ -116,11 +116,10 @@ public class LoginActivity extends Cash1Activity {
             public void success(JsonObject responseObj, Response response) {
                 int userId = responseObj.getAsJsonPrimitive("CustomerID").getAsInt();
                 if (userId > 0) {
-                    int loanId = responseObj.getAsJsonPrimitive("LoanID").getAsInt();
+                    int loanId = responseObj.getAsJsonPrimitive("LoaninfoCompleted").getAsInt();
                     boolean isFirstCashAdvance = responseObj.getAsJsonPrimitive("isFirstCashAdvance").getAsBoolean();
                     int storeId = responseObj.getAsJsonPrimitive("StoreID").getAsInt();
                     String redirectView = responseObj.getAsJsonPrimitive("RedirectView").getAsString();
-                    mSharedPrefs.edit().putString("redirect_view", null).commit();
                     mSharedPrefs.edit()
                             .putInt("loan_id", loanId)
                             .putBoolean("first_cash_advance", isFirstCashAdvance)
@@ -129,8 +128,18 @@ public class LoginActivity extends Cash1Activity {
                             .putString("redirect_view", redirectView)
                             .apply();
 
-                     boolean isEsign = responseObj.getAsJsonPrimitive("IsEsign").getAsBoolean();
-                     boolean isQuestionSet = responseObj.getAsJsonPrimitive("IsSecurity").getAsBoolean();
+                    if (redirectView.equals("LoginFailed")) {
+                        startActivity(new Intent(LoginActivity.this, LoginRetryActivity.class));
+                        return;
+                    }
+
+                    boolean isEsign = responseObj.getAsJsonPrimitive("IsEsign").getAsBoolean();
+                    boolean isQuestionSet = responseObj.getAsJsonPrimitive("IsSecurity").getAsBoolean();
+
+                    mSharedPrefs.edit()
+                            .putBoolean("agreement_confirmed", isEsign)
+                            .putBoolean("question_set", isQuestionSet)
+                            .apply();
 
                     if (!isEsign) {
                         Toast.makeText(LoginActivity.this, "Review and accept this document to continue", Toast.LENGTH_SHORT).show();
@@ -183,7 +192,7 @@ public class LoginActivity extends Cash1Activity {
                         }
                     } else {
                         String redirectViewTitle = getRedirectViewTitle();
-                        if (redirectViewTitle != null) {
+                        if (!redirectViewTitle.isEmpty()) {
                             switch (getRedirectViewTitle()) {
                                 case "forgotpassword":
                                     SharedPreferences sharedPreferences =
@@ -191,14 +200,17 @@ public class LoginActivity extends Cash1Activity {
                                     if (!sharedPreferences.getBoolean("password_restored", false)) {
                                         Toast.makeText(LoginActivity.this, "You need to setup temporary password to continue", Toast.LENGTH_LONG).show();
                                         startActivity(new Intent(LoginActivity.this, PasswordChangeActivity.class));
+                                    } else if (mSharedPrefs.getBoolean("agreement_confirmed", false)
+                                            && mSharedPrefs.getBoolean("question_set", false)) {
+                                        showCreditDenialPopup();
                                     } else {
                                         showBasicLoginErrorDialog();
                                     }
                                     break;
                                 case "CreditDenial":
+                                case "Credit Denial":
                                     showCreditDenialPopup();
                                     break;
-                                case "LoginFailed":
                                 default:
                                     showBasicLoginErrorDialog();
                                     break;
