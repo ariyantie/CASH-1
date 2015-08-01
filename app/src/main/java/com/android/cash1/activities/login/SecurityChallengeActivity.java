@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.cash1.R;
 import com.android.cash1.model.Cash1Activity;
@@ -42,12 +43,20 @@ public class SecurityChallengeActivity extends Cash1Activity {
                 findViewById(R.id.spinner).setVisibility(View.GONE);
                 findViewById(R.id.question).setVisibility(View.VISIBLE);
 
-                String question = responseObj.getAsJsonPrimitive("Question").getAsString();
-                if (question != null && !question.isEmpty()) {
-                    TextView questionTextView = (TextView) findViewById(R.id.question);
-                    questionTextView.setText(question);
-                } else {
-                    showIncorrectUsernameOrPasswordPopup();
+                try {
+                    // question was found
+                    String question = responseObj.getAsJsonPrimitive("Question").getAsString();
+                    if (question != null && !question.isEmpty()) {
+                        TextView questionTextView = (TextView) findViewById(R.id.question);
+                        questionTextView.setText(question);
+                    } else {
+                        showIncorrectUsernameOrPasswordPopup();
+                    }
+                } catch (ClassCastException e) {
+                    Toast.makeText(SecurityChallengeActivity.this, "Set up security question first", Toast.LENGTH_LONG).show();
+                    PreferenceManager.getDefaultSharedPreferences(SecurityChallengeActivity.this)
+                            .edit().putBoolean("return_to_challenge", true).apply();
+                    startActivity(new Intent(SecurityChallengeActivity.this, SecurityQuestionActivity.class));
                 }
             }
 
@@ -77,7 +86,7 @@ public class SecurityChallengeActivity extends Cash1Activity {
             public void success(JsonObject responseObj, Response response) {
                 int userId = responseObj.getAsJsonPrimitive("CustomerId").getAsInt();
                 if (userId > 0) {
-                    navigateToLoginScreen(isEmailUsername, isEmailPassword, isTextUsername, isTextPassword);
+                    navigateToSendPasswordScreen(isEmailUsername, isEmailPassword, isTextUsername, isTextPassword);
 
                     sharedPrefs.edit()
                             .putBoolean("email_username", false)
@@ -97,8 +106,8 @@ public class SecurityChallengeActivity extends Cash1Activity {
         });
     }
 
-    private void navigateToLoginScreen(boolean isEmailUsername, boolean isEmailPassword, boolean isTextUsername, boolean isTextPassword) {
-        Intent intent = new Intent(this, LoginActivity.class);
+    private void navigateToSendPasswordScreen(boolean isEmailUsername, boolean isEmailPassword, boolean isTextUsername, boolean isTextPassword) {
+        Intent intent = new Intent(this, PasswordSendActivity.class);
         intent.putExtra("isEmailUsername", isEmailUsername);
         intent.putExtra("isEmailPassword", isEmailPassword);
         intent.putExtra("isTextUsername", isTextUsername);

@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.cash1.R;
 import com.android.cash1.model.Cash1Activity;
+import com.android.cash1.model.InfoDialogFragment;
 import com.android.cash1.rest.Cash1ApiService;
 import com.android.cash1.rest.Cash1Client;
 import com.google.gson.JsonObject;
@@ -30,11 +32,20 @@ public class PasswordSendActivity extends Cash1Activity {
 
         setupActionBar();
 
+        if (getIntent().hasExtra("isEmailUsername")) {
+            showSuccessPopup(
+                    getIntent().getBooleanExtra("isEmailUsername", false),
+                    getIntent().getBooleanExtra("isEmailPassword", false),
+                    getIntent().getBooleanExtra("isTextUsername", false),
+                    getIntent().getBooleanExtra("isTextPassword", false)
+            );
+        }
+
 
         SharedPreferences sharedPrefs =
                 PreferenceManager.getDefaultSharedPreferences(this);
         String username = sharedPrefs.getString("username", "");
-        if (username != null && !username.isEmpty()) {
+        if (!username.isEmpty()) {
             TextView usernameTextView = (TextView) findViewById(R.id.username);
             usernameTextView.setText("Username: " + username);
         }
@@ -46,7 +57,7 @@ public class PasswordSendActivity extends Cash1Activity {
         SharedPreferences sharedPrefs =
                 PreferenceManager.getDefaultSharedPreferences(this);
 
-        String email = sharedPrefs.getString("email", "");
+        String email = sharedPrefs.getString("username", "");
         int userId = getUserId();
         String pass = mPassEditText.getText().toString();
 
@@ -66,5 +77,25 @@ public class PasswordSendActivity extends Cash1Activity {
             public void failure(RetrofitError error) {
             }
         });
+    }
+
+    private void showSuccessPopup(boolean isEmailUsername, boolean isEmailPassword, boolean isTextUsername, boolean isTextPassword) {
+        DialogFragment dialog = new InfoDialogFragment();
+        Bundle args = new Bundle();
+
+        if (isEmailUsername) {
+            args.putInt("dialog_id", 9);
+        } else if (isEmailPassword) {
+            args.putInt("dialog_id", 11);
+        } else if (isTextUsername) {
+            args.putInt("dialog_id", 10);
+        } else if (isTextPassword) {
+            args.putInt("dialog_id", 12);
+        }
+        args.putString("message_type", "E");
+        args.putString("btn_cancel_label", "Yes, I checked");
+        dialog.setArguments(args);
+
+        dialog.show(getSupportFragmentManager(), "dialog");
     }
 }

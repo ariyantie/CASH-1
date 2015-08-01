@@ -38,7 +38,7 @@ public class PasswordChangeActivity extends Cash1Activity {
 
     public void changePassword(View view) {
         int userId = getUserId();
-        String password = mPasswordEditText.getText().toString();
+        final String password = mPasswordEditText.getText().toString();
         String passwordConfirm = mPasswordConfirmEditText.getText().toString();
 
         if (!password.equals(passwordConfirm)) {
@@ -59,10 +59,17 @@ public class PasswordChangeActivity extends Cash1Activity {
             @Override
             public void success(JsonObject responseObj, Response response) {
                 if (!responseObj.getAsJsonPrimitive("message").getAsString().contains("Enter Valid")) {
-                    SharedPreferences sharedPreferences =
+                    SharedPreferences prefs =
                             PreferenceManager.getDefaultSharedPreferences(PasswordChangeActivity.this);
-                    sharedPreferences.edit().putBoolean("password_restored", true).apply();
-                    startActivity(new Intent(PasswordChangeActivity.this, SecurityQuestionActivity.class));
+                    prefs.edit()
+                            .putBoolean("password_restored", true)
+                            .putString("password", password)
+                            .apply();
+                    if (prefs.getBoolean("question_set", false)) {
+                        startActivity(new Intent(PasswordChangeActivity.this, CongratsActivity.class));
+                    } else {
+                        startActivity(new Intent(PasswordChangeActivity.this, SecurityQuestionActivity.class));
+                    }
                 } else {
                     Toast.makeText(PasswordChangeActivity.this,
                             "Failed to change password. Try again later.", Toast.LENGTH_SHORT).show();

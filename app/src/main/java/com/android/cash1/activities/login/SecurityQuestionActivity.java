@@ -1,6 +1,7 @@
 package com.android.cash1.activities.login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -78,11 +79,16 @@ public class SecurityQuestionActivity extends Cash1Activity {
             @Override
             public void success(JsonObject responseObj, Response response) {
                 if (responseObj.getAsJsonPrimitive("Message").getAsString().contains("information has been updated")) {
-                    if (!PreferenceManager.getDefaultSharedPreferences(SecurityQuestionActivity.this).getBoolean("return_to_login", false)) {
-                        navigateToCongratsScreen();
-                    } else {
+                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(SecurityQuestionActivity.this);
+                    if (prefs.getBoolean("return_to_login", false)) {
                         returnToLoginScreen();
                         Toast.makeText(SecurityQuestionActivity.this, "Now please try to login again", Toast.LENGTH_SHORT).show();
+                        prefs.edit().putBoolean("return_to_login", false).apply();
+                    } else if (prefs.getBoolean("return_to_challenge", false)) {
+                        onBackPressed();
+                        prefs.edit().putBoolean("return_to_challenge", false).apply();
+                    } else {
+                        navigateToCongratsScreen();
                     }
                 } else {
                     showIncorrectUsernameOrPasswordPopup();

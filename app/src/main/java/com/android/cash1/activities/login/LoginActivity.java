@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,7 +13,6 @@ import android.widget.ToggleButton;
 import com.android.cash1.R;
 import com.android.cash1.activities.MainActivity;
 import com.android.cash1.model.Cash1Activity;
-import com.android.cash1.model.InfoDialogFragment;
 import com.android.cash1.rest.Cash1ApiService;
 import com.android.cash1.rest.Cash1Client;
 import com.google.gson.JsonObject;
@@ -33,15 +31,6 @@ public class LoginActivity extends Cash1Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        if (getIntent().hasExtra("isEmailUsername")) {
-            showSuccessPopup(
-                    getIntent().getBooleanExtra("isEmailUsername", false),
-                    getIntent().getBooleanExtra("isEmailPassword", false),
-                    getIntent().getBooleanExtra("isTextUsername", false),
-                    getIntent().getBooleanExtra("isTextPassword", false)
-            );
-        }
 
         mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -89,7 +78,6 @@ public class LoginActivity extends Cash1Activity {
     }
 
     private void login() {
-        findViewById(R.id.loading).setVisibility(View.VISIBLE);
 
         String username;
         String password;
@@ -109,6 +97,7 @@ public class LoginActivity extends Cash1Activity {
                 showError(mPasswordEditText);
                 return;
             }
+            findViewById(R.id.loading).setVisibility(View.VISIBLE);
 
             mSharedPrefs.edit()
                     .putString("username", username)
@@ -136,7 +125,7 @@ public class LoginActivity extends Cash1Activity {
                             .putString("redirect_view", redirectView)
                             .apply();
 
-                    if (redirectView.equals("LoginFailed")) {
+                    if (redirectView.equals("LoginFailed") || redirectView.equals("register-user")) {
                         startActivity(new Intent(LoginActivity.this, LoginRetryActivity.class));
                         return;
                     }
@@ -267,26 +256,6 @@ public class LoginActivity extends Cash1Activity {
 
     public void helpLogin(View view) {
         startActivity(new Intent(this, LoginHelpActivity.class));
-    }
-
-    private void showSuccessPopup(boolean isEmailUsername, boolean isEmailPassword, boolean isTextUsername, boolean isTextPassword) {
-        DialogFragment dialog = new InfoDialogFragment();
-        Bundle args = new Bundle();
-
-        if (isEmailUsername) {
-            args.putInt("dialog_id", 9);
-        } else if (isEmailPassword) {
-            args.putInt("dialog_id", 11);
-        } else if (isTextUsername) {
-            args.putInt("dialog_id", 10);
-        } else if (isTextPassword) {
-            args.putInt("dialog_id", 12);
-        }
-        args.putString("message_type", "E");
-        args.putString("btn_cancel_label", "Retry log in");
-        dialog.setArguments(args);
-
-        dialog.show(getSupportFragmentManager(), "dialog");
     }
 
     @Override
