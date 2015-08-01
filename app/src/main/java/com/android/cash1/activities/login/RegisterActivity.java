@@ -144,12 +144,13 @@ public class RegisterActivity extends Cash1Activity {
 
     @Override
     protected void onPause() {
-        super.onPause();
         mSharedPrefs.edit()
                 .putString("first_name", mFirstNameEditText.getText().toString())
                 .putString("last_name", mLastNameEditText.getText().toString())
                 .putString("email", mEmailEditText.getText().toString())
+                .putString("username", mEmailEditText.getText().toString())
                 .apply();
+        super.onPause();
     }
 
     @Override

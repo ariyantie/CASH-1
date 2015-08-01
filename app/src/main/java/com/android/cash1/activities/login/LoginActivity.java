@@ -80,6 +80,14 @@ public class LoginActivity extends Cash1Activity {
         findViewById(R.id.loading).setVisibility(View.GONE);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mSharedPrefs.edit()
+                .putString("username", mUsernameEditText.getText().toString())
+                .apply();
+    }
+
     private void login() {
         findViewById(R.id.loading).setVisibility(View.VISIBLE);
 
