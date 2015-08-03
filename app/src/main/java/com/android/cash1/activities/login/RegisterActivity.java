@@ -128,9 +128,14 @@ public class RegisterActivity extends Cash1Activity {
 
     private void navigateToLoginScreen() {
         Intent intent = new Intent(this, LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("registerMode", true);
         startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void goBack(View view) {
+        navigateToLoginScreen();
     }
 
     private boolean isValidEmail(CharSequence target) {
@@ -164,7 +169,7 @@ public class RegisterActivity extends Cash1Activity {
         mLastNameEditText.setText(lastName);
         mLastNameEditText.setSelection(lastName.length());
 
-        String email = mSharedPrefs.getString("email", "");
+        String email = mSharedPrefs.getString("username", "");
         mEmailEditText.setText(email);
         mEmailEditText.setSelection(email.length());
     }

@@ -125,8 +125,11 @@ public class LoginActivity extends Cash1Activity {
                             .putString("redirect_view", redirectView)
                             .apply();
 
-                    if (redirectView.equals("LoginFailed") || redirectView.equals("register-user")) {
+                    if (redirectView.equals("LoginFailed")) {
                         startActivity(new Intent(LoginActivity.this, LoginRetryActivity.class));
+                        return;
+                    } else if (redirectView.equals("UserNotFound")) {
+                        showBasicLoginErrorDialog();
                         return;
                     }
 
@@ -151,7 +154,13 @@ public class LoginActivity extends Cash1Activity {
                     }
                     checkUserDevice();
                 } else {
-                    startActivity(new Intent(LoginActivity.this, LoginRetryActivity.class));
+                    String redirectView = responseObj.getAsJsonPrimitive("RedirectView").getAsString();
+                    mSharedPrefs.edit().putString("redirect_view", redirectView).apply();
+                    if (redirectView.equals("LoginFailed")) {
+                        startActivity(new Intent(LoginActivity.this, LoginRetryActivity.class));
+                    } else if (redirectView.equals("UserNotFound")) {
+                        showBasicLoginErrorDialog();
+                    }
                 }
             }
 
@@ -244,6 +253,10 @@ public class LoginActivity extends Cash1Activity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
+
+    // TODO: Max 3 login attempts
+    // TODO: Show register button if not registered
+    // TODO: Dialogs not exists vs incorrect pass
 
     public void navigateToRegisterActivity(View view) {
         startActivity(new Intent(this, RegisterActivity.class));

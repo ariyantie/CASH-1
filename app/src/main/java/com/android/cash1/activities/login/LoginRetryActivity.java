@@ -31,16 +31,21 @@ public class LoginRetryActivity extends Cash1Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_retry);
 
-        showIncorrectUsernameOrPasswordPopup();
+        mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mSharedPrefs.edit().putString("password", null).apply();
+
+        int attempts = mSharedPrefs.getInt("attempts_left", 2);
+        if (attempts > 0) {
+            showIncorrectUsernameOrPasswordPopup();
+        } else {
+            showAttemptsExceededPopup();
+        }
 
         setupActionBar();
 
 
         mUsernameEditText = (EditText) findViewById(R.id.username);
         mPasswordEditText = (EditText) findViewById(R.id.password);
-
-        mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        mSharedPrefs.edit().putString("password", null).apply();
     }
 
     public void login(View view) {
@@ -76,7 +81,6 @@ public class LoginRetryActivity extends Cash1Activity {
                         mPasswordEditText.setText("");
                         mPasswordEditText.requestFocus();
                     } else {
-                        startActivity(new Intent(LoginRetryActivity.this, SplashActivity.class));
                         showAttemptsExceededPopup();
                     }
                 }

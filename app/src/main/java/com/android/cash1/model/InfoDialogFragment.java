@@ -2,6 +2,7 @@ package com.android.cash1.model;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -15,8 +16,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.android.cash1.activities.search.FindOfficeActivity;
 import com.android.cash1.R;
+import com.android.cash1.activities.login.LoginActivity;
+import com.android.cash1.activities.search.FindOfficeActivity;
 import com.android.cash1.rest.Cash1ApiService;
 import com.android.cash1.rest.Cash1Client;
 import com.google.gson.JsonObject;
@@ -36,17 +38,21 @@ public class InfoDialogFragment extends DialogFragment {
         final View rootView = inflater.inflate(R.layout.dialog, null);
         builder.setView(rootView);
 
-        int dialogId = getArguments().getInt("dialog_id", -1);
+        final int dialogId = getArguments().getInt("dialog_id", -1);
         String messageType = getArguments().getString("message_type");
         String bodyMessage = getArguments().getString("message");
 
-        String cancelButtonLabel = getArguments().getString("btn_cancel_label");
+        final String cancelButtonLabel = getArguments().getString("btn_cancel_label");
         Button cancelButton = (Button) rootView.findViewById(R.id.cancel);
         cancelButton.setText(cancelButtonLabel);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dismiss();
+                if (dialogId == 3) {
+                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                } else {
+                    dismiss();
+                }
             }
         });
 

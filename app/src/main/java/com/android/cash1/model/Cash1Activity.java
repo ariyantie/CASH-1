@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -223,10 +224,11 @@ public class Cash1Activity extends AppCompatActivity {
         Bundle args = new Bundle();
         args.putInt("dialog_id", messageId);
         args.putString("message_type", dialogTypeCode);
+        args.putString("btn_cancel_label", getString(R.string.close_button_label));
         if (showCallUsButton) {
             args.putString("btn_confirm_label", getString(R.string.call_us_button_label));
+            args.putString("btn_cancel_label", "Exit");
         }
-        args.putString("btn_cancel_label", getString(R.string.close_button_label));
         dialog.setArguments(args);
 
         dialog.show(getSupportFragmentManager(), "dialog");
@@ -235,7 +237,12 @@ public class Cash1Activity extends AppCompatActivity {
     public String getDeviceId() {
         TelephonyManager telephonyManager = (TelephonyManager)
                 getSystemService(Context.TELEPHONY_SERVICE);
-        return telephonyManager.getDeviceId().substring(0, 9);
+        if (telephonyManager.getDeviceId() != null) {
+            return telephonyManager.getDeviceId().substring(0, 9);
+        } else {
+            return Settings.Secure.getString(getContentResolver(),
+                    Settings.Secure.ANDROID_ID).replaceAll("\\D+","").substring(0, 9);
+        }
     }
 
     public void showMismatchPopup() {
