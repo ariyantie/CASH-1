@@ -173,12 +173,17 @@ public class LoginRetryActivity extends Cash1Activity {
     }
 
     @Override
-    public void goBack(View view) {
-        finish();
+    public void onBackPressed() {
+        navigateToLoginActivity();
     }
 
     @Override
-    public void onBackPressed() {
+    public void goBack(View view) {
+        navigateToLoginActivity();
+    }
+
+    private void navigateToLoginActivity() {
+        startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
 }

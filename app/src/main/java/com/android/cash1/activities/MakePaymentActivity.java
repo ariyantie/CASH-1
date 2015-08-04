@@ -1,8 +1,11 @@
 package com.android.cash1.activities;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +16,8 @@ import com.android.cash1.rest.Cash1Client;
 import com.google.gson.JsonObject;
 
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Locale;
 
 import retrofit.Callback;
@@ -20,6 +25,21 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class MakePaymentActivity extends Cash1Activity {
+
+    Calendar myCalendar = Calendar.getInstance();
+
+    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                              int dayOfMonth) {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateLabel();
+        }
+
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +50,26 @@ public class MakePaymentActivity extends Cash1Activity {
         setupFooter();
 
         showAccountDetails();
+
+        EditText dateField = (EditText) findViewById(R.id.date);
+        dateField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    new DatePickerDialog(MakePaymentActivity.this, date, myCalendar
+                            .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                            myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                }
+            }
+        });
+    }
+
+    private void updateLabel() {
+        String myFormat = "dd/MM/yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        EditText dateField = (EditText) findViewById(R.id.date);
+        dateField.setText(sdf.format(myCalendar.getTime()));
     }
 
     private void showAccountDetails() {

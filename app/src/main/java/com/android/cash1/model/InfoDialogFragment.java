@@ -45,6 +45,9 @@ public class InfoDialogFragment extends DialogFragment {
         final String cancelButtonLabel = getArguments().getString("btn_cancel_label");
         Button cancelButton = (Button) rootView.findViewById(R.id.cancel);
         cancelButton.setText(cancelButtonLabel);
+        if (dialogId == 34) {
+            cancelButton.setText("Retry");
+        }
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

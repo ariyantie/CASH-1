@@ -134,6 +134,11 @@ public class RegisterActivity extends Cash1Activity {
     }
 
     @Override
+    public void onBackPressed() {
+        navigateToLoginScreen();
+    }
+
+    @Override
     public void goBack(View view) {
         navigateToLoginScreen();
     }

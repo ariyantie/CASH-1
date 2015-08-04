@@ -187,6 +187,10 @@ public class Cash1Activity extends AppCompatActivity {
     }
 
     public void callUs() {
+        callUs(new View(this));
+    }
+
+    public void callUs(View view) {
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:775-321-3566"));
         startActivity(intent);
@@ -206,7 +210,7 @@ public class Cash1Activity extends AppCompatActivity {
     }
 
     public void showIncorrectUsernameOrPasswordPopup() {
-        showDialog(4, "E", true);
+        showDialog(34, "E", false);
     }
 
     /**

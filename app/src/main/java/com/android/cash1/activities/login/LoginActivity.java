@@ -254,10 +254,6 @@ public class LoginActivity extends Cash1Activity {
         startActivity(intent);
     }
 
-    // TODO: Max 3 login attempts
-    // TODO: Show register button if not registered
-    // TODO: Dialogs not exists vs incorrect pass
-
     public void navigateToRegisterActivity(View view) {
         startActivity(new Intent(this, RegisterActivity.class));
     }
