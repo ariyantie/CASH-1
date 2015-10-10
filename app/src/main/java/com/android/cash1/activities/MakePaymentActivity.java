@@ -68,6 +68,16 @@ public class MakePaymentActivity extends Cash1Activity {
                 }
             }
         });
+
+        findViewById(R.id.focusable_container).requestFocus();
+        EditText fromField = (EditText) findViewById(R.id.payment_from);
+        fromField.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(MakePaymentActivity.this, PaymentAccountActivity.class), 123);
+                findViewById(R.id.focusable_container).requestFocus();
+            }
+        });
     }
 
     private void updateLabel() {

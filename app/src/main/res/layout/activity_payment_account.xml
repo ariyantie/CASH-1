@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".PaymentAccountActivity">
+
+    <ScrollView style="@style/ContainerScroll">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="@drawable/actionbar_subheader"
+                android:gravity="top|center_horizontal"
+                android:text="Select account to pay from"
+                android:textAllCaps="true"
+                android:textColor="#e1ffffff"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                style="@style/ContainerLayout"
+                android:layout_height="wrap_content"
+                android:paddingBottom="0dp">
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

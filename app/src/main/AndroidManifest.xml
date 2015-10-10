@@ -176,88 +176,88 @@
         <activity
             android:name=".activities.support.FaqActivity"
             android:label="@string/title_activity_faq"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".activities.MainActivity" >
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
         <activity
             android:name=".activities.support.ContactActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".activities.MainActivity" >
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
         <activity
             android:name=".activities.UpdateInfoActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".activities.MainActivity" >
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
         <activity
             android:name=".activities.MakePaymentActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".activities.MainActivity" >
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
         <activity
             android:name=".activities.support.SettingsActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".activities.MainActivity" >
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
         <activity
             android:name=".activities.support.NotificationSettingsActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".activities.MainActivity" >
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
         <activity
             android:name=".activities.login.PrivacyPolicyActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".activities.support.SettingsActivity" >
+            android:parentActivityName=".activities.support.SettingsActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.support.SettingsActivity" />
         </activity>
         <activity
             android:name=".activities.support.TermsActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".activities.support.SettingsActivity" >
+            android:parentActivityName=".activities.support.SettingsActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.support.SettingsActivity" />
         </activity>
         <activity
             android:name=".activities.search.OfficeDetailActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".activities.search.FindOfficeResultActivity" >
+            android:parentActivityName=".activities.search.FindOfficeResultActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.search.FindOfficeResultActivity" />
         </activity>
         <activity
             android:name=".activities.search.FindOfficeWithAddressActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".activities.search.FindOfficeActivity" >
+            android:parentActivityName=".activities.search.FindOfficeActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.search.FindOfficeActivity" />
         </activity>
         <activity
             android:name=".activities.search.FindOfficeInStateActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".activities.search.FindOfficeActivity" >
+            android:parentActivityName=".activities.search.FindOfficeActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.search.FindOfficeActivity" />
@@ -270,6 +270,14 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity
+            android:name=".activities.PaymentAccountActivity"
+            android:label="@string/title_activity_payment_account"
+            android:parentActivityName=".activities.MakePaymentActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.cash1.activities.MakePaymentActivity" />
+        </activity>
     </application>
 
 </manifest>

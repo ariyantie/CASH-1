@@ -22,6 +22,9 @@
 
             <LinearLayout
                 style="@style/ContainerLayout"
+                android:id="@+id/focusable_container"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:layout_height="wrap_content"
                 android:paddingBottom="0dp">
 
@@ -134,6 +137,7 @@
                     android:id="@+id/payment_from"
                     style="@style/EditTextLogin"
                     android:layout_marginTop="40dp"
+                    android:focusable="false"
                     android:hint="Payment from"
                     android:inputType="textPersonName|textCapWords|textNoSuggestions"
                     tools:text="Test Sender" />

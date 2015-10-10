@@ -71,5 +71,6 @@
     <string name="address_button_label">Use Zip Code or Address</string>
     <string name="no_location_detected">No location detected. Make sure location is enabled on the device.</string>
     <string name="very_close">Very close</string>
+    <string name="title_activity_payment_account">PaymentAccountActivity</string>
 
 </resources>
