@@ -78,6 +78,14 @@ public class MakePaymentActivity extends Cash1Activity {
                 findViewById(R.id.focusable_container).requestFocus();
             }
         });
+        EditText amountField = (EditText) findViewById(R.id.amount);
+        amountField.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivityForResult(new Intent(MakePaymentActivity.this, PaymentAmountActivity.class), 202);
+                findViewById(R.id.focusable_container).requestFocus();
+            }
+        });
     }
 
     private void updateLabel() {
@@ -198,5 +206,22 @@ public class MakePaymentActivity extends Cash1Activity {
 
         dialog.show();
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case 123:
+                    EditText fromField = (EditText) findViewById(R.id.payment_from);
+                    fromField.setText("Wellsfargo");
+                    break;
+                case 202:
+                    EditText amountField = (EditText) findViewById(R.id.amount);
+                    amountField.setText("123");
+                    break;
+            }
+        }
     }
 }

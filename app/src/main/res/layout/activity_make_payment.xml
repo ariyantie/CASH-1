@@ -151,6 +151,7 @@
                         android:id="@+id/amount"
                         style="@style/EditTextLogin"
                         android:layout_width="match_parent"
+                        android:focusable="false"
                         android:hint="Amount"
                         android:paddingLeft="38dp"
                         android:inputType="numberDecimal"

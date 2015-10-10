@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".PaymentAccountActivity">
+
+    <ScrollView style="@style/ContainerScroll"
+        android:layout_above="@+id/add_button">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="@drawable/actionbar_subheader"
+                android:gravity="top|center_horizontal"
+                android:text="Select payment amount"
+                android:textAllCaps="true"
+                android:textColor="#e1ffffff"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                style="@style/ContainerLayout"
+                android:layout_height="wrap_content"
+                android:paddingBottom="0dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="10dp"
+                    android:paddingTop="4dp"
+                    android:text="Please Select Your One Time Payment Amount"
+                    android:gravity="center_horizontal"
+                    android:textColor="#c6000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp">
+
+                    <RadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:checked="true"
+                        android:singleLine="true"
+                        android:textSize="18sp"
+                        android:text="Minimum Account Due: $[xxx]"/>
+
+                    <RadioButton
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:textSize="18sp"
+                        android:singleLine="true"
+                        android:text="Statement Balance: $[xxx]"/>
+
+                </RadioGroup>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
+
+                    <EditText
+                        android:id="@+id/amount"
+                        style="@style/EditTextLogin"
+                        android:layout_width="match_parent"
+                        android:focusable="false"
+                        android:hint="Amount"
+                        android:paddingLeft="38dp"
+                        android:layout_marginRight="4dp"
+                        android:textSize="20sp"
+                        android:inputType="numberDecimal"
+                        tools:text="250.00" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:gravity="center"
+                        android:text="$"
+                        android:textSize="22sp"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="13dp"
+                        android:paddingRight="14dp"
+                        android:paddingBottom="1dp"
+                        android:textColor="#7c000000" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/submit_button"
+        style="@style/ButtonSubmitPrimary"
+        android:layout_marginBottom="112dp"
+        android:layout_marginTop="22dp"
+        android:onClick="select"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_alignParentBottom="true"
+        android:text="Select" />
+
+    <include
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

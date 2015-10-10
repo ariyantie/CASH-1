@@ -3,6 +3,7 @@ package com.android.cash1.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -25,6 +26,13 @@ public class PaymentAccountActivity extends Cash1Activity {
                 new String[] {"Account name: Wellsfargo", "Account name: Wellsfargo", "Account name: Wellsfargo", "Account name: Wellsfargo"});
         ListView accountListView = (ListView) findViewById(R.id.account_list_view);
         accountListView.setAdapter(adapter);
+        accountListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> listView, View view, int position, long id) {
+                setResult(RESULT_OK);
+                finish();
+            }
+        });
     }
 
     public void addAccount(View view) {
