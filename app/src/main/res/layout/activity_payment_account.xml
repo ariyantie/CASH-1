@@ -5,7 +5,8 @@
                 android:layout_height="match_parent"
                 tools:context=".PaymentAccountActivity">
 
-    <ScrollView style="@style/ContainerScroll">
+    <ScrollView style="@style/ContainerScroll"
+        android:layout_above="@+id/add_button">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,13 +28,28 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="0dp">
 
-
+                <ListView
+                    android:id="@+id/account_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/account_list_item"/>
 
             </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
+
+    <Button
+        android:id="@+id/add_button"
+        style="@style/ButtonSubmitPrimary"
+        android:layout_marginBottom="112dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:onClick="addAccount"
+        android:layout_alignParentBottom="true"
+        android:text="+ Add New Account" />
 
     <include
         layout="@layout/footer"
