@@ -1,6 +1,8 @@
 package com.android.cash1.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -25,4 +27,7 @@ public class PaymentAccountActivity extends Cash1Activity {
         accountListView.setAdapter(adapter);
     }
 
+    public void addAccount(View view) {
+        startActivity(new Intent(this, NewAccountActivity.class));
+    }
 }
