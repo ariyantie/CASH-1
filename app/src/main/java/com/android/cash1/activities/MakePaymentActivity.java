@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.cash1.R;
 import com.android.cash1.activities.login.LogoutActivity;
@@ -135,7 +134,7 @@ public class MakePaymentActivity extends Cash1Activity {
 
     public void submitPayment(View view) {
         // TODO: Implement make payment funcionallity
-        Toast.makeText(this, "Coming soon", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, PaymentConfirmationActivity.class));
         return;
 
         // TODO: Retrieve real bank ID from BankAccountInfo service (currently returns 404 error)

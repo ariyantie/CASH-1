@@ -25,6 +25,9 @@
 
             <LinearLayout
                 style="@style/ContainerLayout"
+                android:id="@+id/focusable_container"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:layout_height="wrap_content"
                 android:paddingBottom="0dp">
 
@@ -42,22 +45,25 @@
                 <RadioGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/radio_group"
                     android:layout_marginTop="24dp">
 
                     <RadioButton
+                        android:id="@+id/min_check_box"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:checked="true"
                         android:singleLine="true"
                         android:textSize="18sp"
-                        android:text="Minimum Account Due: $[xxx]"/>
+                        android:text="Minimum Account Due: $10"/>
 
                     <RadioButton
+                        android:id="@+id/balance_check_box"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:textSize="18sp"
                         android:singleLine="true"
-                        android:text="Statement Balance: $[xxx]"/>
+                        android:text="Statement Balance: $500"/>
 
                 </RadioGroup>
 
@@ -70,7 +76,6 @@
                         android:id="@+id/amount"
                         style="@style/EditTextLogin"
                         android:layout_width="match_parent"
-                        android:focusable="false"
                         android:hint="Amount"
                         android:paddingLeft="38dp"
                         android:layout_marginRight="4dp"

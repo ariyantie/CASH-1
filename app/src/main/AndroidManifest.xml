@@ -269,6 +269,7 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_maps_key" />
+
         <activity
             android:name=".activities.PaymentAccountActivity"
             android:label="@string/title_activity_payment_account"
@@ -288,6 +289,14 @@
         <activity
             android:name=".activities.PaymentAmountActivity"
             android:label="@string/title_activity_payment_account"
+            android:parentActivityName=".activities.MakePaymentActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.cash1.activities.MakePaymentActivity" />
+        </activity>
+        <activity
+            android:name=".activities.PaymentConfirmationActivity"
+            android:label="@string/title_activity_payment_confirmation"
             android:parentActivityName=".activities.MakePaymentActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".PaymentConfirmationActivity">
+
+    <ScrollView style="@style/ContainerScroll"
+                android:layout_above="@+id/add_button">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="@drawable/actionbar_subheader"
+                android:gravity="top|center_horizontal"
+                android:text="Payment confirmation"
+                android:textAllCaps="true"
+                android:textColor="#e1ffffff"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                style="@style/ContainerLayout"
+                android:id="@+id/focusable_container"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_height="wrap_content"
+                android:paddingBottom="0dp">
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
+                        android:text="Account name: " />
+
+                    <TextView
+                        android:id="@+id/account_name"
+                        style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
+                        android:text="NVPAYDAY PAYMENT" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
+                        android:text="Loan ID: " />
+
+                    <TextView
+                        android:id="@+id/account_number"
+                        style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
+                        android:text="469" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
+                        android:text="Account type:" />
+
+                    <TextView
+                        android:id="@+id/account_type"
+                        style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
+                        android:text="Not used" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
+                        android:text="Payment from:" />
+
+                    <TextView
+                        style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
+                        android:text="Wellsfargo" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
+                        android:text="Payment amount: " />
+
+                    <TextView
+                        style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
+                        android:text="$123.00" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
+                        android:text="Confirmation number: " />
+
+                    <TextView
+                        style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
+                        android:text="18735" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
+                        android:text="IP address recorded: " />
+
+                    <TextView
+                        style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
+                        android:text="194.66.82.11" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
+                        android:text="Phone ID: " />
+
+                    <TextView
+                        style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
+                        android:text="87102345" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
+                        android:text="Next payment due: " />
+
+                    <TextView
+                        android:id="@+id/next_payment_due"
+                        style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
+                        android:text="08/10/2012" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
+                        android:text="Payment amount: " />
+
+                    <TextView
+                        android:id="@+id/next_payment_amount"
+                        style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
+                        android:text="0.00" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:textSize="16sp"
+                    android:text="@string/receipt"/>
+
+                <Button
+                    android:id="@+id/submit_button"
+                    style="@style/ButtonSubmitPrimary"
+                    android:layout_marginBottom="112dp"
+                    android:layout_marginTop="22dp"
+                    android:onClick="submitPayment"
+                    android:text="Submit" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

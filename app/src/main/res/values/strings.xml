@@ -73,5 +73,7 @@
     <string name="very_close">Very close</string>
     <string name="title_activity_payment_account">PaymentAccountActivity</string>
     <string name="title_activity_new_account">NewAccountActivity</string>
+    <string name="title_activity_payment_confirmation">PaymentConfirmationActivity</string>
+    <string name="receipt"><i>A receipt of your payment will also be sent to your email and text message accounts on file.</i></string>
 
 </resources>
