@@ -45,7 +45,7 @@
                     android:id="@+id/personal_info_button"
                     style="@style/ButtonSubmitPrimary"
                     android:layout_marginTop="16dp"
-                    android:onClick="showComingSoonToast"
+                    android:onClick="personalInfo"
                     android:text="Update personal info" />
 
                 <Button

@@ -302,6 +302,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.cash1.activities.MakePaymentActivity" />
         </activity>
+        <activity android:name=".activities.updateInfo.PersonalInfoActivity" >
+        </activity>
     </application>
 
 </manifest>

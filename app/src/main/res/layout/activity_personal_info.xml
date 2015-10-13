@@ -1,0 +1,131 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <ScrollView style="@style/ContainerScroll">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="@drawable/actionbar_subheader"
+                android:gravity="top|center_horizontal"
+                android:text="Update personal info"
+                android:textAllCaps="true"
+                android:textColor="#e1ffffff"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/container"
+                style="@style/ContainerLayout"
+                android:layout_height="wrap_content">
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
+                        android:text="Account name: " />
+
+                    <TextView
+                        android:id="@+id/account_name"
+                        style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
+                        android:text=""
+                        tools:text="NVPAYDAY PAYMENT" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
+                        android:text="Account number: " />
+
+                    <TextView
+                        android:id="@+id/account_number"
+                        style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
+                        android:text="Loading..."
+                        tools:text="469" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer"
+                              android:paddingBottom="24dp">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
+                        android:text="Account type:" />
+
+                    <TextView
+                        android:id="@+id/account_type"
+                        style="@style/AccountDetailsValue"
+                        android:text=""
+                        android:textColor="#9e000000"
+                        tools:text="Not used" />
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/address"
+                    style="@style/EditTextLogin"
+                    android:hint="Address"
+                    android:inputType="textPostalAddress|textCapWords" />
+
+                <EditText
+                    android:id="@+id/city"
+                    style="@style/EditTextLogin"
+                    android:hint="City"
+                    android:layout_marginTop="16dp"
+                    android:inputType="textPostalAddress|textCapWords" />
+
+                <EditText
+                    android:id="@+id/state"
+                    style="@style/EditTextLogin"
+                    android:hint="State"
+                    android:layout_marginTop="16dp"
+                    android:inputType="textPostalAddress|textCapCharacters" />
+
+                <EditText
+                    android:id="@+id/zip_code"
+                    style="@style/EditTextLogin"
+                    android:hint="ZIP code"
+                    android:layout_marginTop="16dp"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/home_phone"
+                    style="@style/EditTextLogin"
+                    android:hint="Home phone"
+                    android:layout_marginTop="16dp"
+                    android:inputType="phone" />
+
+                <EditText
+                    android:id="@+id/cell_phone"
+                    style="@style/EditTextLogin"
+                    android:hint="Cell phone"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="64dp"
+                    android:inputType="phone" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

@@ -1,7 +1,9 @@
 package com.android.cash1.model;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -11,10 +13,12 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.cash1.R;
@@ -318,5 +322,49 @@ public class Cash1Activity extends AppCompatActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    public void exitPopupUpdateInfo() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View rootView = inflater.inflate(R.layout.dialog, null);
+        builder.setView(rootView);
+
+        rootView.findViewById(R.id.spinner).setVisibility(View.GONE);
+        TextView titleView = (TextView) rootView.findViewById(R.id.title);
+        titleView.setVisibility(View.VISIBLE);
+        titleView.setText("Update Not Saved");
+        TextView messageView = (TextView) rootView.findViewById(R.id.body);
+        messageView.setVisibility(View.VISIBLE);
+        messageView.setText("You have not completed your update of information. Are you sure you " +
+                "want to log out? Your account update information will not be saved until the " +
+                "update has been completed.");
+
+        final AlertDialog dialog = builder.create();
+
+        Button confirmButton = (Button) rootView.findViewById(R.id.confirm);
+        confirmButton.setVisibility(View.VISIBLE);
+        confirmButton.setText("Log Out");
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Cash1Activity.this, LogoutActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
+        Button cancelButton = (Button) rootView.findViewById(R.id.cancel);
+        cancelButton.setVisibility(View.VISIBLE);
+        cancelButton.setText("Return to Update");
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.cancel();
+            }
+        });
+
+        dialog.show();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
     }
 }
