@@ -1,0 +1,92 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <ScrollView style="@style/ContainerScroll">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="@drawable/actionbar_subheader"
+                android:gravity="top|center_horizontal"
+                android:text="Update paydays"
+                android:textAllCaps="true"
+                android:textColor="#e1ffffff"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:id="@+id/container"
+                style="@style/ContainerLayout"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
+                        android:text="Account name: " />
+
+                    <TextView
+                        android:id="@+id/account_name"
+                        style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
+                        android:text=""
+                        tools:text="NVPAYDAY PAYMENT" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
+                        android:text="Account number: " />
+
+                    <TextView
+                        android:id="@+id/account_number"
+                        style="@style/AccountDetailsValue"
+                        android:textColor="#9e000000"
+                        android:text="Loading..."
+                        tools:text="469" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/AccountDetailsContainer"
+                              android:paddingBottom="24dp">
+
+                    <TextView
+                        style="@style/AccountDetailsKey"
+                        android:layout_weight="6"
+                        android:text="Account type:" />
+
+                    <TextView
+                        android:id="@+id/account_type"
+                        style="@style/AccountDetailsValue"
+                        android:text=""
+                        android:textColor="#9e000000"
+                        tools:text="Not used" />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

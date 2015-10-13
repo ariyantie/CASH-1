@@ -1,13 +1,116 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.android.cash1.activities.updateInfo.PrimaryAccountActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <ScrollView style="@style/ContainerScroll">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="@drawable/actionbar_subheader"
+                android:gravity="top|center_horizontal"
+                android:text="Select primary account"
+                android:textAllCaps="true"
+                android:textColor="#e1ffffff"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:id="@+id/container"
+                style="@style/ContainerLayout"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Choose or edit your primary debit/credit account and primary checking account to be used for transactions."
+                    android:textColor="#de000000"
+                    android:textSize="18sp"/>
+
+                <RadioGroup
+                    android:id="@+id/radio_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/bank_box"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:checked="true"
+                            android:singleLine="true"
+                            android:text="Primary bank account #...8127"
+                            android:textSize="18sp"/>
+
+                        <ImageButton
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:alpha="0.45"
+                            android:onClick="comingSoon"
+                            android:src="@drawable/ic_edit"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/card_box"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1"
+                            android:singleLine="true"
+                            android:text="Primary card account #...2689"
+                            android:textSize="18sp"/>
+
+                        <ImageButton
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:alpha="0.45"
+                            android:onClick="comingSoon"
+                            android:src="@drawable/ic_edit"/>
+
+                    </LinearLayout>
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/submit_button"
+                style="@style/ButtonSubmitPrimary"
+                android:layout_height="52dp"
+                android:layout_marginBottom="112dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="0dp"
+                android:onClick="submit"
+                android:text="Select"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
