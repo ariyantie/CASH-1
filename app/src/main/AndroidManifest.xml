@@ -304,6 +304,10 @@
         </activity>
         <activity android:name=".activities.updateInfo.PersonalInfoActivity" >
         </activity>
+        <activity android:name=".activities.updateInfo.WorkInfoActivity" >
+        </activity>
+        <activity android:name=".activities.updateInfo.PrimaryAccountActivity" >
+        </activity>
     </application>
 
 </manifest>

@@ -15,7 +15,7 @@
                 android:layout_height="24dp"
                 android:background="@drawable/actionbar_subheader"
                 android:gravity="top|center_horizontal"
-                android:text="Update personal info"
+                android:text="Update employer info"
                 android:textAllCaps="true"
                 android:textColor="#e1ffffff"
                 android:textStyle="bold" />
@@ -75,9 +75,16 @@
                 </LinearLayout>
 
                 <EditText
+                    android:id="@+id/employer"
+                    style="@style/EditTextLogin"
+                    android:hint="Current employer"
+                    android:inputType="textPersonName|textCapWords" />
+
+                <EditText
                     android:id="@+id/address"
                     style="@style/EditTextLogin"
                     android:hint="Address"
+                    android:layout_marginTop="16dp"
                     android:inputType="textPostalAddress|textCapWords" />
 
                 <EditText
@@ -102,16 +109,23 @@
                     android:inputType="number" />
 
                 <EditText
-                    android:id="@+id/home_phone"
+                    android:id="@+id/work_phone"
                     style="@style/EditTextLogin"
-                    android:hint="Home phone"
+                    android:hint="Work phone"
                     android:layout_marginTop="16dp"
                     android:inputType="phone" />
 
                 <EditText
-                    android:id="@+id/cell_phone"
+                    android:id="@+id/supervisor_name"
                     style="@style/EditTextLogin"
-                    android:hint="Cell phone"
+                    android:layout_marginTop="16dp"
+                    android:hint="Supervisor name"
+                    android:inputType="textPersonName|textCapWords" />
+
+                <EditText
+                    android:id="@+id/supervisor_phone"
+                    style="@style/EditTextLogin"
+                    android:hint="Supervisor phone"
                     android:layout_marginTop="16dp"
                     android:inputType="phone" />
 

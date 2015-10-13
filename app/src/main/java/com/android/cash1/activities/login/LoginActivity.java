@@ -11,7 +11,6 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.android.cash1.R;
-import com.android.cash1.activities.MainActivity;
 import com.android.cash1.model.Cash1Activity;
 import com.android.cash1.rest.Cash1ApiService;
 import com.android.cash1.rest.Cash1Client;
@@ -245,13 +244,6 @@ public class LoginActivity extends Cash1Activity {
                 e.printStackTrace();
             }
         });
-    }
-
-    private void navigateToMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
     }
 
     public void navigateToRegisterActivity(View view) {

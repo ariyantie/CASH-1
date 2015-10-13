@@ -16,12 +16,12 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class PersonalInfoActivity extends Cash1Activity {
+public class WorkInfoActivity extends Cash1Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_personal_info);
+        setContentView(R.layout.activity_work_info);
 
         setupActionBar();
         setupFooter();

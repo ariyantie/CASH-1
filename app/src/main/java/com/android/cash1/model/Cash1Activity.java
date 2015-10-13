@@ -208,6 +208,14 @@ public class Cash1Activity extends AppCompatActivity {
         return PreferenceManager.getDefaultSharedPreferences(this).getBoolean("use_location", false);
     }
 
+    public void navigateToMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
+
     @SuppressWarnings("unused")
     public void showSecurityQuestionPopup() {
         showDialog(7, "E", true);

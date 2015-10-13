@@ -51,7 +51,7 @@
                 <Button
                     android:id="@+id/work_info_button"
                     style="@style/ButtonSubmitPrimary"
-                    android:onClick="showComingSoonToast"
+                    android:onClick="workInfo"
                     android:layout_marginTop="16dp"
                     android:text="Update work info" />
 
