@@ -31,7 +31,7 @@
                     android:id="@+id/card_button"
                     style="@style/ButtonSubmitPrimary"
                     android:layout_marginTop="24dp"
-                    android:onClick="comingSoon"
+                    android:onClick="addCard"
                     android:text="Add Credit/Debit Card" />
 
                 <Button

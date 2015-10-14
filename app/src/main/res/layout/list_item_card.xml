@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="16dp"
-        android:text="Debit/credit card: Wellsfargo"
+        android:text="Debit card: Wellsfargo"
         android:textColor="#de000000"
         android:textSize="18sp"/>
 
@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
+        android:id="@+id/number"
         android:paddingBottom="20dp"
         android:textColor="#87000000"
         android:text="Account number #...1283"/>

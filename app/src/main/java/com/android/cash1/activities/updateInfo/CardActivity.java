@@ -22,14 +22,16 @@ public class CardActivity extends Cash1Activity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 R.layout.list_item_card,
-                R.id.title,
-                new String[] {"Debit/credit card: Wellsfargo", "Debit/credit card: Wellsfargo", "Debit/credit card: Wellsfargo"});
+                R.id.number,
+                new String[] {"Account number #...8173", "Account number #...3017", "Account number #...7503"});
         ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> listView, View view, int position, long id) {
-                startActivity(new Intent(CardActivity.this, EditCardActivity.class));
+                Intent intent = new Intent(CardActivity.this, CardEditActivity.class);
+                intent.putExtra("pre-filled", true);
+                startActivity(intent);
             }
         });
     }
@@ -37,5 +39,9 @@ public class CardActivity extends Cash1Activity {
     @Override
     public void logout(View view) {
         exitPopupUpdateInfo();
+    }
+
+    public void addCard(View view) {
+        startActivity(new Intent(this, CardEditActivity.class));
     }
 }
