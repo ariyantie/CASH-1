@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.android.cash1.R;
+import com.android.cash1.activities.updateInfo.CardActivity;
 import com.android.cash1.activities.updateInfo.PaydaysActivity;
 import com.android.cash1.activities.updateInfo.PersonalInfoActivity;
 import com.android.cash1.activities.updateInfo.PrimaryAccountActivity;
@@ -46,5 +47,9 @@ public class UpdateInfoActivity extends Cash1Activity {
 
     public void paydays(View view) {
         startActivity(new Intent(this, PaydaysActivity.class));
+    }
+
+    public void card(View view) {
+        startActivity(new Intent(this, CardActivity.class));
     }
 }

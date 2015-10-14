@@ -37,7 +37,9 @@
                 <Button
                     android:id="@+id/bank_button"
                     style="@style/ButtonSubmitSecondary"
+                    android:layout_height="50dp"
                     android:layout_marginBottom="32dp"
+                    android:textSize="20sp"
                     android:onClick="comingSoon"
                     android:layout_marginTop="8dp"
                     android:text="Add Bank Account" />

@@ -75,7 +75,24 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="To update your payday information please call CASH 1 at 775-321-3566"
+                    android:autoLink="phone"
+                    android:textColor="#de000000"
+                    android:textStyle="bold"
+                    android:textSize="20sp"/>
 
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:id="@+id/call"
+                    android:onClick="callUs"
+                    android:textSize="20sp"
+                    android:text="Call CASH 1"
+                    style="@style/ButtonDialog"
+                    android:layout_marginTop="26dp"/>
 
             </LinearLayout>
 

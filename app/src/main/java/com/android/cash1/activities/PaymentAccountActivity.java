@@ -21,7 +21,7 @@ public class PaymentAccountActivity extends Cash1Activity {
         setupFooter();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                R.layout.account_list_item,
+                R.layout.list_item_account,
                 R.id.title,
                 new String[] {"Account name: Wellsfargo", "Account name: Wellsfargo", "Account name: Wellsfargo", "Account name: Wellsfargo"});
         ListView accountListView = (ListView) findViewById(R.id.account_list_view);

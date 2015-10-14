@@ -31,7 +31,7 @@
                     android:id="@+id/update_card_button"
                     style="@style/ButtonSubmitPrimary"
                     android:layout_marginTop="16dp"
-                    android:onClick="showComingSoonToast"
+                    android:onClick="card"
                     android:text="Update debit/credit card" />
 
                 <Button
@@ -67,7 +67,7 @@
                     style="@style/ButtonSubmitPrimary"
                     android:layout_marginTop="16dp"
                     android:onClick="paydays"
-                    android:text="Change my payment" />
+                    android:text="Change my paydays" />
 
             </LinearLayout>
 

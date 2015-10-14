@@ -1,0 +1,117 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <ScrollView style="@style/ContainerScroll">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="@drawable/actionbar_subheader"
+                android:gravity="top|center_horizontal"
+                android:text="Edit debit/credit card"
+                android:textAllCaps="true"
+                android:textColor="#e1ffffff"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/container"
+                style="@style/ContainerLayout"
+                android:paddingTop="24dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/name"
+                    style="@style/EditTextLogin"
+                    android:hint="Name on card"
+                    android:inputType="textPersonName|textCapWords" />
+
+                <EditText
+                    android:id="@+id/card_type"
+                    style="@style/EditTextLogin"
+                    android:hint="Card type"
+                    android:layout_marginTop="16dp"
+                    android:inputType="textCapWords" />
+
+                <EditText
+                    android:id="@+id/card_number"
+                    style="@style/EditTextLogin"
+                    android:hint="Card number"
+                    android:layout_marginTop="16dp"
+                    android:inputType="number" />
+
+                <EditText
+                    android:id="@+id/expiration_date"
+                    style="@style/EditTextLogin"
+                    android:hint="Expiration date"
+                    android:layout_marginTop="16dp"
+                    android:inputType="date" />
+
+                <EditText
+                    android:id="@+id/cvv"
+                    style="@style/EditTextLogin"
+                    android:hint="CVV number"
+                    android:layout_marginTop="16dp"
+                    android:inputType="number"
+                    android:maxLength="3"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingBottom="4dp"
+                        android:paddingLeft="4dp"
+                        android:paddingTop="4dp"
+                        android:text="Linked to checking account"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                    <ToggleButton
+                        android:id="@+id/toggle_linked"
+                        android:layout_width="86dp"
+                        android:layout_height="26dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/toggle_selector"
+                        android:textOff=""
+                        android:textOn=""
+                        tools:checked="true" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/submit_button"
+                android:layout_height="52dp"
+                style="@style/ButtonSubmitPrimary"
+                android:layout_marginBottom="72dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="16dp"
+                android:onClick="submit"
+                android:text="Submit" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

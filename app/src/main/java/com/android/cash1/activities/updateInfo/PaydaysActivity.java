@@ -1,7 +1,10 @@
 package com.android.cash1.activities.updateInfo;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.TextView;
 
 import com.android.cash1.R;
@@ -49,5 +52,11 @@ public class PaydaysActivity extends Cash1Activity {
                 error.printStackTrace();
             }
         });
+    }
+
+    public void callUs(View view) {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:775-321-3566"));
+        startActivity(intent);
     }
 }
