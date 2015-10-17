@@ -33,51 +33,50 @@
                     android:textColor="#de000000"
                     android:textSize="18sp"/>
 
-                <RadioGroup
-                    android:id="@+id/radio_group"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp">
+                    android:layout_marginTop="24dp"
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <RadioGroup
+                        android:id="@+id/radio_group"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_weight="1">
 
                         <RadioButton
                             android:id="@+id/bank_box"
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="40dp"
-                            android:layout_weight="1"
                             android:checked="true"
                             android:singleLine="true"
                             android:text="Primary bank account #...8127"
                             android:textSize="18sp"/>
 
-                        <ImageButton
-                            style="@style/Widget.AppCompat.Button.Borderless"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:alpha="0.45"
-                            android:onClick="comingSoon"
-                            android:src="@drawable/ic_edit"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
                         <RadioButton
                             android:id="@+id/card_box"
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="40dp"
-                            android:layout_weight="1"
                             android:singleLine="true"
                             android:text="Primary card account #...2689"
                             android:textSize="18sp"/>
 
+                    </RadioGroup>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:alpha="0.45"
+                            android:onClick="comingSoon"
+                            android:src="@drawable/ic_edit"/>
+
                         <ImageButton
                             style="@style/Widget.AppCompat.Button.Borderless"
                             android:layout_width="40dp"
@@ -88,7 +87,7 @@
 
                     </LinearLayout>
 
-                </RadioGroup>
+                </LinearLayout>
 
             </LinearLayout>
 

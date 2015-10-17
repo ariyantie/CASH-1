@@ -3,9 +3,9 @@ package com.android.cash1.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.android.cash1.R;
+import com.android.cash1.activities.updateInfo.BankActivity;
 import com.android.cash1.activities.updateInfo.CardActivity;
 import com.android.cash1.activities.updateInfo.PaydaysActivity;
 import com.android.cash1.activities.updateInfo.PersonalInfoActivity;
@@ -22,10 +22,6 @@ public class UpdateInfoActivity extends Cash1Activity {
 
         setupActionBar();
         setupFooter();
-    }
-
-    public void showComingSoonToast(View view) {
-        Toast.makeText(this, "Coming soon", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -51,5 +47,9 @@ public class UpdateInfoActivity extends Cash1Activity {
 
     public void card(View view) {
         startActivity(new Intent(this, CardActivity.class));
+    }
+
+    public void bank(View view) {
+        startActivity(new Intent(this, BankActivity.class));
     }
 }

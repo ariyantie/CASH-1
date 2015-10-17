@@ -16,7 +16,7 @@
                 android:layout_height="24dp"
                 android:background="@drawable/actionbar_subheader"
                 android:gravity="top|center_horizontal"
-                android:text="Add debit/credit card"
+                android:text="Add bank account"
                 android:textAllCaps="true"
                 android:textColor="#e1ffffff"
                 android:textStyle="bold" />
@@ -30,48 +30,40 @@
                 <EditText
                     android:id="@+id/name"
                     style="@style/EditTextLogin"
-                    android:hint="Name on card"
-                    tools:text="Wellsfargo"
+                    android:hint="Name"
                     android:inputType="textPersonName|textCapWords" />
 
                 <EditText
-                    android:id="@+id/card_type"
+                    android:id="@+id/bank_name"
                     style="@style/EditTextLogin"
-                    android:hint="Card type"
-                    tools:text="Debit"
+                    android:hint="Bank name"
                     android:layout_marginTop="16dp"
-                    android:inputType="textCapWords" />
+                    android:inputType="textCapWords|textNoSuggestions" />
 
                 <EditText
-                    android:id="@+id/card_number"
+                    android:id="@+id/account_number"
                     style="@style/EditTextLogin"
-                    tools:text="1827 7912 1203 5084"
-                    android:hint="Card number"
+                    android:hint="Account number"
                     android:layout_marginTop="16dp"
-                    android:inputType="number" />
-
-                <EditText
-                    android:id="@+id/expiration_date"
-                    style="@style/EditTextLogin"
-                    android:hint="Expiration date"
-                    android:layout_marginTop="16dp"
-                    android:inputType="date" />
+                    android:inputType="number"
+                    android:maxLength="8"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp">
 
-                <EditText
-                    android:id="@+id/cvv"
-                    style="@style/EditTextLogin"
-                    android:hint="CVV number"
-                    android:inputType="number"
-                    android:maxLength="3"/>
+                    <EditText
+                        android:id="@+id/cvv"
+                        style="@style/EditTextLogin"
+
+                        android:hint="Routing number"
+                        android:inputType="number"
+                        android:maxLength="8"/>
 
                     <ImageButton
                         android:layout_width="48dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:alpha="0.95"
@@ -81,6 +73,13 @@
                         android:src="@drawable/ic_info" />
 
                 </RelativeLayout>
+
+                <EditText
+                    android:id="@+id/account_type"
+                    style="@style/EditTextLogin"
+                    android:hint="Account type"
+                    android:layout_marginTop="16dp"
+                    android:inputType="textCapWords"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"

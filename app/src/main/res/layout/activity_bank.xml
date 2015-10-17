@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <ScrollView style="@style/ContainerScroll">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="@drawable/actionbar_subheader"
+                android:gravity="top|center_horizontal"
+                android:text="Update bank account"
+                android:textAllCaps="true"
+                android:textColor="#e1ffffff"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:id="@+id/container"
+                style="@style/ContainerLayout">
+
+                <ListView
+                    android:id="@+id/list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="112dp"
+                    tools:listitem="@layout/list_item_bank"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/submit_button"
+                style="@style/ButtonSubmitPrimary"
+                android:layout_height="52dp"
+                android:layout_marginBottom="112dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="0dp"
+                android:onClick="submit"
+                android:text="Select"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        style="@style/ButtonMainMenu"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_height="48dp"
+        android:onClick="addCard"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:layout_marginBottom="112dp"
+        android:text="+ Bank account"
+        android:textSize="20sp" />
+
+    <include
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
